@@ -6,11 +6,9 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/15 08:37:26 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/15 09:13:31 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stdio.h>
 
 static char			*ft_pfstring(char const *str, size_t len)
 {
@@ -97,7 +95,6 @@ char				**ft_pfsplit(char const *str)
 
 	tab = ft_pfsettab(str);
 	size = ft_tabsize(str);
-	printf("%zu\n", size);
 	n = 0;
 	while (n < size && str)
 	{
@@ -106,9 +103,7 @@ char				**ft_pfsplit(char const *str)
 			if (*str == '%')
 			{
 				len = ft_pfstrlen(str);
-				printf("%zu\n", len);
 				tab[n] = ft_pfstring(str, len);
-				printf("%s\n", tab[n]);
 				n++;
 				str++;
 			}

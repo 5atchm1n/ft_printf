@@ -6,25 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 22:13:30 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/15 06:54:30 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/15 09:06:43 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftprintf.h"
-
-static t_flags		ft_setflags(char *str);
-{
-	t_flags			flags;
-
-	flags = malloc(sizeof(flags));
-
-	flags.left = ft_fleft(str);
-	flags.zero = ft_fzero(str);
-	flags.fwidth = ft_fwidth(str);
-	flags.precision = ft_precision(str);
-
-	return (flags);
-}
 
 static t_pfdata	*ft_pfsethead(t_pfdata *pfdata, char *str)
 {
