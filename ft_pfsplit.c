@@ -6,13 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/14 22:21:03 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/15 08:37:26 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <stdio.h>
 
 static char			*ft_pfstring(char const *str, size_t len)
 {
@@ -36,42 +34,26 @@ static size_t		ft_pfstrlen(const char *str)
 {
 	size_t			n;
 
-	n = 1;
-	if (*str == '%' && *str)
-		str++;
-	while (*(str + 1) != '\0' && *(str + 1) != '%')
-	{
-		n++;
-		str++;
-	}
-	return (n);
-}
-
-static char			**ft_pfsettab(const char *str)
-{
-	size_t			size;
-	int				end;
-	char			**tab;
-
-	size = 0;
-	end = 0;
-	while (*str != '\0' && !end)
+	n = 0;
+	while (*str != '\0' && n == 0)
 	{
 		if (*str == '%')
 		{
-			size++;
 			str++;
+			n++;
+			if (*str != '\0')
+				n++;
+				str++;
+			while (*str != '\0' && *str != '%')
+			{
+				n++;
+				str++;
+			}
 		}
-		if (*str == '%')
-			str++;
-		end = (*str == '\0');
-		if (!end)
+		if (*str)
 			str++;
 	}
-	if (!(tab = malloc(sizeof(char *) * (size + 1))))
-		return (tab = NULL);
-	tab[size] = NULL;
-	return (tab);
+	return (n);
 }
 
 static size_t		ft_tabsize(const char *str)
@@ -79,7 +61,7 @@ static size_t		ft_tabsize(const char *str)
 	size_t			n;
 
 	n = 0;
-	while (str && *str != '\0')
+	while (*str != '\0')
 	{
 		if (*str == '%')
 		{
@@ -88,10 +70,22 @@ static size_t		ft_tabsize(const char *str)
 		}
 		if (*str == '%')
 			str++;
-		if (*str != '\0')
+		if (*str != '\0' && *str != '%')
 			str++;
 	}
 	return (n);
+}
+
+static char			**ft_pfsettab(const char *str)
+{
+	size_t			size;
+	char			**tab;
+
+	size = ft_tabsize(str);
+	if (!(tab = malloc(sizeof(char *) * (size + 1))))
+		return (tab = NULL);
+	tab[size] = NULL;
+	return (tab);
 }
 
 char				**ft_pfsplit(char const *str)
@@ -103,6 +97,7 @@ char				**ft_pfsplit(char const *str)
 
 	tab = ft_pfsettab(str);
 	size = ft_tabsize(str);
+	printf("%zu\n", size);
 	n = 0;
 	while (n < size && str)
 	{
@@ -111,7 +106,9 @@ char				**ft_pfsplit(char const *str)
 			if (*str == '%')
 			{
 				len = ft_pfstrlen(str);
+				printf("%zu\n", len);
 				tab[n] = ft_pfstring(str, len);
+				printf("%s\n", tab[n]);
 				n++;
 				str++;
 			}
@@ -120,32 +117,3 @@ char				**ft_pfsplit(char const *str)
 	}
 	return (tab);
 }
-
-
-
-/*
-int main(void)
-{
-	char **test;
-	int i;
-
-	i = 0;
-	
-	test = ft_pfsplit("%%test1 %a test2%test3");
-	if (test == NULL)
-	{
-		printf("test = NULL");
-		return (0);
-	}
-	
-	while (test[i] != NULL)
-	{
-		printf("tab[%d] = %s\n", i, test[i]);
-		free(test[i]);
-		i++;
-	}
-	printf("tab[%d] = %s\n", i, test[i]);
-	free(test);
-	return (0);
-}
-*/
