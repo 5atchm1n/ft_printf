@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/14 22:21:03 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/14 23:28:53 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,4 @@ typedef struct		s_pfdata
 
 ft_pfsplit(char const *str);
 
-
 #endif
-
-
