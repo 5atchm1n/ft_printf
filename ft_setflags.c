@@ -6,15 +6,64 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/15 09:12:29 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/16 05:04:01 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "ft_printf.h"
 
-t_flags		ft_setflags(char *str);
+static int		ft_fleft(char *str)
 {
-	t_flags			flags;
+	if (str == NULL)
+		return (-1);
+	while (*str != '\0' && str == '%')
+		str++;
+	if (*str == '-')
+		return (1);
+	return (0);
+}
+
+static int		ft_fzero(char *str)
+{
+	if (str == NULL)
+		return (-1);
+	while (*str != '\0' && *str == '%')
+		str++;
+	if (*str == '0')
+		return (1);
+	return (0);
+}
+
+static int		ft_fwidth(char *str)
+{
+	int				width;
+
+	width = 0;
+	if (str == NULL)
+		return (-1);
+	while (*str != '\0')
+	{
+		if (ft_isdigit(*str))
+			width = width + (*str - '0');
+		str++;
+		if (ft_isformat(*str))
+			return (width);
+	}
+	return (0);
+}
+
+
+
+static int		ft_precision(char *str)
+{
+//	not ready yet
+
+	return (0);
+}
+
+t_flags			ft_setflags(char *str);
+{
+	t_flags		flags;
 
 	flags = malloc(sizeof(flags));
 

@@ -6,9 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/15 09:13:31 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/16 03:58:50 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static char			*ft_pfstring(char const *str, size_t len)
 {

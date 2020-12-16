@@ -6,16 +6,16 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 22:13:30 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/15 09:06:43 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/16 04:59:46 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftprintf.h"
+#include "ft_printf.h"
 
 static t_pfdata	*ft_pfsethead(t_pfdata *pfdata, char *str)
 {
 	pfdata = malloc(sizeof(t_pfdata));
-	pfdata->arg = ft_setargs(str);
+	pfdata->format = ft_setformat(str);
 	pfdata->flags = ft_setflags(str);
 	pfdata->str = ft_setstring(str);
 	pfdata->head = pfdata;
@@ -26,7 +26,7 @@ static t_pfdata	*ft_pfsethead(t_pfdata *pfdata, char *str)
 static t_pfdata		*ft_pfsetelem(t_pfdata *pfdata, char *str)
 {
 	pfdata->next = malloc(sizeof(t_pfdata));
-	pfdata->next->arg = ft_setargs(str);
+	pfdata->next->format = ft_setformat(str);
 	pfdata->next->flags = ft_setflags(str)
 	pfdata->next->str = ft_setstring(str);
 	pfdata->next->head = pfdata->head;
