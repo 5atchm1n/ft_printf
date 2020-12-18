@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 22:13:30 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/16 04:59:46 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/18 07:33:47 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static t_pfdata	*ft_pfsethead(t_pfdata *pfdata, char *str)
 {
 	pfdata = malloc(sizeof(t_pfdata));
-	pfdata->format = ft_setformat(str);
-	pfdata->flags = ft_setflags(str);
+	pfdata->format = ft_setformat(str, &pfdata->format);
+	pfdata->flags = *ft_setflags(str, &pfdata->flags);
 	pfdata->str = ft_setstring(str);
 	pfdata->head = pfdata;
 	pfdata->next = NULL;
@@ -26,8 +26,8 @@ static t_pfdata	*ft_pfsethead(t_pfdata *pfdata, char *str)
 static t_pfdata		*ft_pfsetelem(t_pfdata *pfdata, char *str)
 {
 	pfdata->next = malloc(sizeof(t_pfdata));
-	pfdata->next->format = ft_setformat(str);
-	pfdata->next->flags = ft_setflags(str)
+	pfdata->next->format = ft_setformat(str, &pfdata->next->format);
+	pfdata->next->flags = *ft_setflags(str, &pfdata->next->flags);
 	pfdata->next->str = ft_setstring(str);
 	pfdata->next->head = pfdata->head;
 	pfdata->next->next = NULL;
@@ -40,6 +40,7 @@ t_pfdata			*ft_pfsetlist(char **strlist, va_list args)
 	size_t			n;
 
 	n = 0;
+	arglist = NULL;
 	arglist = ft_pfsethead(arglist, strlist[n]);
 	while (strlist[n] != NULL)
 	{

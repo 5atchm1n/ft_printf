@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/18 03:27:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/18 07:28:04 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct			s_flags
 {
@@ -25,20 +27,21 @@ typedef struct			s_flags
 	int					pwidth;
 }						t_flags;
 
-typedef union			u_format
+typedef enum			e_format
 {
-	char				c;
-	char				*s;
-	void				*p;
-	int					i;
-	int					d;
-	unsigned int		u;
-	char				*x;
+	c = 1,
+	s = 2,
+	p = 3,
+	i = 4,
+	d = 5,
+	u = 6,
+	x = 7,
+	end = 0,
 }						t_format;
 
 typedef struct			s_pfdata
 {
-	union u_format		format;
+	enum e_format		format;
 	t_flags				flags;
 	char				*str;
 	struct s_pfdata		*head;
@@ -48,5 +51,10 @@ typedef struct			s_pfdata
 char					**ft_pfsplit(char const *str);
 t_pfdata				*pfsetlist(char **strlist, va_list args);
 t_flags					*ft_setflags(char *str, t_flags *flags);
+t_format				ft_setformat(char *str, t_format *format);
+int						ft_flagtrue(char *str, char *flags, int n);
+int						ft_isdigit(int c);
+int						ft_isflag(char c, char *flags);
+char					**ft_pfsplit(char const *str);
 
 #endif
