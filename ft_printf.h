@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/16 04:56:07 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/18 03:27:08 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct			s_flags
 	int					zero;
 	int					fwidth;
 	int					precision;
+	int					pwidth;
 }						t_flags;
 
 typedef union			u_format
@@ -46,6 +47,6 @@ typedef struct			s_pfdata
 
 char					**ft_pfsplit(char const *str);
 t_pfdata				*pfsetlist(char **strlist, va_list args);
-t_flags					ft_setflags(char *str);
+t_flags					*ft_setflags(char *str, t_flags *flags);
 
 #endif

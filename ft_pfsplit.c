@@ -6,16 +6,16 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/16 03:58:50 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/16 06:06:33 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char			*ft_pfstring(char const *str, size_t len)
+static char		*ft_pfstring(char const *str, size_t len)
 {
-	size_t			i;
-	char			*ret;
+	size_t		i;
+	char		*ret;
 
 	if (!(ret = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
@@ -29,10 +29,9 @@ static char			*ft_pfstring(char const *str, size_t len)
 	return (ret);
 }
 
-
-static size_t		ft_pfstrlen(const char *str)
+static size_t	ft_pfstrlen(const char *str)
 {
-	size_t			n;
+	size_t		n;
 
 	n = 0;
 	while (*str != '\0' && n == 0)
@@ -43,7 +42,7 @@ static size_t		ft_pfstrlen(const char *str)
 			n++;
 			if (*str != '\0')
 				n++;
-				str++;
+			str++;
 			while (*str != '\0' && *str != '%')
 			{
 				n++;
@@ -56,9 +55,9 @@ static size_t		ft_pfstrlen(const char *str)
 	return (n);
 }
 
-static size_t		ft_tabsize(const char *str)
+static size_t	ft_tabsize(const char *str)
 {
-	size_t			n;
+	size_t		n;
 
 	n = 0;
 	while (*str != '\0')
@@ -76,10 +75,10 @@ static size_t		ft_tabsize(const char *str)
 	return (n);
 }
 
-static char			**ft_pfsettab(const char *str)
+static char		**ft_pfsettab(const char *str)
 {
-	size_t			size;
-	char			**tab;
+	size_t		size;
+	char		**tab;
 
 	size = ft_tabsize(str);
 	if (!(tab = malloc(sizeof(char *) * (size + 1))))
@@ -88,12 +87,12 @@ static char			**ft_pfsettab(const char *str)
 	return (tab);
 }
 
-char				**ft_pfsplit(char const *str)
+char			**ft_pfsplit(char const *str)
 {
-	char			**tab;
-	size_t			size;
-	size_t			n;
-	size_t			len;
+	char		**tab;
+	size_t		size;
+	size_t		n;
+	size_t		len;
 
 	tab = ft_pfsettab(str);
 	size = ft_tabsize(str);

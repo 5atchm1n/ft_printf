@@ -6,11 +6,13 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:12:55 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/15 06:39:42 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/17 20:25:16 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *str)
+#include "ft_printf.h"
+
+int ft_printf(const char *str, ...)
 {
 	char		**strlist;
 	t_pfdata	*arglist;
@@ -26,9 +28,10 @@ int ft_printf(const char *str)
 
 	while (arglist->next != NULL)
 	{
-		ft_print(arglist);
-		free(arglist)
-		n++;
+		ft_print(arglist->str);
+		free(arglist->str);
 	}
+	ft_print(arglist->str);
+	free(arglist->str);
 	return (0);
 }
