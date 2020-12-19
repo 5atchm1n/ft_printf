@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2020/12/19 02:15:52 by sshakya          ###   ########.fr        #
+#    Updated: 2020/12/19 03:38:37 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,13 @@ CC = clang
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
-test1:
+testsplit:
 	${CC} ${CFLAGS} ${TEST1} && ./a.out
 
-test2: 
+testflags: 
 	${CC} ${CFLAGS} ${TEST2} ${INCLUDE} && ./a.out
 
-test3:
+teststr:
 	${CC} ${CFLAGS} ${TEST3} ${INCLUDE} && ./a.out
 
 testlst:
