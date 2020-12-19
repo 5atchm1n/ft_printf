@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 03:11:52 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/19 06:36:10 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef struct			s_pfdata
 	struct s_pfdata		*next;
 }						t_pfdata;
 
-char					**ft_pfsplit(char const *str);
 //t_pfdata				*ft_pfsetlist(char **strlist, va_list args);
 t_pfdata				*ft_pfsetlist(char **strlist);
+char					**ft_pfsplit(char const *str);
 
 char					*ft_setstring(char *str, char **string);
 t_flags					*ft_setflags(char *str, t_flags *flags);
@@ -59,6 +59,7 @@ t_format				ft_setformat(char *str, t_format *format);
 
 int						ft_flagtrue(char *str, char *flags, int n);
 int						ft_isflag(char c, char *flags);
+void					ft_clearlst(t_pfdata *head)
 
 int						ft_isdigit(int c);
 size_t					ft_strlen(const char *s);
