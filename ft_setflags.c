@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/18 07:16:29 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/18 23:24:51 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ t_flags		*ft_setflags(char *str, t_flags *flag)
 	flag->zero = ft_flagtrue(str, flags, 1);
 	flag->fwidth = ft_fwidth(str, flags);
 	flag->precision = ft_precision(str, flags);
-	flag->pwidth = ft_pwidth(str, flags);
+	if (flag->precision == 1)
+		flag->pwidth = ft_pwidth(str, flags);
+	else
+		flag->pwidth = 0;
 	return (flag);
 }

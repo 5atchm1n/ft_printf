@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2020/12/18 07:15:45 by sshakya          ###   ########.fr        #
+#    Updated: 2020/12/19 00:49:48 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ TEST1 =	ft_pfsplit.c test_pfsplit.c
 
 TEST2 = ft_setflags.c test_setflags.c ft_printf_utils.c
 
+TEST3 = ft_setstring.c test_setstring.c ft_printf_utils.c
+
 CC = clang
 
 CFLAGS	= -Wall -Wextra -Werror -g
@@ -32,8 +34,11 @@ test1:
 test2: 
 	${CC} ${CFLAGS} ${TEST2} ${INCLUDE} && ./a.out
 
+test3:
+	${CC} ${CFLAGS} ${TEST3} ${INCLUDE} && ./a.out
+
 norm :
 	~/.norminette/norminette.rb ${SRCS} ${INCLUDE}
 
-.PHONY : all norm test2 test1
+.PHONY : all norm test3 test2 test1
 

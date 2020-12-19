@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_setformat.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 16:12:55 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/18 07:41:23 by sshakya          ###   ########.fr       */
+/*   Created: 2020/12/18 23:32:11 by sshakya           #+#    #+#             */
+/*   Updated: 2020/12/19 00:51:14 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *str, ...)
+t_format		*ft_setformat(char *str, t_format *n)
 {
-	char		**strlist;
-	t_pfdata	*arglist;
-	va_list		args;
+	char		*format;
+	int			i;
 
-	strlist = ft_pfsplit(str);
-	if (strlist[0] == NULL)
-		return (ft_putstr_fd(1, str));
-	
-//	va_start(args, str);
-	arglist = ft_pfsetlist(strlist, args)
-//	va_end(args);
-
-	while (arglist->next != NULL)
+	format = "cspidux";
+	n = malloc(sizeof(t_format));
+	if (n == NULL)
+		return (-1);
+	while (*str != '\0')
 	{
-		ft_print(arglist->str);
-		free(arglist->str);
+		while (format[i] != '/0')
+		{
+			i = 0;
+			if (*str = format[i])
+			{
+				*n = i + 1;
+				return (n);
+			}
+			i++;
+		}
+		str++;
 	}
-	ft_print(arglist->str);
-	free(arglist->str);
-	return (0);
+	return (-1);
 }
