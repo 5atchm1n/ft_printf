@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 00:50:53 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 00:54:21 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/19 03:34:31 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 char			*ft_setstring(char *str, char **string)
 {
 	char		*tmp;
-	
+
+	tmp = str;
+	if (*tmp == '%')
+		tmp++;
+	if (*tmp == '%')
+		return (str);
+	str++;
 	tmp = "-0.*";
 	while (*str && (ft_isdigit(*str) || ft_isflag(*str, tmp) >= 0))
 		str++;

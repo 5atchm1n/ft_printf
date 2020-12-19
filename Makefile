@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2020/12/19 00:49:48 by sshakya          ###   ########.fr        #
+#    Updated: 2020/12/19 02:15:52 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,19 @@ SRCS =	ft_printf.c \
 		ft_pfsplit.c \
 		ft_pfsetlst.c \
 		ft_printf_utils.c \
-		ft_setflags.c
+		ft_setflags.c \
+		ft_setformat.c \
+		ft_setstring.c
 
 TEST1 =	ft_pfsplit.c test_pfsplit.c
 
 TEST2 = ft_setflags.c test_setflags.c ft_printf_utils.c
 
 TEST3 = ft_setstring.c test_setstring.c ft_printf_utils.c
+
+TESTLST = test_setlst.c ft_pfsplit.c ft_pfsetlst.c \
+		  ft_setflags.c ft_setformat.c ft_setstring.c \
+		  ft_printf_utils.c
 
 CC = clang
 
@@ -36,6 +42,9 @@ test2:
 
 test3:
 	${CC} ${CFLAGS} ${TEST3} ${INCLUDE} && ./a.out
+
+testlst:
+	${CC} ${CFLAGS} ${TESTLST} ${INCLUDE} && ./a.out
 
 norm :
 	~/.norminette/norminette.rb ${SRCS} ${INCLUDE}

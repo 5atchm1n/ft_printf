@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 00:55:38 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/19 03:11:52 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef enum			e_format
 	d = 5,
 	u = 6,
 	x = 7,
-	end = 0,
+	pc = 0,
 	err = -1
 }						t_format;
 
@@ -50,11 +50,12 @@ typedef struct			s_pfdata
 }						t_pfdata;
 
 char					**ft_pfsplit(char const *str);
-t_pfdata				*ft_pfsetlist(char **strlist, va_list args);
+//t_pfdata				*ft_pfsetlist(char **strlist, va_list args);
+t_pfdata				*ft_pfsetlist(char **strlist);
 
 char					*ft_setstring(char *str, char **string);
 t_flags					*ft_setflags(char *str, t_flags *flags);
-t_format				*ft_setformat(char *str, t_format *format);
+t_format				ft_setformat(char *str, t_format *format);
 
 int						ft_flagtrue(char *str, char *flags, int n);
 int						ft_isflag(char c, char *flags);
