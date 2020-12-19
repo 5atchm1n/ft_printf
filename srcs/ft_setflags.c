@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/18 23:24:51 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/19 06:04:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ t_flags		*ft_setflags(char *str, t_flags *flag)
 
 	flags = "-0.*";
 	str++;
-	flag = malloc(sizeof(t_flags));
 	if (!flag)
 		return (NULL);
 	if (ft_isflag(*str, flags) == -2)

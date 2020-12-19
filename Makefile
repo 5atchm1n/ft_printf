@@ -6,29 +6,29 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2020/12/19 03:38:37 by sshakya          ###   ########.fr        #
+#    Updated: 2020/12/19 06:15:35 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 INCLUDE = ft_printf.h
 
 SRCS =	ft_printf.c \
-		ft_pfsplit.c \
-		ft_pfsetlst.c \
-		ft_printf_utils.c \
-		ft_setflags.c \
-		ft_setformat.c \
-		ft_setstring.c
+		srcs/ft_pfsplit.c \
+		srcs/ft_pfsetlst.c \
+		srcs/ft_printf_utils.c \
+		srcs/ft_setflags.c \
+		srcs/ft_setformat.c \
+		srcs/ft_setstring.c
 
-TEST1 =	ft_pfsplit.c test_pfsplit.c
+TEST1 =	srcs/ft_pfsplit.c tests/test_pfsplit.c
 
-TEST2 = ft_setflags.c test_setflags.c ft_printf_utils.c
+TEST2 = srcs/ft_setflags.c tests/test_setflags.c srcs/ft_printf_utils.c
 
-TEST3 = ft_setstring.c test_setstring.c ft_printf_utils.c
+TEST3 = srcs/ft_setstring.c test/test_setstring.c srcs/ft_printf_utils.c
 
-TESTLST = test_setlst.c ft_pfsplit.c ft_pfsetlst.c \
-		  ft_setflags.c ft_setformat.c ft_setstring.c \
-		  ft_printf_utils.c
+TESTLST = tests/test_setlst.c srcs/ft_pfsplit.c ft_srcs/pfsetlst.c \
+		  srcs/ft_setflags.c srcs/ft_setformat.c srcs/ft_setstring.c \
+		  srcs/ft_printf_utils.c
 
 CC = clang
 

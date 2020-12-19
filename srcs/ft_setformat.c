@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:32:11 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 03:13:42 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/19 06:02:22 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_format		ft_setformat(char *str, t_format *n)
 	int			i;
 
 	format = "%cspidux";
-	if (!(n = malloc(sizeof(t_format))))
-		return (-1);
+//	if (!(n = malloc(sizeof(t_format))))
+//		return (-1);
 	str++;
 	while (*str != '\0')
 	{
