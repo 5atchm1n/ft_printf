@@ -6,11 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 23:32:11 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 06:02:22 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/19 06:44:21 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 t_format		ft_setformat(char *str, t_format *n)
 {

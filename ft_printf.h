@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 06:36:10 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/19 06:39:34 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_format				ft_setformat(char *str, t_format *format);
 
 int						ft_flagtrue(char *str, char *flags, int n);
 int						ft_isflag(char c, char *flags);
-void					ft_clearlst(t_pfdata *head)
+void					ft_clearlst(t_pfdata *head);
 
 int						ft_isdigit(int c);
 size_t					ft_strlen(const char *s);
