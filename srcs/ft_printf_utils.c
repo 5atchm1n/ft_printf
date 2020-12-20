@@ -6,24 +6,37 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 06:02:19 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 06:44:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/20 05:55:06 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	ft_clearlst(t_pfdata *head)
+void			ft_clearlst(t_pfdata *head)
 {
 	t_pfdata	*lst;
 	t_pfdata	*tmp;
 
 	lst = head;
-	while (lst->next != NULL)
+	while (lst != NULL)
 	{
 		tmp = lst->next;
 		free(lst);
 		lst = tmp;
 	}
+}
+
+void		ft_flagzero(t_flags *flag)
+{
+		flag->hash = 0;
+		flag->left = 0;
+		flag->zero = 0;
+		flag->asterisk = 0;
+		flag->fwidth = 0;
+		flag->precision = 0;
+		flag->pwidth = 0;
+
+		return ;
 }
 
 int			ft_isflag(char c, char *flags)
@@ -55,40 +68,4 @@ int			ft_flagtrue(char *str, char *flags, int n)
 		str++;
 	}
 	return (0);
-}
-
-int			ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
-}
-
-size_t		ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char		*ft_strdup(const char *src)
-{
-	size_t	i;
-	char	*dup;
-
-	i = 0;
-	if (!(dup = malloc(sizeof(char) * (ft_strlen(src) + 1))))
-		return (NULL);
-	while (src[i] != '\0')
-	{
-		dup[i] = src[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
 }

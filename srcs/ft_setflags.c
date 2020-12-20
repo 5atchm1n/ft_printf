@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 06:44:14 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/20 05:47:07 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,6 @@ static int	ft_fwidth(char *str, char *flags)
 	return (0);
 }
 
-static int	ft_precision(char *str, char *flags)
-{
-	int		i;
-
-	i = 1;
-	while (*str != '\0' && i >= 0)
-	{
-		i = ft_isflag(*str, flags);
-		if (i == 2)
-			return (1);
-		if (i < 0 && ft_isdigit(*str) == 1)
-			i = 1;
-		str++;
-	}
-	return (0);
-}
-
 static int	ft_pwidth(char *str, char *flags)
 {
 	int		i;
@@ -78,27 +61,61 @@ static int	ft_pwidth(char *str, char *flags)
 				return (i);
 		}
 	}
-	return (6);
+	return (0);
+}
+
+static int	ft_asterisk(char *str, char *flags)
+{
+	int		i;
+	int		n;
+
+	i = 1;
+	n = 0;
+	while (*str != '\0' && i >= 0)
+	{
+		i = ft_isflag(*str, flags);
+		if (i == 6)
+			n = n + 1;
+		if (i < 0 && ft_isdigit(*str) == 1)
+			i = 1;
+		str++;
+	}
+	return (n);
+}
+
+static int	ft_precision(char *str, char *flags)
+{
+	int		i;
+
+	i = 1;
+	while (*str != '\0' && i >= 0)
+	{
+		i = ft_isflag(*str, flags);
+		if (i == 5)
+			return (1);
+		if (i < 0 && ft_isdigit(*str) == 1)
+			i = 1;
+		str++;
+	}
+	return (0);
 }
 
 t_flags		*ft_setflags(char *str, t_flags *flag)
 {
 	char	*flags;
 
-	flags = "-0.*";
+	flags = FLAGS;
 	str++;
 	if (!flag)
 		return (NULL);
 	if (ft_isflag(*str, flags) == -2)
-	{
-		flag->left = 0;
-		flag->zero = 0;
-		flag->fwidth = 0;
-		flag->precision = 0;
-		flag->pwidth = 0;
-	}
-	flag->left = ft_flagtrue(str, flags, 0);
-	flag->zero = ft_flagtrue(str, flags, 1);
+		ft_flagzero(flag);
+	flag->hash = ft_flagtrue(str, flags, 0);
+	flag->space = ft_flagtrue(str, flags, 1);
+	flag->plus = ft_flagtrue(str, flags, 2);
+	flag->left = ft_flagtrue(str, flags, 3);
+	flag->zero = ft_flagtrue(str, flags, 4);
+	flag->asterisk = ft_asterisk(str, flags);
 	flag->fwidth = ft_fwidth(str, flags);
 	flag->precision = ft_precision(str, flags);
 	if (flag->precision == 1)

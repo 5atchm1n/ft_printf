@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setformat.c                                     :+:      :+:    :+:   */
+/*   ft_printf_libft.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/18 23:32:11 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/20 01:28:06 by sshakya          ###   ########.fr       */
+/*   Created: 2020/12/20 05:54:07 by sshakya           #+#    #+#             */
+/*   Updated: 2020/12/20 05:59:47 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-signed char		ft_setformat(char *str, signed char *format)
+int			ft_isdigit(int c)
 {
-	char		*f;
-	int			i;
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
 
-	f = FORMAT;
-	str++;
-	while (*str != '\0')
+size_t		ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		i = 0;
-		while (f[i] != '\0')
-		{
-			if (*str == f[i])
-			{
-				*format = f[i];
-				return (*format);
-			}
-			i++;
-		}
-		str++;
+		i++;
 	}
-	*format = -1;
-	return (*format);
+	return (i);
 }

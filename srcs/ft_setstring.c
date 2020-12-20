@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 00:50:53 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 06:44:30 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/20 00:23:50 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char			*ft_setstring(char *str, char **string)
 	if (*tmp == '%')
 		return (str);
 	str++;
-	tmp = "-0.*";
+	tmp = FLAGS;
 	while (*str && (ft_isdigit(*str) || ft_isflag(*str, tmp) >= 0))
 		str++;
 	tmp = "cspidux";
