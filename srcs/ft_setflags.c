@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/20 05:47:07 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/21 01:52:29 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ t_flags		*ft_setflags(char *str, t_flags *flag)
 	str++;
 	if (!flag)
 		return (NULL);
-	if (ft_isflag(*str, flags) == -2)
-		ft_flagzero(flag);
+	if (ft_isflag(*str, flags) == 0)
+		return(ft_flagzero(flag));
 	flag->hash = ft_flagtrue(str, flags, 0);
 	flag->space = ft_flagtrue(str, flags, 1);
 	flag->plus = ft_flagtrue(str, flags, 2);

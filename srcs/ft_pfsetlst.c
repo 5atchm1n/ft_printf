@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 22:13:30 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 06:43:27 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/21 02:41:20 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static t_pfdata		*ft_pfsetelem(t_pfdata *pfdata, char *str)
 	return (pfdata);
 }
 
-//t_pfdata			*ft_pfsetlist(char **strlist, va_list args)
-t_pfdata			*ft_pfsetlist(char **strlist)
+t_pfdata			*ft_pfsetlist(char **strlist, va_list args)
+//t_pfdata			*ft_pfsetlist(char **strlist)
 {
 	t_pfdata		*arglist;
 	size_t			n;
@@ -49,5 +49,6 @@ t_pfdata			*ft_pfsetlist(char **strlist)
 		arglist = arglist->next;
 		n++;
 	}
+	ft_pfsetargs(arglist->head, args);
 	return (arglist->head);
 }

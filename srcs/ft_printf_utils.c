@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 06:02:19 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/20 05:55:06 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/21 01:50:42 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int			ft_isflag(char c, char *flags)
 	int		n;
 
 	n = 0;
-	if (c == '%')
-		return (-2);
 	while (flags[n] != '\0')
 	{
 		if (c == flags[n])
