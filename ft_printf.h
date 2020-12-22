@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/21 02:36:48 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/21 21:14:16 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ typedef struct			s_flags
 
 typedef union			u_argtype
 {
-	char				ch;
+	unsigned char		ch;
 	char				*str;
 	double				nbr;
-	void				*ptr;
 }						t_argtype;
 
 typedef struct			s_arg
