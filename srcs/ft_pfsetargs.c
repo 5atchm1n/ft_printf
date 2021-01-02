@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/22 04:06:01 by sshakya          ###   ########.fr       */
+/*   Updated: 2020/12/31 14:39:41 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,26 @@ static int	ft_settype(char *format, signed char c)
 		return (4);
 }
 
-int			ft_setcall(int type, signed char format)
+void		ft_setwidth(t_pfdata *arglist, va_list args)
 {
-	return (0);
-}
+	int		fwidth;
 
-t_argtype	ft_setarg(t_argtype *arg, va_list args)
-{
-	t
+	if (arglist->flags->asterisk != 0)
+	{
+		if (arglist->flags->fwidth == 0)
+
+
+		
 
 void		ft_pfsetargs(t_pfdata *arglist, va_list args)
 {
-	format = FORMAT;
+	char	*format;
 
+	format = FORMAT;
+	type = ft_settype(format, arglist->format);
 	while (arglist != NULL)
 	{
-		arglist->arg->type = ft_settype(format, arglist->format);
-		arglist->arg->call = ft_setcall(type, arglist->flags);
-		arglist->arg->argtype = ft_setarg(&arglist->arg->argtype, args);	
+		arglist->arg = ft_setarg(&arglist->arg, args);	
 		arglist = arglist->next;
 	}
 
