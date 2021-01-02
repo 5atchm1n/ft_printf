@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/26 00:50:28 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/02 14:48:55 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef union			u_arg
 	unsigned char		ch;
 	char				*str;
 	double				nbr;
+	void				*ptr;
 }						t_arg;
 
 typedef struct			s_pfdata
@@ -45,7 +46,7 @@ typedef struct			s_pfdata
 	signed char			format;
 	t_flags				flags;
 	char				*str;
-	union s_arg			arg;
+	union u_arg			arg;
 	struct s_pfdata		*head;
 	struct s_pfdata		*next;
 }						t_pfdata;
