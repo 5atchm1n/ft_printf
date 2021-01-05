@@ -1,54 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfsetlst.c                                      :+:      :+:    :+:   */
+/*   pf_setlst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 22:13:30 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/21 02:41:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 06:50:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static t_pfdata		*ft_pfsethead(t_pfdata *pfdata, char *str)
+static t_pfdata		*pf_sethead(t_pfdata *pfdata, char *str, va_list args)
 {
 	pfdata = malloc(sizeof(t_pfdata));
-	pfdata->format = ft_setformat(str, &pfdata->format);
-	pfdata->flags = *ft_setflags(str, &pfdata->flags);
-	pfdata->str = ft_setstring(str, &pfdata->str);
+	pfdata->format = pf_setformat(str, &pfdata->format);
+	pfdata->flags = *pf_setflags(str, &pfdata->flags, args);
+	pfdata->str = pf_setstring(str, &pfdata->str);
 	pfdata->head = pfdata;
 	pfdata->next = NULL;
 	return (pfdata);
 }
 
-static t_pfdata		*ft_pfsetelem(t_pfdata *pfdata, char *str)
+static t_pfdata		*pf_setelem(t_pfdata *pfdata, char *str, va_list args)
 {
 	pfdata->next = malloc(sizeof(t_pfdata));
-	pfdata->next->format = ft_setformat(str, &pfdata->next->format);
-	pfdata->next->flags = *ft_setflags(str, &pfdata->next->flags);
-	pfdata->next->str = ft_setstring(str, &pfdata->next->str);
+	pfdata->next->format = pf_setformat(str, &pfdata->next->format);
+	pfdata->next->flags = *pf_setflags(str, &pfdata->next->flags, args);
+	pfdata->next->str = pf_setstring(str, &pfdata->next->str);
 	pfdata->next->head = pfdata->head;
 	pfdata->next->next = NULL;
 	return (pfdata);
 }
 
-t_pfdata			*ft_pfsetlist(char **strlist, va_list args)
-//t_pfdata			*ft_pfsetlist(char **strlist)
+t_pfdata			*pf_setlist(char **strlist, ...)
+//t_pfdata			*pf_setlist(char **strlist)
 {
 	t_pfdata		*arglist;
 	size_t			n;
+	va_list			args;
 
 	n = 1;
 	arglist = NULL;
-	arglist = ft_pfsethead(arglist, strlist[0]);
+	va_start(args, strlist);
+	arglist = pf_sethead(arglist, strlist[0], args);
 	while (strlist[n] != NULL)
 	{
-		ft_pfsetelem(arglist, strlist[n]);
+		pf_setelem(arglist, strlist[n], args);
 		arglist = arglist->next;
 		n++;
 	}
-	ft_pfsetargs(arglist->head, args);
+	va_end(args);
 	return (arglist->head);
 }

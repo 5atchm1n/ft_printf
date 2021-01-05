@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfsplit.c                                       :+:      :+:    :+:   */
+/*   pf_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/19 06:44:02 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 04:53:29 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static char		*ft_pfstring(char const *str, size_t len)
+static char		*pf_string(char const *str, size_t len)
 {
 	size_t		i;
 	char		*ret;
@@ -29,7 +29,7 @@ static char		*ft_pfstring(char const *str, size_t len)
 	return (ret);
 }
 
-static size_t	ft_pfstrlen(const char *str)
+static size_t	pf_strlen(const char *str)
 {
 	size_t		n;
 
@@ -55,7 +55,7 @@ static size_t	ft_pfstrlen(const char *str)
 	return (n);
 }
 
-static size_t	ft_tabsize(const char *str)
+static size_t	pf_tabsize(const char *str)
 {
 	size_t		n;
 
@@ -75,27 +75,27 @@ static size_t	ft_tabsize(const char *str)
 	return (n);
 }
 
-static char		**ft_pfsettab(const char *str)
+static char		**pf_settab(const char *str)
 {
 	size_t		size;
 	char		**tab;
 
-	size = ft_tabsize(str);
+	size = pf_tabsize(str);
 	if (!(tab = malloc(sizeof(char *) * (size + 1))))
 		return (tab = NULL);
 	tab[size] = NULL;
 	return (tab);
 }
 
-char			**ft_pfsplit(char const *str)
+char			**pf_split(char const *str)
 {
 	char		**tab;
 	size_t		size;
 	size_t		n;
 	size_t		len;
 
-	tab = ft_pfsettab(str);
-	size = ft_tabsize(str);
+	tab = pf_settab(str);
+	size = pf_tabsize(str);
 	n = 0;
 	while (n < size && str)
 	{
@@ -103,8 +103,8 @@ char			**ft_pfsplit(char const *str)
 		{
 			if (*str == '%')
 			{
-				len = ft_pfstrlen(str);
-				tab[n] = ft_pfstring(str, len);
+				len = pf_strlen(str);
+				tab[n] = pf_string(str, len);
 				n++;
 				str++;
 			}

@@ -6,13 +6,13 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 06:02:19 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/21 01:50:42 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 04:50:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void			ft_clearlst(t_pfdata *head)
+void			pf_clearlst(t_pfdata *head)
 {
 	t_pfdata	*lst;
 	t_pfdata	*tmp;
@@ -26,7 +26,7 @@ void			ft_clearlst(t_pfdata *head)
 	}
 }
 
-void		ft_flagzero(t_flags *flag)
+void		pf_flagzero(t_flags *flag)
 {
 		flag->hash = 0;
 		flag->left = 0;
@@ -39,7 +39,7 @@ void		ft_flagzero(t_flags *flag)
 		return ;
 }
 
-int			ft_isflag(char c, char *flags)
+int			pf_isflag(char c, char *flags)
 {
 	int		n;
 
@@ -53,14 +53,14 @@ int			ft_isflag(char c, char *flags)
 	return (-1);
 }
 
-int			ft_flagtrue(char *str, char *flags, int n)
+int			pf_flagtrue(char *str, char *flags, int n)
 {
 	int		i;
 
 	i = 0;
 	while (*str != '\0' && i >= 0)
 	{
-		i = ft_isflag(*str, flags);
+		i = pf_isflag(*str, flags);
 		if (i == n)
 			return (1);
 		str++;

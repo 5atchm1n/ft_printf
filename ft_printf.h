@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/02 14:48:55 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 07:01:45 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,20 @@ typedef struct			s_pfdata
 	struct s_pfdata		*next;
 }						t_pfdata;
 
-t_pfdata				*ft_pfsetlist(char **strlist);
-char					**ft_pfsplit(char const *str);
-void					ft_pfsetargs(t_pfdata *arglist, va_list args);
+//t_pfdata				*pf_setlist(char **strlist, va_list args);
+t_pfdata				*pf_setlist(char **strlist, ...);
+char					**pf_split(char const *str);
+void					pf_setargs(t_pfdata *arglist, va_list args);
 
-char					*ft_setstring(char *str, char **string);
-t_flags					*ft_setflags(char *str, t_flags *flags);
-signed char				ft_setformat(char *str, signed char *format);
+char					*pf_setstring(char *str, char **string);
+t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
+signed char				pf_setformat(char *str, signed char *format);
+void					pf_flagargs(t_flags *flags, va_list args, char *str);
 
-int						ft_flagtrue(char *str, char *flags, int n);
-int						ft_isflag(char c, char *flags);
-void					ft_clearlst(t_pfdata *head);
-void					ft_flagzero(t_flags *flags);
+int						pf_flagtrue(char *str, char *flags, int n);
+int						pf_isflag(char c, char *flags);
+void					pf_clearlst(t_pfdata *head);
+void					pf_flagzero(t_flags *flags);
 //libft functions
 int						ft_isdigit(int c);
 size_t					ft_strlen(const char *s);

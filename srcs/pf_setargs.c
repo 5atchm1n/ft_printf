@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pfsetargs.c                                     :+:      :+:    :+:   */
+/*   pf_setargs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/02 14:51:33 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 05:53:24 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int			ft_settype(char *format, signed char c)
+static int			pf_settype(char *format, signed char c)
 {
 	int				n;
 
 	if (c = -1)
 		return (-1);
-	n = ft_flagtrue(c, format);
+	n = pf_flagtrue(c, format);
 	if (n == 0)
 		return (n);
 	if (n > 3)
@@ -29,7 +29,7 @@ static int			ft_settype(char *format, signed char c)
 		return (4);
 }
 
-static t_arg		ft_setarg(t_arg *arg, int type, va_list args)
+static t_arg		pf_setarg(t_arg *arg, int type, va_list args)
 {
 	double			num;
 	char			*string;
@@ -59,7 +59,7 @@ static t_arg		ft_setarg(t_arg *arg, int type, va_list args)
 	return (*arg);
 }
 
-void				ft_pfsetargs(t_pfdata *arglist, va_list args)
+void				pf_setargs(t_pfdata *arglist, va_list args)
 {
 	char			*format;
 	int				type;
@@ -67,8 +67,8 @@ void				ft_pfsetargs(t_pfdata *arglist, va_list args)
 	format = FORMAT;
 	while (arglist != NULL)
 	{
-		type = ft_settype(format, arglist->format);
-		arglist->arg = ft_setarg(&arglist->arg, type, args);	
+		type = pf_settype(format, arglist->format);
+		arglist->arg = pf_setarg(&arglist->arg, type, args);	
 		arglist = arglist->next;
 	}
 

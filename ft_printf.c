@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:12:55 by sshakya           #+#    #+#             */
-/*   Updated: 2020/12/20 23:44:18 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 04:58:59 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int ft_printf(const char *str, ...)
 	strlist = ft_pfsplit(str);
 	if (strlist[0] == NULL)
 		return (ft_putstr_fd(1, str));
-	
 	va_start (args, str);
 	arglist = ft_pfsetlist(strlist, args);
 	va_end (args);
