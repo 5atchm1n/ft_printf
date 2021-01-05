@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 22:13:30 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/05 06:50:36 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 18:03:53 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static t_pfdata		*pf_sethead(t_pfdata *pfdata, char *str, va_list args)
 	pfdata->format = pf_setformat(str, &pfdata->format);
 	pfdata->flags = *pf_setflags(str, &pfdata->flags, args);
 	pfdata->str = pf_setstring(str, &pfdata->str);
+	pfdata->arg = pf_setargs(pfdata->arg, args, pfdata->format);
 	pfdata->head = pfdata;
 	pfdata->next = NULL;
 	return (pfdata);
@@ -29,6 +30,7 @@ static t_pfdata		*pf_setelem(t_pfdata *pfdata, char *str, va_list args)
 	pfdata->next->format = pf_setformat(str, &pfdata->next->format);
 	pfdata->next->flags = *pf_setflags(str, &pfdata->next->flags, args);
 	pfdata->next->str = pf_setstring(str, &pfdata->next->str);
+	pfdata->next->arg = pf_setargs(pfdata->arg, args, pfdata->format);
 	pfdata->next->head = pfdata->head;
 	pfdata->next->next = NULL;
 	return (pfdata);

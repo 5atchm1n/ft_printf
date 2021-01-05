@@ -6,17 +6,19 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/05 05:53:24 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 18:04:45 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include"../ft_printf.h"
 
 static int			pf_settype(char *format, signed char c)
 {
 	int				n;
 
-	if (c = -1)
+	if (c == -1)
 		return (-1);
-	n = pf_flagtrue(c, format);
+	n = pf_isflag(c, format);
 	if (n == 0)
 		return (n);
 	if (n > 3)
@@ -27,49 +29,46 @@ static int			pf_settype(char *format, signed char c)
 		return (3);
 	if (n == 3)
 		return (4);
+	return (-1);
 }
 
-static t_arg		pf_setarg(t_arg *arg, int type, va_list args)
+static t_arg		pf_setarg(t_arg arg, int type, va_list args)
 {
-	double			num;
+	int				num;
 	char			*string;
 	unsigned char	chr;
-	void			*ptr;
 	
 	if(type == 1)
 	{
-		num = va_arg(args, double);
-		*arg.nbr = num;
+		num = va_arg(args, int);
+		arg.nbr = num;
 	}
 	if(type == 2)
 	{
 		chr = (char)va_arg(args, int);
-		*arg.ch = chr;
+		arg.ch = chr;
 	}
 	if(type == 3)
 	{
 		string = va_arg(args, char *);
-		*arg.str = string;
+		arg.str = string;
 	}
-	if(type == 4)
-	{
-		*ptr = va_arg(args, void *);
-		*arg.ptr = *ptr;
-	}
-	return (*arg);
+//	if(type == 4)
+//	{
+//		*ptr = va_arg(args, void *);
+//		*arg.ptr = *ptr;
+//	}
+	return (arg);
 }
 
-void				pf_setargs(t_pfdata *arglist, va_list args)
+t_arg				pf_setargs(t_arg arg, va_list args, signed char f)
 {
 	char			*format;
 	int				type;
 
 	format = FORMAT;
-	while (arglist != NULL)
-	{
-		type = pf_settype(format, arglist->format);
-		arglist->arg = pf_setarg(&arglist->arg, type, args);	
-		arglist = arglist->next;
-	}
+	type = pf_settype(format, f);
+	arg = pf_setarg(arg, type, args);
 
+	return (arg);
 }

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/05 07:01:45 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/05 18:05:50 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef union			u_arg
 	unsigned char		ch;
 	char				*str;
 	double				nbr;
-	void				*ptr;
 }						t_arg;
 
 typedef struct			s_pfdata
@@ -54,7 +53,8 @@ typedef struct			s_pfdata
 //t_pfdata				*pf_setlist(char **strlist, va_list args);
 t_pfdata				*pf_setlist(char **strlist, ...);
 char					**pf_split(char const *str);
-void					pf_setargs(t_pfdata *arglist, va_list args);
+
+t_arg					pf_setargs(t_arg arg, va_list args, signed char f);
 
 char					*pf_setstring(char *str, char **string);
 t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
