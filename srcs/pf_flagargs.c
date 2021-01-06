@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_setwidth.c                                      :+:      :+:    :+:   */
+/*   pf_flagargs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 04:52:17 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/05 07:09:06 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/06 11:06:20 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../ft_printf.h"
+#include "../ft_printf.h"
 
 static int	pf_checkarg(char *str)
 {
@@ -24,7 +24,7 @@ static int	pf_checkarg(char *str)
 		if (*str == '.')
 			flag = 1;
 		if (*str == '*' && flag == 0)
-			return(1);
+			return (1);
 		str++;
 	}
 	return (0);
@@ -46,7 +46,7 @@ static int	pf_setargp(char *str, va_list args)
 		if (pf_isflag(*str, flags) == 6 && precision)
 		{
 			res = va_arg(args, int);
-			return(res);
+			return (res);
 		}
 		str++;
 	}
@@ -89,4 +89,3 @@ void		pf_flagargs(t_flags *flags, va_list args, char *str)
 	}
 	return ;
 }
-

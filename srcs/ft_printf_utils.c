@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 06:02:19 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/05 04:50:39 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/06 11:01:45 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,21 @@ void			pf_clearlst(t_pfdata *head)
 	}
 }
 
-void		pf_flagzero(t_flags *flag)
+void			pf_flagzero(t_flags *flag)
 {
-		flag->hash = 0;
-		flag->left = 0;
-		flag->zero = 0;
-		flag->asterisk = 0;
-		flag->fwidth = 0;
-		flag->precision = 0;
-		flag->pwidth = 0;
-
-		return ;
+	flag->hash = 0;
+	flag->left = 0;
+	flag->zero = 0;
+	flag->asterisk = 0;
+	flag->fwidth = 0;
+	flag->precision = 0;
+	flag->pwidth = 0;
+	return ;
 }
 
-int			pf_isflag(char c, char *flags)
+int				pf_isflag(char c, char *flags)
 {
-	int		n;
+	int			n;
 
 	n = 0;
 	while (flags[n] != '\0')
@@ -53,9 +52,9 @@ int			pf_isflag(char c, char *flags)
 	return (-1);
 }
 
-int			pf_flagtrue(char *str, char *flags, int n)
+int				pf_flagtrue(char *str, char *flags, int n)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (*str != '\0' && i >= 0)

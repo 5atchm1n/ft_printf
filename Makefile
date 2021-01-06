@@ -6,19 +6,23 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/05 17:07:10 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/06 10:59:51 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 INCLUDE = ft_printf.h
 
 SRCS =	ft_printf.c \
-		srcs/pf_pfsplit.c \
-		srcs/pf_pfsetlst.c \
+		srcs/pf_split.c \
+		srcs/pf_setlst.c \
 		srcs/ft_printf_utils.c \
+		srcs/ft_printf_libft.c \
 		srcs/pf_setflags.c \
 		srcs/pf_setformat.c \
-		srcs/pf_setstring.c
+		srcs/pf_setstring.c \
+		srcs/pf_flagargs.c \
+		srcs/pf_setargs.c \
+
 
 TEST1 =	srcs/pf_split.c tests/test_pfsplit.c
 
@@ -31,7 +35,7 @@ TEST3 = srcs/pf_setstring.c tests/test_setstring.c srcs/ft_printf_utils.c \
 TESTLST = tests/test_setlst2.c srcs/pf_split.c srcs/pf_setlst.c \
 		  srcs/pf_setflags.c srcs/pf_setformat.c srcs/pf_setstring.c \
 		  srcs/ft_printf_utils.c srcs/ft_printf_libft.c \
-		  srcs/pf_setwidth.c srcs/pf_setargs.c
+		  srcs/pf_flagargs.c srcs/pf_setargs.c
 
 TESTPF = tests/test_printf.c 
 

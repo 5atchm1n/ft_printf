@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   pf_convert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 16:12:55 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/06 11:08:29 by sshakya          ###   ########.fr       */
+/*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
+/*   Updated: 2021/01/06 11:53:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int				ft_printf(const char *str, ...)
+char	*pf_convert(int number, signed char format, t_flags flags)
 {
-	char		**strlist;
-	t_pfdata	*arglist;
-	va_list		args;
+	char	*hex;
+	char	*HEX;
+	char	*decimal;
+	char	*ret;
 
-	strlist = ft_pfsplit(str);
-	if (strlist[0] == NULL)
-		return (ft_putstr_fd(1, str));
-	va_start(args, str);
-	arglist = ft_pfsetlist(strlist, args);
-	va_end(args);
-	ft_print(arglist->head);
-	return (0);
-}
+	if (format == 'i')
+	{
+		pf_convertbase(number, flags);
+		return (ret);
+	}
+	if (format == 'd')
+	{
+		pf_convertbase(number, flags);
+		return (ret);
+	}
+	if (format == 'u')
+	{
+		pf_convertbase(number, flags);
+		return (ret);
+	}
+

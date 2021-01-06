@@ -6,11 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/05 18:04:45 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/06 11:07:48 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../ft_printf.h"
+#include "../ft_printf.h"
 
 static int			pf_settype(char *format, signed char c)
 {
@@ -37,23 +37,23 @@ static t_arg		pf_setarg(t_arg arg, int type, va_list args)
 	int				num;
 	char			*string;
 	unsigned char	chr;
-	
-	if(type == 1)
+
+	if (type == 1)
 	{
 		num = va_arg(args, int);
 		arg.nbr = num;
 	}
-	if(type == 2)
+	if (type == 2)
 	{
 		chr = (char)va_arg(args, int);
 		arg.ch = chr;
 	}
-	if(type == 3)
+	if (type == 3)
 	{
 		string = va_arg(args, char *);
 		arg.str = string;
 	}
-//	if(type == 4)
+//	if (type == 4)
 //	{
 //		*ptr = va_arg(args, void *);
 //		*arg.ptr = *ptr;
