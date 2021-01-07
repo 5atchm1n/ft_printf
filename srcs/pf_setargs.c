@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 22:08:17 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:24:02 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,14 @@ static int			pf_settype(signed char c)
 
 static t_arg		pf_setarg(t_arg arg, int type, va_list args)
 {
-	int				num;
-	char			*string;
-	unsigned char	chr;
-	uintptr_t		ptr;
-
 	if (type == 1)
-	{
-		num = va_arg(args, int);
-		arg.nbr = num;
-	}
+		arg.nbr = va_arg(args, int);
 	if (type == 2)
-	{
-		chr = (char)va_arg(args, int);
-		arg.ch = chr;
-	}
+		arg.ch = (char)va_arg(args, int);
 	if (type == 3)
-	{
-		string = va_arg(args, char *);
-		arg.str = string;
-	}
+		arg.str = va_arg(args, char *);
 	if (type == 4)
-	{
-		ptr = va_arg(args, uintptr_t);
-		arg.ptr = ptr;
-	}
+		arg.ptr = va_arg(args, uintptr_t);
 	return (arg);
 }
 
@@ -68,6 +51,5 @@ t_arg				pf_setargs(t_arg arg, va_list args, signed char f)
 
 	type = pf_settype(f);
 	arg = pf_setarg(arg, type, args);
-
 	return (arg);
 }

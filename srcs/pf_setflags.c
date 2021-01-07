@@ -6,16 +6,16 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 22:14:46 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:21:06 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void		pf_setflagdata(char *str, t_flags *flags)
+static void		pf_setflagdata(char *str, t_flags *flags)
 {
 	flags->hash = pf_flagtrue(str, 0);
-	flags->space = pf_flagtrue(str,1);
+	flags->space = pf_flagtrue(str, 1);
 	flags->plus = pf_flagtrue(str, 2);
 	flags->left = pf_flagtrue(str, 3);
 	flags->zero = pf_flagtrue(str, 4);
@@ -28,7 +28,7 @@ void		pf_setflagdata(char *str, t_flags *flags)
 		flags->pwidth = 0;
 }
 
-t_flags		*pf_setflags(char *str, t_flags *flags, va_list args)
+t_flags			*pf_setflags(char *str, t_flags *flags, va_list args)
 {
 	str++;
 	if (!flags)

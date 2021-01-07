@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 22:03:26 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:27:42 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ typedef struct			s_pfdata
 	struct s_pfdata		*head;
 	struct s_pfdata		*next;
 }						t_pfdata;
-
-//t_pfdata				*pf_setlist(char **strlist, va_list args);
+/*
+**t_pfdata				*pf_setlist(char **strlist, va_list args);
+*/
 t_pfdata				*pf_setlist(char **strlist, ...);
 char					**pf_split(char const *str);
 t_arg					pf_setargs(t_arg arg, va_list args, signed char f);
@@ -61,7 +62,10 @@ char					*pf_setstring(char *str, char **string);
 t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
 void					pf_flagargs(t_flags *flags, va_list args, char *str);
-
+void					pf_clearlst(t_pfdata *head);
+/*
+**FLAG UTILS
+*/
 int						pf_precision(char *str);
 int						pf_asterisk(char *str);
 int						pf_pwidth(char *str);
@@ -69,9 +73,10 @@ int						pf_fwidth(char *str);
 int						pf_flagtrue(char *str, int n);
 int						pf_isflag(char c);
 int						pf_isformat(char c);
-void					pf_clearlst(t_pfdata *head);
 void					pf_flagzero(t_flags *flags);
-//libft functions
+/*
+**libft functions
+*/
 int						ft_isdigit(int c);
 size_t					ft_strlen(const char *s);
 

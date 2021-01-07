@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 22:13:30 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 21:26:40 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:19:11 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static t_pfdata		*pf_setelem(t_pfdata *pfdata, char *str, va_list args)
 	return (pfdata);
 }
 
+/*
+t_pfdata			*pf_setlist(char **strlist)
+*/
+
 t_pfdata			*pf_setlist(char **strlist, ...)
-//t_pfdata			*pf_setlist(char **strlist)
 {
 	t_pfdata		*arglist;
 	size_t			n;
