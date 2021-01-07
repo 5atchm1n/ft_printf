@@ -6,19 +6,19 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/06 11:07:48 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:08:17 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int			pf_settype(char *format, signed char c)
+static int			pf_settype(signed char c)
 {
 	int				n;
 
 	if (c == -1)
 		return (-1);
-	n = pf_isflag(c, format);
+	n = pf_isformat(c);
 	if (n == 0)
 		return (n);
 	if (n > 3)
@@ -37,6 +37,7 @@ static t_arg		pf_setarg(t_arg arg, int type, va_list args)
 	int				num;
 	char			*string;
 	unsigned char	chr;
+	uintptr_t		ptr;
 
 	if (type == 1)
 	{
@@ -53,21 +54,19 @@ static t_arg		pf_setarg(t_arg arg, int type, va_list args)
 		string = va_arg(args, char *);
 		arg.str = string;
 	}
-//	if (type == 4)
-//	{
-//		*ptr = va_arg(args, void *);
-//		*arg.ptr = *ptr;
-//	}
+	if (type == 4)
+	{
+		ptr = va_arg(args, uintptr_t);
+		arg.ptr = ptr;
+	}
 	return (arg);
 }
 
 t_arg				pf_setargs(t_arg arg, va_list args, signed char f)
 {
-	char			*format;
 	int				type;
 
-	format = FORMAT;
-	type = pf_settype(format, f);
+	type = pf_settype(f);
 	arg = pf_setarg(arg, type, args);
 
 	return (arg);

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 21:19:18 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:03:26 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 typedef struct			s_flags
 {
@@ -38,6 +39,7 @@ typedef union			u_arg
 	unsigned char		ch;
 	char				*str;
 	int					nbr;
+	uintptr_t			ptr;
 }						t_arg;
 
 typedef struct			s_pfdata
@@ -60,12 +62,13 @@ t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
 void					pf_flagargs(t_flags *flags, va_list args, char *str);
 
-int						pf_precision(char *str, char *flags);
-int						pf_asterisk(char *str, char *flags);
-int						pf_pwidth(char *str, char *flags);
-int						pf_fwidth(char *str, char *flags);
-int						pf_flagtrue(char *str, char *flags, int n);
-int						pf_isflag(char c, char *flags);
+int						pf_precision(char *str);
+int						pf_asterisk(char *str);
+int						pf_pwidth(char *str);
+int						pf_fwidth(char *str);
+int						pf_flagtrue(char *str, int n);
+int						pf_isflag(char c);
+int						pf_isformat(char c);
 void					pf_clearlst(t_pfdata *head);
 void					pf_flagzero(t_flags *flags);
 //libft functions

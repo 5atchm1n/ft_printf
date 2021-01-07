@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 00:50:53 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/05 04:52:09 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 21:53:19 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ char			*pf_setstring(char *str, char **string)
 	if (*tmp == '%')
 		return (str);
 	str++;
-	tmp = FLAGS;
-	while (*str && (ft_isdigit(*str) || pf_isflag(*str, tmp) >= 0))
+	while (*str && (ft_isdigit(*str) || pf_isflag(*str) >= 0))
 		str++;
-	tmp = "cspidux";
-	while (*str && pf_isflag(*str, tmp) >= 0)
+	while (*str && pf_isformat(*str) >= 0)
 		str++;
 	tmp = str;
 	*string = tmp;

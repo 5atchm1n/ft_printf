@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 04:52:17 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/06 11:06:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:06:17 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 static int	pf_checkarg(char *str)
 {
-	char	*format;
 	int		flag;
 
 	flag = 0;
-	format = FORMAT;
-	while (*str != '\0' && pf_isflag(*str, format) == -1)
+	while (*str != '\0' && pf_isformat(*str) == -1)
 	{
 		if (*str == '.')
 			flag = 1;
@@ -34,16 +32,14 @@ static int	pf_setargp(char *str, va_list args)
 {
 	int		res;
 	int		precision;
-	char	*flags;
 
-	flags = FLAGS;
 	precision = 0;
 	res = -1;
 	while (*str != '\0')
 	{
-		if (pf_isflag(*str, flags) == 5)
+		if (pf_isflag(*str) == 5)
 			precision = 1;
-		if (pf_isflag(*str, flags) == 6 && precision)
+		if (pf_isflag(*str) == 6 && precision)
 		{
 			res = va_arg(args, int);
 			return (res);
@@ -56,13 +52,11 @@ static int	pf_setargp(char *str, va_list args)
 static int	pf_setargw(char *str, va_list args)
 {
 	int		res;
-	char	*flags;
 
-	flags = FLAGS;
 	res = -1;
 	while (*str != '\0')
 	{
-		if (pf_isflag(*str, flags) == 6)
+		if (pf_isflag(*str) == 6)
 		{
 			res = va_arg(args, int);
 			return (res);
