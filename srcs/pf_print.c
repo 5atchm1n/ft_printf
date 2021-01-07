@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_convert_utils.c                                 :+:      :+:    :+:   */
+/*   pf_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/06 13:42:58 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 18:07:23 by sshakya          ###   ########.fr       */
+/*   Created: 2021/01/06 22:10:58 by sshakya           #+#    #+#             */
+/*   Updated: 2021/01/06 22:27:31 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-
-
-char	*pf_addflags(t_flags flags, char *str)
+void	pf_printf(t_pfdata *arglist)
 {
-	
-}
+	int		var_type;
+	char	*format;
+	char	*print;
+
+	var_type = pf_setype(format, arglist->format);	
+	while (arglist != NULL)
+	{
+		print = pf_convert(arglist->format.nbr);
+

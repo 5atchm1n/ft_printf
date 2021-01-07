@@ -6,11 +6,13 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/06 20:42:16 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/07 17:53:14 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static char	*pf_convertbase(int num, char *base)
+#include "../ft_printf.h"
+
+static char	*pf_convertbase(int num, t_flags flags, char *base)
 {
 	char	*ret;
 	int		i;
@@ -28,6 +30,11 @@ static char	*pf_convertbase(int num, char *base)
 		j++;
 	}
 	ret[j] = base[num % len];
+	j++;
+	if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+		ret[j] = '+';
+	if (flags. space == 1)
+		ret[j] = ' ';
 	ret[j + 1] = '\0';
 	return (ret);
 }
