@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 21:13:15 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 22:19:52 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/09 00:39:11 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			pf_fwidth(char *str)
 	int		i;
 
 	i = 0;
-	while (*str && i >= 0)
+	while (*str && i >= 0 && i != 6)
 	{
 		i = pf_isflag(*str);
 		if (i < 0)
@@ -44,7 +44,7 @@ int			pf_pwidth(char *str)
 	int		i;
 
 	i = 0;
-	while (*str && i != 2)
+	while (*str != '\0' && i != 5)
 	{
 		i = pf_isflag(*str);
 		str++;
