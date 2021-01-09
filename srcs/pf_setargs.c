@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/08 22:19:58 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/09 04:25:40 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 ** 5 = hex
 ** 6 = HEX
 */
-static int			pf_settype(signed char c)
+
+static int		pf_settype(signed char c)
 {
-	int				n;
+	int			n;
 
 	if (c == -1)
 		return (-1);
@@ -34,8 +35,8 @@ static int			pf_settype(signed char c)
 	if (n == 2)
 		return (2);
 	if (n == 3)
-		return (3);	
-	if (n > 3 && n < 7)
+		return (3);
+	if (n > 3 && n < 6)
 		return (4);
 	if (n == 6)
 		return (5);
@@ -44,22 +45,22 @@ static int			pf_settype(signed char c)
 	return (-1);
 }
 
-static t_arg		pf_setarg(t_arg arg, int type, va_list args)
+static t_arg	pf_setarg(t_arg arg, int type, va_list args)
 {
-	if (type >= 4)
-		arg.nbr = va_arg(args, int);
 	if (type == 1)
 		arg.ch = (char)va_arg(args, int);
 	if (type == 2)
 		arg.str = va_arg(args, char *);
 	if (type == 3)
 		arg.ptr = va_arg(args, uintptr_t);
+	if (type >= 4)
+		arg.nbr = va_arg(args, int);
 	return (arg);
 }
 
-t_arg				pf_setargs(t_arg arg, va_list args, signed char f)
+t_arg			pf_setargs(t_arg arg, va_list args, signed char f)
 {
-	int				type;
+	int			type;
 
 	type = pf_settype(f);
 	arg = pf_setarg(arg, type, args);

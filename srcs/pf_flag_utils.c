@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 21:13:15 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/09 00:39:11 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/09 04:07:56 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			pf_pwidth(char *str)
 				return (i);
 		}
 	}
-	return (0);
+	return (-1);
 }
 
 int			pf_asterisk(char *str)

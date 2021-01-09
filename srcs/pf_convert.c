@@ -6,11 +6,35 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/08 21:12:23 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/09 04:28:49 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+static char		*pf_add_flags(char *str, t_flags flags, int n, int end)
+{
+	if (n == 0)
+		return ;
+	if (n == 1)
+	{
+		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+			ret[end++] = '+';
+		if (flags.space == 1)
+			ret[end++] = ' ';
+	}
+	if (n == 2 || n == 3)
+	{
+		if (flags.hash == 1)
+		{
+			if (n == 2)
+				str[end++] = 'x';
+			if (n == 3)
+				str[end++] = 'X';
+			str[end++] = '0';
+		}
+	}
+}
 
 static char		*pf_convertbase(int num, t_flags flags, char *base, int n)
 {
@@ -30,13 +54,7 @@ static char		*pf_convertbase(int num, t_flags flags, char *base, int n)
 		j++;
 	}
 	ret[j] = base[num % len];
-	if (n == 1)
-	{
-		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
-			ret[j++] = '+';
-		if (flags.space == 1)
-			ret[j++] = ' ';
-	}
+	pf_add_flags(ret, flags, n, j);
 	ret[j++] = '\0';
 	return (ret);
 }
@@ -79,15 +97,15 @@ char			*pf_convert(int number, signed char format, t_flags flags)
 		ret = pf_revstr(ret);
 		return (ret);
 	}
-	if (format == 'x')
+	if (format == 'x' || format == 'p')
 	{
-		ret = pf_convertbase(number, flags, "0123456789abcdef", 0);
+		ret = pf_convertbase(number, flags, "0123456789abcdef", 2);
 		ret = pf_revstr(ret);
 		return (ret);
 	}
 	if (format == 'X')
 	{
-		ret = pf_convertbase(number, flags, "0123456789ABCDEF", 0);
+		ret = pf_convertbase(number, flags, "0123456789ABCDEF", 3);
 		ret = pf_revstr(ret);
 		return (ret);
 	}
