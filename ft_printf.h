@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/08 02:50:05 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/09 04:53:22 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
 void					pf_flagargs(t_flags *flags, va_list args, char *str);
 void					pf_clearlst(t_pfdata *head);
+/*
+** CONVERT UTILS
+*/
+
+char					*pf_convert(int number, signed char format,
+	t_flags flags);
+
 /*
 **FLAG UTILS
 */
