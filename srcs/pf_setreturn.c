@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/09 02:55:00 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/09 04:44:40 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	pf_ret_type(signed char format)
 
 	n = pf_isformat(format);
 	if (n == 1)
-		return(1);
+		return (1);
 	if (n == 2)
 		return (2);
 	if (n == 3)
@@ -36,7 +36,7 @@ static int	pf_ret_type(signed char format)
 		return (4);
 }
 
-void	*pf_printstr(char *str, t_flags flags, int n)
+void		*pf_printstr(char *str, t_flags flags, int n)
 {
 	if (n = 0)
 		pf_putstr(str);
@@ -51,18 +51,21 @@ void	*pf_printstr(char *str, t_flags flags, int n)
 	}
 	if (n == 2)
 	{
+		if (flags.precision == 1)
+			pf_addprecision(str);
+		ft_putstrs(str, flags.fwidth, flags.left);
 	}
 }
-		
-void	*pf_setreturn(t_pfdata pfdata)
+
+void		*pf_setreturn(t_pfdata pfdata)
 {
-	int	type;
+	int		type;
 	char	*pfstring;
 
 	pfstring = NULL;
 	type = pf_ret_type(pfdata->format);
 	if (type == 1)
-		write(1 , pfdata->arg->ch, 1);
+		write(1, pfdata->arg->ch, 1);
 	if (type == 2)
 		pf_printstr(pfdata->arg->str, pfdata->flags, 1);
 	if (type == 3)

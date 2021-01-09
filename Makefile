@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/09 04:29:29 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/09 04:42:29 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ SRCS =	ft_printf.c \
 		srcs/ft_printf_utils.c \
 		srcs/ft_printf_libft.c \
 		srcs/pf_flag_utils.c \
-		srcs/pf_convert.c \
 		srcs/pf_setflags.c \
 		srcs/pf_setformat.c \
 		srcs/pf_setstring.c \
 		srcs/pf_flagargs.c \
 		srcs/pf_setargs.c \
+		srcs/pf_convert.c \
+		srcs/pf_setreturn.c \
+		srcs/pf_print.c
 
 
 TEST1 =	srcs/pf_split.c tests/test_pfsplit.c
