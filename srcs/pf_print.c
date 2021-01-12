@@ -6,17 +6,18 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 22:10:58 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 13:19:28 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 14:08:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	pf_print(t_pfdata *pfdata);
+void	pf_print(t_pfdata *pfdata)
 {
-	while (arglist != NULL)
+	while (pfdata != NULL)
 	{
-		pf_setreturn(pfdata);
+		pf_setreturn(*pfdata);
+		pf_putstr(pfdata->str);
 		pfdata = pfdata->next;
 	}
 }

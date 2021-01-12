@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/09 04:42:29 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/12 14:24:47 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS =	ft_printf.c \
 		srcs/pf_setargs.c \
 		srcs/pf_convert.c \
 		srcs/pf_setreturn.c \
+		srcs/pf_setreturn_utils.c \
 		srcs/pf_print.c
 
 
@@ -41,7 +42,9 @@ TESTLST = tests/test_setlst2.c srcs/pf_split.c srcs/pf_setlst.c \
 		  srcs/ft_printf_utils.c srcs/ft_printf_libft.c \
 		  srcs/pf_flagargs.c srcs/pf_setargs.c srcs/pf_flag_utils.c
 
-TESTPF = tests/test_printf.c 
+TESTPF = tests/test_printf.c
+
+TESTMYPF = tests/test_setlst3.c
 
 CC = clang
 
@@ -63,6 +66,9 @@ testlst:
 
 testpf:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF} && ./a.out
+
+testmypf:
+	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TESTMYPF} && ./a.out
 
 norm :
 	norminette ${SRCS} ${INCLUDE}

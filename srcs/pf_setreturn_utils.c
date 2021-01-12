@@ -6,9 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:34:29 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 12:50:09 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 13:57:16 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../ft_printf.h"
 
 void		pf_putstr(char *str)
 {

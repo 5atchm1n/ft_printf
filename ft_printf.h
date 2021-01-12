@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/11 17:05:27 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 14:02:46 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef struct			s_pfdata
 	struct s_pfdata		*head;
 	struct s_pfdata		*next;
 }						t_pfdata;
-/*
-**t_pfdata				*pf_setlist(char **strlist, va_list args);
-*/
-t_pfdata				*pf_setlist(char **strlist, ...);
+
+int						ft_printf(const char *str, ...);
+
+t_pfdata				*pf_setlist(char **strlist, va_list args);
 char					**pf_split(char const *str);
 t_arg					pf_setargs(t_arg arg, va_list args, signed char f);
 char					*pf_setstring(char *str, char **string);
@@ -67,10 +67,13 @@ void					pf_clearlst(t_pfdata *head);
 ** SET_RETURN UTILS
 */
 
+
+void		pf_print(t_pfdata *pfdata);
 char		*pf_addpwidth(char *str, int pwidth, int start);
 void		pf_putstr(char *str);
 void		pf_putstrl(char *str, int pwidth);
 void		pf_putstrs(char *str, int width, int left);
+void		pf_setreturn(t_pfdata pfdata);
 /*
 ** CONVERT UTILS
 */
