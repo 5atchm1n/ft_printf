@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 06:02:19 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 22:19:39 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 20:33:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@ void			pf_clearlst(t_pfdata *head)
 		lst = tmp;
 	}
 }
+
+void			pf_cleartab(char **tab)
+{
+	int			n;
+
+	n = 0;
+	while(tab[n] != NULL)
+	{
+		free(tab[n]);
+		n++;
+	}
+	free(tab[n]);
+	free(tab);
+}
+
+
 
 void			pf_flagzero(t_flags *flag)
 {

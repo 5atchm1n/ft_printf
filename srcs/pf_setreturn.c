@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/11 17:10:59 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 20:36:03 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void		pf_printstr(char *str, t_flags flags, int n)
 			pf_addprecision(str, flags.pwidth, flags.hash);
 		pf_putstrs(str, flags.fwidth, flags.left);
 	}
+	free(str);
 }
 
 void			pf_setreturn(t_pfdata pfdata)
