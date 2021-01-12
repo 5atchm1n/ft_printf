@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/09 05:01:40 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/11 17:10:59 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 ** 6 = HEX
 */
 
-static int	pf_ret_type(signed char format)
+static int		pf_ret_type(signed char format)
 {
-	int		n;
+	int			n;
 
 	n = pf_isformat(format);
 	if (n == 1)
@@ -37,23 +37,32 @@ static int	pf_ret_type(signed char format)
 	return (0);
 }
 
-void		pf_putstr(char *str)
+static char		*pf_addprecision(char *str, int pwidth, int hash)
 {
+	int			i;
+	int			l;
+	char		*ret;
+	
+	i = 0;
+	l = ft_strlen(str);
+	if (hash)
+	{
+			ret = pf_addpwidth(str, pwidth, 2);
+	}
+	if(!hash)
+	{
+			ret = pf_addpwidth(str, pwidth, 0);
+	}
+	return (ret);
 }
 
-void		pf_putstrl(char *str, int width)
-{
-}
+/*
+** 0 == pointer
+** 1 == string
+** 2 == integer
+*/
 
-void		pf_putstrs(char *str, int width, int left)
-{
-}
-
-void		pf_addprecision(char *str)
-{
-}
-
-void		pf_printstr(char *str, t_flags flags, int n)
+static void		pf_printstr(char *str, t_flags flags, int n)
 {
 	if (n == 0)
 		pf_putstr(str);
@@ -69,15 +78,15 @@ void		pf_printstr(char *str, t_flags flags, int n)
 	if (n == 2)
 	{
 		if (flags.precision == 1)
-			pf_addprecision(str);
+			pf_addprecision(str, flags.pwidth, flags.hash);
 		pf_putstrs(str, flags.fwidth, flags.left);
 	}
 }
 
-void		pf_setreturn(t_pfdata pfdata)
+void			pf_setreturn(t_pfdata pfdata)
 {
-	int		type;
-	char	*pfstring;
+	int			type;
+	char		*pfstring;
 
 	pfstring = NULL;
 	type = pf_ret_type(pfdata.format);

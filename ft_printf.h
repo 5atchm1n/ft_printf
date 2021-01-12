@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/09 04:53:22 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/11 17:05:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
 void					pf_flagargs(t_flags *flags, va_list args, char *str);
 void					pf_clearlst(t_pfdata *head);
+/*
+** SET_RETURN UTILS
+*/
+
+char		*pf_addpwidth(char *str, int pwidth, int start);
+void		pf_putstr(char *str);
+void		pf_putstrl(char *str, int pwidth);
+void		pf_putstrs(char *str, int width, int left);
 /*
 ** CONVERT UTILS
 */

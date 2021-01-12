@@ -65,7 +65,7 @@ testpf:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF} && ./a.out
 
 norm :
-	~/.norminette/norminette.rb ${SRCS} ${INCLUDE}
+	norminette ${SRCS} ${INCLUDE}
 
 .PHONY : all norm test3 test2 test1
 
