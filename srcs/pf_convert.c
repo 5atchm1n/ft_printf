@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 15:17:36 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 16:41:04 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,8 @@ static char		*pf_convertbase(int num, t_flags flags, char *base, int n)
 		j++;
 	}
 	ret[j++] = base[num % len];
-	printf("j = %d\n",j);
-	printf("\n%c\n",ret[j]);
 	j = pf_add_flags(ret, flags, n, j);
 	ret[j++] = '\0';
-	printf("j = %d\n",j);
 	return (ret);
 }
 
@@ -94,7 +91,6 @@ char			*pf_convert(int number, signed char format, t_flags flags)
 	if (format == 'i' || format == 'd')
 	{
 		ret = pf_convertbase(number, flags, "0123456789", 1);
-		printf("%s\n", ret);
 		ret = pf_revstr(ret);
 		return (ret);
 	}
