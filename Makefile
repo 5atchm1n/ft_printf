@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/12 16:44:35 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/12 20:38:51 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ testpf:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF} && ./a.out
 
 testmypf:
-	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${SRCS} ${TESTMYPF} && ./a.out
+	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TESTMYPF} && ./a.out
 
 norm :
 	norminette ${SRCS} ${INCLUDE}

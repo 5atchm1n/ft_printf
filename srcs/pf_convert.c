@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 16:41:04 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 20:52:48 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		pf_add_flags(char *str, t_flags flags, int n, int end)
 {
 	if (n == 0)
 		return (end) ;
-	if (n == 1)
+	if (n == 1 && str[end - 1] != '-')
 	{
 		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
 			str[end++] = '+';
@@ -45,10 +45,17 @@ static char		*pf_convertbase(int num, t_flags flags, char *base, int n)
 	int			i;
 	int			j;
 	int			len;
+	int			neg;
 
 	j = 0;
+	neg = 0;
 	len = ft_strlen(base);
 	ret = malloc(sizeof(char) * 34);
+	if (num < 0)
+	{
+		neg = 1;
+		num = -num;
+	}
 	while (num >= len)
 	{
 		i = num % len;
@@ -57,6 +64,8 @@ static char		*pf_convertbase(int num, t_flags flags, char *base, int n)
 		j++;
 	}
 	ret[j++] = base[num % len];
+	if (neg && n == 1)
+		ret[j++] = '-';
 	j = pf_add_flags(ret, flags, n, j);
 	ret[j++] = '\0';
 	return (ret);
