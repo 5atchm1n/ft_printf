@@ -6,41 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 06:02:19 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 20:33:36 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/12 22:48:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-void			pf_clearlst(t_pfdata *head)
-{
-	t_pfdata	*lst;
-	t_pfdata	*tmp;
-
-	lst = head;
-	while (lst != NULL)
-	{
-		tmp = lst->next;
-		free(lst);
-		lst = tmp;
-	}
-}
-
-void			pf_cleartab(char **tab)
-{
-	int			n;
-
-	n = 0;
-	while(tab[n] != NULL)
-	{
-		free(tab[n]);
-		n++;
-	}
-	free(tab[n]);
-	free(tab);
-}
-
-
 
 void			pf_flagzero(t_flags *flag)
 {

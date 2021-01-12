@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 20:36:03 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/13 00:25:51 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,17 @@ static int		pf_ret_type(signed char format)
 	return (0);
 }
 
-static char		*pf_addprecision(char *str, int pwidth, int hash)
+static char		*pf_addprecision(char *str, int pwidth, int hash, signed char format)
 {
 	int			i;
-	int			l;
 	char		*ret;
 	
 	i = 0;
-	l = ft_strlen(str);
-	if (hash)
+	if (hash && (format == 'x' || format == 'X'))
 	{
 			ret = pf_addpwidth(str, pwidth, 2);
 	}
-	if(!hash)
-	{
-			ret = pf_addpwidth(str, pwidth, 0);
-	}
+	ret = pf_addpwidth(str, pwidth, 0);
 	return (ret);
 }
 
@@ -62,7 +57,7 @@ static char		*pf_addprecision(char *str, int pwidth, int hash)
 ** 2 == integer
 */
 
-static void		pf_printstr(char *str, t_flags flags, int n)
+static void		pf_printstr(char *str, t_flags flags, int n, signed char format)
 {
 	if (n == 0)
 		pf_putstr(str);
@@ -78,10 +73,10 @@ static void		pf_printstr(char *str, t_flags flags, int n)
 	if (n == 2)
 	{
 		if (flags.precision == 1)
-			pf_addprecision(str, flags.pwidth, flags.hash);
+			pf_addprecision(str, flags.pwidth, flags.hash, format);
 		pf_putstrs(str, flags.fwidth, flags.left);
+		free(str);
 	}
-	free(str);
 }
 
 void			pf_setreturn(t_pfdata pfdata)
@@ -94,15 +89,15 @@ void			pf_setreturn(t_pfdata pfdata)
 	if (type == 1)
 		write(1, &pfdata.arg.ch, 1);
 	if (type == 2)
-		pf_printstr(pfdata.arg.str, pfdata.flags, 1);
+		pf_printstr(pfdata.arg.str, pfdata.flags, 1, pfdata.format);
 	if (type == 3)
 	{
 		pfstring = pf_convert(pfdata.arg.ptr, pfdata.format, pfdata.flags);
-		pf_printstr(pfstring, pfdata.flags, 0);
+		pf_printstr(pfstring, pfdata.flags, 0, pfdata.format);
 	}
 	if (type == 4)
 	{
 		pfstring = pf_convert(pfdata.arg.nbr, pfdata.format, pfdata.flags);
-		pf_printstr(pfstring, pfdata.flags, 2);
+		pf_printstr(pfstring, pfdata.flags, 2, pfdata.format);
 	}
 }

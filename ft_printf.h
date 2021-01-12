@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 20:34:10 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/13 00:23:28 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,34 +54,35 @@ typedef struct			s_pfdata
 }						t_pfdata;
 
 int						ft_printf(const char *str, ...);
-
-t_pfdata				*pf_setlist(char **strlist, va_list args);
+/*
+** SPLIT STRING
+*/
 char					**pf_split(char const *str);
+void					pf_cleartab(char **tab);
+/*
+** CREATE LIST FUNCTIONS
+*/
+t_pfdata				*pf_setlist(char **strlist, va_list args);
 t_arg					pf_setargs(t_arg arg, va_list args, signed char f);
+void					pf_flagargs(t_flags *flags, va_list args, char *str);
 char					*pf_setstring(char *str, char **string);
 t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
-void					pf_flagargs(t_flags *flags, va_list args, char *str);
 void					pf_clearlst(t_pfdata *head);
-void					pf_cleartab(char **tab);
 /*
 ** SET_RETURN UTILS
 */
-
-
-void		pf_print(t_pfdata *pfdata);
-char		*pf_addpwidth(char *str, int pwidth, int start);
-void		pf_putstr(char *str);
-void		pf_putstrl(char *str, int pwidth);
-void		pf_putstrs(char *str, int width, int left);
-void		pf_setreturn(t_pfdata pfdata);
+void					pf_print(t_pfdata *pfdata, char **strlist);
+char					*pf_addpwidth(char *str, int pwidth, int start);
+void					pf_putstr(char *str);
+void					pf_putstrl(char *str, int pwidth);
+void					pf_putstrs(char *str, int width, int left);
+void					pf_setreturn(t_pfdata pfdata);
 /*
 ** CONVERT UTILS
 */
-
 char					*pf_convert(int number, signed char format,
 	t_flags flags);
-
 /*
 **FLAG UTILS
 */
