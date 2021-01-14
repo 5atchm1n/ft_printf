@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 01:09:31 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 07:15:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 ** 2 = string
 ** 3 = pointer
 ** 4 = integer
-** 5 = hex
-** 6 = HEX
+** 5 = decimal
+** 6 = unsigned
+** 7 = hex
+** 8 = HEX
 */
 
 static int		pf_settype(signed char c)
@@ -51,10 +53,12 @@ static t_arg	pf_setarg(t_arg arg, int type, va_list args)
 		arg.ch = (char)va_arg(args, int);
 	if (type == 2)
 		arg.str = va_arg(args, char *);
+	if (type == 3)
+		arg.ptr = va_arg(args, uintptr_t);
 	if (type == 4)
-		arg.nbr = (intmax_t)va_arg(args, int);
-	if (type == 3 || type == 5)
-		arg.unbr = va_arg(args, uintmax_t);
+		arg.nbr = va_arg(args, int);
+	if (type == 5)
+		arg.unbr = va_arg(args, unsigned int);
 	return (arg);
 }
 

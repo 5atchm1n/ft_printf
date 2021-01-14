@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 05:54:07 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/09 04:43:16 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 18:35:33 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ int			ft_isdigit(int c)
 	return (0);
 }
 
-size_t		ft_strlen(const char *s)
+int			ft_strlen(char *s)
 {
-	size_t	i;
+	int		i;
 
 	i = 0;
+	if (!s)
+		return(0);
+	if (s[i] == '\0')
+		return (0);
 	while (s[i] != '\0')
 	{
 		i++;

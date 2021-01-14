@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 05:47:35 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 20:15:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ typedef union			u_arg
 {
 	unsigned char		ch;
 	char				*str;
-	intmax_t			nbr;
-	uintmax_t			unbr;
+	int					nbr;
+	unsigned int		unbr;
+	uintptr_t			ptr;
 }						t_arg;
 
 typedef struct			s_pfdata
@@ -72,7 +73,7 @@ signed char				pf_setformat(char *str, signed char *format);
 */
 int						pf_print(t_pfdata *pfdata, char **strlist, char *str);
 int						pf_putstr(char *str);
-int						pf_setreturn(t_pfdata pfdata);
+int						pf_setreturn(t_pfdata *pfdata);
 int						pf_putchar(char c);
 int						pf_printstr(char *str, t_flags flags);
 int						pf_printint(intmax_t num, t_flags flags, signed char format);
@@ -100,6 +101,6 @@ void					pf_flagzero(t_flags *flags);
 **libft functions
 */
 int						ft_isdigit(int c);
-size_t					ft_strlen(const char *s);
+int						ft_strlen(char *s);
 
 #endif

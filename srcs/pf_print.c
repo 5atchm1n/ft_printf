@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 22:10:58 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 05:51:37 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 20:48:41 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		pf_clearlst(t_pfdata *head)
 
 static void		pf_cleartab(char **tab)
 {
-	int			n;
+	size_t		n;
 
 	n = 0;
 	while (tab[n] != NULL)
@@ -36,7 +36,6 @@ static void		pf_cleartab(char **tab)
 		free(tab[n]);
 		n++;
 	}
-	free(tab[n]);
 	free(tab);
 }
 
@@ -54,7 +53,7 @@ int				pf_print(t_pfdata *arglist, char **strlist, char *str)
 	}
 	while (arglist != NULL)
 	{
-		n += pf_setreturn(*arglist);
+		n += pf_setreturn(arglist);
 		n += pf_putstr(arglist->str);
 		arglist = arglist->next;
 	}
