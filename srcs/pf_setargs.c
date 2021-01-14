@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 07:15:27 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 22:29:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ static t_arg	pf_setarg(t_arg arg, int type, va_list args)
 	if (type == 2)
 		arg.str = va_arg(args, char *);
 	if (type == 3)
-		arg.ptr = va_arg(args, uintptr_t);
+		arg.ptr = va_arg(args, intptr_t);
 	if (type == 4)
-		arg.nbr = va_arg(args, int);
+		arg.nbr = (intmax_t)va_arg(args, int);
 	if (type == 5)
-		arg.unbr = va_arg(args, unsigned int);
+		arg.unbr = (uintmax_t)va_arg(args, unsigned int);
+	if (type == 6)
+		arg.unbr = (uintmax_t)va_arg(args, unsigned int);
 	return (arg);
 }
 

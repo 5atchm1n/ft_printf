@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/14 06:08:22 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/14 22:04:03 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,9 +59,7 @@ CFLAGS	= -Wall -Wextra -Werror -g
 MEM = -fsanitize=address
 
 test:
-	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST} && ./a.out > mypf
-	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF} && ./a.out > pf
-	diff -a pf mypf
+	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST} && ./a.out
 
 testsplit:
 	${CC} ${CFLAGS} ${MEM} ${TEST1} && ./a.out

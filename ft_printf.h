@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 20:15:39 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 22:28:33 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ typedef union			u_arg
 {
 	unsigned char		ch;
 	char				*str;
-	int					nbr;
-	unsigned int		unbr;
-	uintptr_t			ptr;
+	intmax_t			nbr;
+	uintmax_t			unbr;
+	intptr_t			ptr;
 }						t_arg;
 
 typedef struct			s_pfdata
