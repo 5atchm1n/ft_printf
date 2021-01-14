@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 01:16:18 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 03:14:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char		*pf_revstr(char *str)
 	return (ret);
 }
 
-static char		*pf_convertbase(uintmax_t num, char *base, int n)
+static char		*pf_convertbase(uintmax_t num, char *base)
 {
 	char		*ret;
 	int			j;
@@ -50,35 +50,33 @@ static char		*pf_convertbase(uintmax_t num, char *base, int n)
 		j++;
 	}
 	ret[j++] = base[num % len];
-	if (n == 1)
-		ret[j++] = '-';
 	ret[j++] = '\0';
 	ret = pf_revstr(ret);
 	return (ret);
 }
 
-char			*pf_convert(uintmax_t number, signed char format, int neg)
+char			*pf_convert(uintmax_t number, signed char format)
 {
 	char		*ret;
 
 	if (format == 'i' || format == 'd')
 	{
-		ret = pf_convertbase(number, "0123456789", neg);
+		ret = pf_convertbase(number, "0123456789");
 		return (ret);
 	}
 	if (format == 'u')
 	{
-		ret = pf_convertbase(number, "0123456789", 0);
+		ret = pf_convertbase(number, "0123456789");
 		return (ret);
 	}
 	if (format == 'x' || format == 'p')
 	{
-		ret = pf_convertbase(number, "0123456789abcdef", 0);
+		ret = pf_convertbase(number, "0123456789abcdef");
 		return (ret);
 	}
 	if (format == 'X')
 	{
-		ret = pf_convertbase(number, "0123456789ABCDEF", 0);
+		ret = pf_convertbase(number, "0123456789ABCDEF");
 		return (ret);
 	}
 	return (NULL);

@@ -6,11 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 00:51:05 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 03:31:52 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../ft_printf.h"
+#include "../ft_printf.h"
 
 char		*pf_putflag(char *str, char flag)
 {
@@ -23,29 +23,32 @@ char		*pf_putflag(char *str, char flag)
 	j = 0;
 	len = ft_strlen(str);
 	ret = malloc(sizeof(char) * (len + 2));
-	str[0] = flag;
-	while (str[i] != '\0')
+	ret[0] = flag;
+	while (str[j] != '\0')
 	{
 		ret[i] = str[j];
 		i++;
 		j++;
 	}
-	ret[j++] = '\0';
+	ret[i++] = '\0';
+	free(str);
 	return (ret);
 }
 
-char		*pf_putwidth(char *str, int width, char flag, char *ret)
+char		*pf_putzero(char *str, int width)
 {
 	int		len;
 	int		i;
 	int		j;
+	char	*ret;
 
 	len = ft_strlen(str);
 	i = 0;
 	j = 0;
+	ret = malloc(sizeof(char) * (width + 1));
 	while (len < width)
 	{
-		ret[i] = flag;
+		ret[i] = '0';
 		i++;
 		len++;
 	}
@@ -55,16 +58,48 @@ char		*pf_putwidth(char *str, int width, char flag, char *ret)
 		i++;
 		j++;
 	}
-	return(ret);
+	ret[width] = '\0';
+	free(str);
+	return (ret);
 }
 
-char		*pf_putleft(char *str, int width, char flag, char *ret)
+char		*pf_putspace(char *str, int width)
 {
 	int		len;
 	int		i;
+	int		j;
+	char	*ret;
 
 	len = ft_strlen(str);
 	i = 0;
+	j = 0;
+	ret = malloc(sizeof(char) * (width + 1));
+	while (len < width)
+	{
+		ret[i] = ' ';
+		i++;
+		len++;
+	}
+	while (i < width)
+	{
+		ret[i] = str[j];
+		i++;
+		j++;
+	}
+	ret[width] = '\0';
+	free(str);
+	return (ret);
+}
+
+char		*pf_putleft(char *str, int width)
+{
+	int		len;
+	int		i;
+	char	*ret;
+
+	len = ft_strlen(str);
+	i = 0;
+	ret = malloc(sizeof(char) * (width + 1));
 	while (str[i] != '\0')
 	{
 		ret[i] = str[i];
@@ -72,8 +107,10 @@ char		*pf_putleft(char *str, int width, char flag, char *ret)
 	}
 	while (i < width)
 	{
-		ret[i] = flag;
+		ret[i] = ' ';
 		i++;
 	}
-	return(ret);
+	ret[width] = '\0';
+	free(str);
+	return (ret);
 }
