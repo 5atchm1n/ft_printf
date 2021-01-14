@@ -6,70 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/12 20:52:48 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 01:16:18 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-static int		pf_add_flags(char *str, t_flags flags, int n, int end)
-{
-	if (n == 0)
-		return (end) ;
-	if (n == 1 && str[end - 1] != '-')
-	{
-		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
-			str[end++] = '+';
-		if (flags.space == 1)
-			str[end++] = ' ';
-		return (end);
-	}
-	if (n == 2 || n == 3)
-	{
-		if (flags.hash == 1)
-		{
-			if (n == 2)
-				str[end++] = 'x';
-			if (n == 3)
-				str[end++] = 'X';
-			str[end++] = '0';
-		}
-	return (end);
-	}
-	return (end);
-}
-
-static char		*pf_convertbase(int num, t_flags flags, char *base, int n)
-{
-	char		*ret;
-	int			i;
-	int			j;
-	int			len;
-	int			neg;
-
-	j = 0;
-	neg = 0;
-	len = ft_strlen(base);
-	ret = malloc(sizeof(char) * 34);
-	if (num < 0)
-	{
-		neg = 1;
-		num = -num;
-	}
-	while (num >= len)
-	{
-		i = num % len;
-		ret[j] = base[i];
-		num = num / len;
-		j++;
-	}
-	ret[j++] = base[num % len];
-	if (neg && n == 1)
-		ret[j++] = '-';
-	j = pf_add_flags(ret, flags, n, j);
-	ret[j++] = '\0';
-	return (ret);
-}
 
 static char		*pf_revstr(char *str)
 {
@@ -93,32 +34,51 @@ static char		*pf_revstr(char *str)
 	return (ret);
 }
 
-char			*pf_convert(int number, signed char format, t_flags flags)
+static char		*pf_convertbase(uintmax_t num, char *base, int n)
+{
+	char		*ret;
+	int			j;
+	uintmax_t	len;
+
+	j = 0;
+	len = ft_strlen(base);
+	ret = malloc(sizeof(char) * 34);
+	while (num >= len)
+	{
+		ret[j] = base[num % len];
+		num = num / len;
+		j++;
+	}
+	ret[j++] = base[num % len];
+	if (n == 1)
+		ret[j++] = '-';
+	ret[j++] = '\0';
+	ret = pf_revstr(ret);
+	return (ret);
+}
+
+char			*pf_convert(uintmax_t number, signed char format, int neg)
 {
 	char		*ret;
 
 	if (format == 'i' || format == 'd')
 	{
-		ret = pf_convertbase(number, flags, "0123456789", 1);
-		ret = pf_revstr(ret);
+		ret = pf_convertbase(number, "0123456789", neg);
 		return (ret);
 	}
 	if (format == 'u')
 	{
-		ret = pf_convertbase(number, flags, "0123456789", 0);
-		ret = pf_revstr(ret);
+		ret = pf_convertbase(number, "0123456789", 0);
 		return (ret);
 	}
 	if (format == 'x' || format == 'p')
 	{
-		ret = pf_convertbase(number, flags, "0123456789abcdef", 2);
-		ret = pf_revstr(ret);
+		ret = pf_convertbase(number, "0123456789abcdef", 0);
 		return (ret);
 	}
 	if (format == 'X')
 	{
-		ret = pf_convertbase(number, flags, "0123456789ABCDEF", 3);
-		ret = pf_revstr(ret);
+		ret = pf_convertbase(number, "0123456789ABCDEF", 0);
 		return (ret);
 	}
 	return (NULL);

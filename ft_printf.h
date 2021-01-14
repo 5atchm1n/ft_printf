@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/13 00:23:28 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 00:27:22 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef union			u_arg
 {
 	unsigned char		ch;
 	char				*str;
-	int					nbr;
-	uintptr_t			ptr;
+	intmax_t			nbr;
+	uintmax_t			unbr;
 }						t_arg;
 
 typedef struct			s_pfdata
@@ -58,7 +58,6 @@ int						ft_printf(const char *str, ...);
 ** SPLIT STRING
 */
 char					**pf_split(char const *str);
-void					pf_cleartab(char **tab);
 /*
 ** CREATE LIST FUNCTIONS
 */
@@ -68,21 +67,23 @@ void					pf_flagargs(t_flags *flags, va_list args, char *str);
 char					*pf_setstring(char *str, char **string);
 t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
-void					pf_clearlst(t_pfdata *head);
 /*
 ** SET_RETURN UTILS
 */
-void					pf_print(t_pfdata *pfdata, char **strlist);
-char					*pf_addpwidth(char *str, int pwidth, int start);
-void					pf_putstr(char *str);
-void					pf_putstrl(char *str, int pwidth);
-void					pf_putstrs(char *str, int width, int left);
-void					pf_setreturn(t_pfdata pfdata);
+int						pf_print(t_pfdata *pfdata, char **strlist);
+int						pf_putstr(char *str);
+int						pf_setreturn(t_pfdata pfdata);
+int						pf_putchar(char c);
+int						pf_printstr(char *str, t_flags flags);
+int						pf_printint(intmax_t num, t_flags flags, signed char format);
+char					*pf_putwidth(char *str, int width, char flag, char *ret);
+char					*pf_putflag(char *str, char flag);
+char					*pf_putleft(char *str, int width, char flag, char *ret);
 /*
 ** CONVERT UTILS
 */
-char					*pf_convert(int number, signed char format,
-	t_flags flags);
+char					*pf_convert(uintmax_t number, signed char format,
+	int neg);
 /*
 **FLAG UTILS
 */

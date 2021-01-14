@@ -6,20 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/13 00:25:51 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/13 23:59:15 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-/*
-** 1 = char
-** 2 = string
-** 3 = pointer
-** 4 = integer
-** 5 = hex
-** 6 = HEX
-*/
 
 static int		pf_ret_type(signed char format)
 {
@@ -30,74 +21,48 @@ static int		pf_ret_type(signed char format)
 		return (1);
 	if (n == 2)
 		return (2);
-	if (n == 3)
+	if (n == 3 || n == 6 || n == 7 || n == 8)
 		return (3);
-	if (n > 3)
+	if (n == 4 || n == 5)
 		return (4);
 	return (0);
 }
 
-static char		*pf_addprecision(char *str, int pwidth, int hash, signed char format)
+
+
+static int		pf_printuint(uintmax_t num, t_flags flags, signed char format)
 {
-	int			i;
-	char		*ret;
+	char		*pfstring;
 	
-	i = 0;
-	if (hash && (format == 'x' || format == 'X'))
-	{
-			ret = pf_addpwidth(str, pwidth, 2);
-	}
-	ret = pf_addpwidth(str, pwidth, 0);
-	return (ret);
+	pfstring = pf_convert(num, format, 0);
+	if (flags.precision == 1)
+		return(0);	
+
+	return(0);
 }
 
 /*
-** 0 == pointer
-** 1 == string
-** 2 == integer
+** 1 = char
+** 2 = string
+** 3 = pointer, hex, HEX, unsigned
+** 4 = decimal, signed
 */
-
-static void		pf_printstr(char *str, t_flags flags, int n, signed char format)
-{
-	if (n == 0)
-		pf_putstr(str);
-	if (n == 1)
-	{
-		if (flags.precision == 1)
-			pf_putstrl(str, flags.pwidth);
-		if (flags.fwidth == 0 && flags.precision == 0)
-			pf_putstr(str);
-		if (flags.fwidth > 0 && flags.precision == 0)
-			pf_putstrs(str, flags.fwidth, flags.left);
-	}
-	if (n == 2)
-	{
-		if (flags.precision == 1)
-			pf_addprecision(str, flags.pwidth, flags.hash, format);
-		pf_putstrs(str, flags.fwidth, flags.left);
-		free(str);
-	}
-}
-
-void			pf_setreturn(t_pfdata pfdata)
+int				pf_setreturn(t_pfdata pfdata)
 {
 	int			type;
 	char		*pfstring;
+	int			n;
 
 	pfstring = NULL;
+	n = 0;
 	type = pf_ret_type(pfdata.format);
 	if (type == 1)
-		write(1, &pfdata.arg.ch, 1);
+		n = pf_putchar(pfdata.arg.ch);
 	if (type == 2)
-		pf_printstr(pfdata.arg.str, pfdata.flags, 1, pfdata.format);
+		n = pf_printstr(pfdata.arg.str, pfdata.flags);
 	if (type == 3)
-	{
-		pfstring = pf_convert(pfdata.arg.ptr, pfdata.format, pfdata.flags);
-		pf_printstr(pfstring, pfdata.flags, 0, pfdata.format);
-	}
+		n = pf_printuint(pfdata.arg.unbr, pfdata.flags, pfdata.format);
 	if (type == 4)
-	{
-		pfstring = pf_convert(pfdata.arg.nbr, pfdata.format, pfdata.flags);
-		pf_printstr(pfstring, pfdata.flags, 2, pfdata.format);
-	}
+		n = pf_printint(pfdata.arg.nbr, pfdata.flags, pfdata.format);
+	return (n);
 }
