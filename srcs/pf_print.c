@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 22:10:58 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 00:06:11 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 05:51:37 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		pf_cleartab(char **tab)
 	int			n;
 
 	n = 0;
-	while(tab[n] != NULL)
+	while (tab[n] != NULL)
 	{
 		free(tab[n]);
 		n++;
@@ -40,13 +40,18 @@ static void		pf_cleartab(char **tab)
 	free(tab);
 }
 
-int				pf_print(t_pfdata *arglist, char **strlist)
+int				pf_print(t_pfdata *arglist, char **strlist, char *str)
 {
 	t_pfdata	*head;
 	int			n;
 
 	head = arglist;
 	n = 0;
+	while (str[n] != '%')
+	{
+		write(1, &str[n], 1);
+		n++;
+	}
 	while (arglist != NULL)
 	{
 		n += pf_setreturn(*arglist);

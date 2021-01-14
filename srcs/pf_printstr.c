@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:34:29 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 00:03:28 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 04:45:20 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	pf_putstr_l(char *str, int width, int left)
 	l = ft_strlen(str);
 	if (left)
 	{
-		write (1, str, l);
+		write(1, str, l);
 		while (l < width)
 		{
 			write(1, " ", 1);
@@ -35,7 +35,7 @@ static int	pf_putstr_l(char *str, int width, int left)
 		}
 		write(1, str, l);
 	}
-	return(width);
+	return (width);
 }
 
 static int	pf_putstrs(char *str, int width, int left)
@@ -45,7 +45,7 @@ static int	pf_putstrs(char *str, int width, int left)
 	l = ft_strlen(str);
 	if (l > width)
 	{
-		write(1 ,str, l);
+		write(1, str, l);
 	}
 	else
 	{
@@ -57,15 +57,16 @@ static int	pf_putstrs(char *str, int width, int left)
 static int	pf_putstr_pw(char *str, int pwidth, int fwidth, int left)
 {
 	int		l;
+
 	l = ft_strlen(str);
 	if (l > pwidth && pwidth >= fwidth)
 	{
-		write (1, str, pwidth);
+		write(1, str, pwidth);
 		return (pwidth);
 	}
 	if (l > pwidth && fwidth > pwidth && left == 1)
 	{
-		write (1 , str, fwidth);
+		write(1, str, fwidth);
 		while (pwidth < fwidth)
 		{
 			write(1, " ", 1);
@@ -78,12 +79,12 @@ static int	pf_putstr_pw(char *str, int pwidth, int fwidth, int left)
 		while (pwidth < fwidth)
 		{
 			write(1, " ", 1);
-			pwidth++;
+			fwidth--;
 		}
-		write (1, str, pwidth);
-		return (fwidth);
+		write(1, str, pwidth);
+		return (fwidth + pwidth);
 	}
-	return(0);
+	return (0);
 }
 
 int			pf_printstr(char *str, t_flags flags)

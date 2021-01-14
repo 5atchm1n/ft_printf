@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:08:14 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/13 15:08:34 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 04:34:57 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int			pf_putstr(char *str)
 	int		l;
 
 	l = ft_strlen(str);
-	write (1, str, l);
+	write(1, str, l);
 	return (l);
 }

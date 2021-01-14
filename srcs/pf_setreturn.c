@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 03:15:42 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 05:00:44 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,13 @@ static int		pf_ret_type(signed char format)
 	return (0);
 }
 
-
-
-static int		pf_printuint(uintmax_t num, t_flags flags, signed char format)
-{
-	char		*pfstring;
-	
-	pfstring = pf_convert(num, format);
-	if (flags.precision == 1)
-		return(0);	
-
-	return(0);
-}
-
 /*
 ** 1 = char
 ** 2 = string
 ** 3 = pointer, hex, HEX, unsigned
 ** 4 = decimal, signed
 */
+
 int				pf_setreturn(t_pfdata pfdata)
 {
 	int			type;
