@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:08:14 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 04:34:57 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/15 01:16:12 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,30 @@ int			pf_putstr(char *str)
 {
 	int		l;
 
-	l = ft_strlen(str);
+	l = pf_strlen(str);
 	write(1, str, l);
 	return (l);
+}
+
+int			pf_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
+
+int			pf_strlen(char *s)
+{
+	int		i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (s[i] == '\0')
+		return (0);
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }

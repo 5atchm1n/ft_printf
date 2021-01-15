@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 21:13:15 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/09 04:07:56 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/15 00:02:01 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int			pf_fwidth(char *str)
 			break ;
 		str++;
 	}
-	if (ft_isdigit(*str))
+	if (pf_isdigit(*str))
 	{
 		i = 0;
 		while (*str)
 		{
-			if (ft_isdigit(*str))
+			if (pf_isdigit(*str))
 				i = i * 10 + ((*str) - '0');
 			str++;
-			if (!(ft_isdigit(*str)))
+			if (!(pf_isdigit(*str)))
 				return (i);
 		}
 	}
@@ -49,15 +49,15 @@ int			pf_pwidth(char *str)
 		i = pf_isflag(*str);
 		str++;
 	}
-	if (ft_isdigit(*str))
+	if (pf_isdigit(*str))
 	{
 		i = 0;
 		while (*str)
 		{
-			if (ft_isdigit(*str))
+			if (pf_isdigit(*str))
 				i = i * 10 + ((*str) - '0');
 			str++;
-			if (!(ft_isdigit(*str)))
+			if (!(pf_isdigit(*str)))
 				return (i);
 		}
 	}
@@ -76,7 +76,7 @@ int			pf_asterisk(char *str)
 		i = pf_isflag(*str);
 		if (i == 6)
 			n = n + 1;
-		if (i < 0 && ft_isdigit(*str) == 1)
+		if (i < 0 && pf_isdigit(*str) == 1)
 			i = 1;
 		str++;
 	}
@@ -93,7 +93,7 @@ int			pf_precision(char *str)
 		i = pf_isflag(*str);
 		if (i == 5)
 			return (1);
-		if (i < 0 && ft_isdigit(*str) == 1)
+		if (i < 0 && pf_isdigit(*str) == 1)
 			i = 1;
 		str++;
 	}

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 22:15:30 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/15 01:17:56 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char			*pf_addflags(char *str, t_flags flags, signed char format)
 	int				len;
 	char			*ret;
 
-	len = ft_strlen(str);
+	len = pf_strlen(str);
 	ret = str;
 	if (flags.hash == 1)
 	{
@@ -48,13 +48,14 @@ static char			*pf_addflags(char *str, t_flags flags, signed char format)
 	return (ret);
 }
 
-int					pf_printuint(uintmax_t num, t_flags flags, signed char format)
+int					pf_printuint(uintmax_t num, t_flags flags,
+		signed char format)
 {
 	char			*pfstring;
 	int				len;
 
 	pfstring = pf_convert(num, format);
-	len = ft_strlen(pfstring);
+	len = pf_strlen(pfstring);
 	if (flags.precision == 1 && flags.pwidth > len)
 	{
 		pfstring = pf_putzero(pfstring, flags.pwidth);
@@ -66,7 +67,7 @@ int					pf_printuint(uintmax_t num, t_flags flags, signed char format)
 			pfstring = pf_putzero(pfstring, flags.fwidth);
 		pfstring = pf_addflags(pfstring, flags, format);
 	}
-	len = ft_strlen(pfstring);
+	len = pf_strlen(pfstring);
 	if (flags.fwidth > 0 && flags.fwidth > len)
 		pfstring = pf_putfwidth(pfstring, flags.fwidth, flags.left);
 	len = pf_putstr(pfstring);

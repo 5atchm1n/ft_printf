@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:34:29 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 20:56:22 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/15 01:15:33 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	pf_putstr_l(char *str, int width, int left)
 {
 	int		l;
 
-	l = ft_strlen(str);
+	l = pf_strlen(str);
 	if (left)
 	{
 		write(1, str, l);
@@ -42,7 +42,7 @@ static int	pf_putstrs(char *str, int width, int left)
 {
 	int		l;
 
-	l = ft_strlen(str);
+	l = pf_strlen(str);
 	if (l > width)
 	{
 		write(1, str, l);
@@ -56,33 +56,29 @@ static int	pf_putstrs(char *str, int width, int left)
 
 static int	pf_putstr_pw(char *str, int pwidth, int fwidth, int left)
 {
-	int		l;
+	int		len;
+	int		n;
 
-	l = ft_strlen(str);
-	if (l > pwidth && pwidth >= fwidth)
+	len = pf_strlen(str);
+	if (pwidth > len)
+	{
+		write(1, str, len);
+		return (len);
+	}
+	if (len > pwidth && pwidth >= fwidth)
 	{
 		write(1, str, pwidth);
 		return (pwidth);
 	}
-	if (l > pwidth && fwidth > pwidth && left == 1)
+	if (len > pwidth && fwidth > pwidth && left == 1)
 	{
-		write(1, str, pwidth);
-		while (pwidth < fwidth)
-		{
-			write(1, " ", 1);
-			pwidth++;
-		}
-		return (fwidth);
+		n = pf_putstr_wl(str, pwidth, fwidth, left);
+		return (n);
 	}
-	if (l > pwidth && fwidth > pwidth && left == 0)
+	if (len > pwidth && fwidth > pwidth && left == 0)
 	{
-		while (pwidth < fwidth)
-		{
-			write(1, " ", 1);
-			fwidth--;
-		}
-		write(1, str, pwidth);
-		return (fwidth + pwidth);
+		n = pf_putstr_w(str, pwidth, fwidth, left);
+		return (n);
 	}
 	return (0);
 }
@@ -90,8 +86,10 @@ static int	pf_putstr_pw(char *str, int pwidth, int fwidth, int left)
 int			pf_printstr(char *str, t_flags flags)
 {
 	int		i;
+	int		len;
 
 	i = 0;
+	len = pf_strlen(str);
 	if (flags.fwidth == 0 && flags.precision == 0)
 		i = pf_putstr(str);
 	if (flags.precision == 1)

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 03:14:36 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 23:54:08 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char		*pf_revstr(char *str)
 	int			j;
 	char		*ret;
 
-	len = ft_strlen(str);
+	len = pf_strlen(str);
 	ret = malloc(sizeof(char) * (len + 1));
 	i = 0;
 	j = len - 1;
@@ -41,7 +41,7 @@ static char		*pf_convertbase(uintmax_t num, char *base)
 	uintmax_t	len;
 
 	j = 0;
-	len = ft_strlen(base);
+	len = pf_strlen(base);
 	ret = malloc(sizeof(char) * 34);
 	while (num >= len)
 	{

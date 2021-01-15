@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 22:28:33 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/15 01:18:53 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ int						pf_putstr(char *str);
 int						pf_setreturn(t_pfdata *pfdata);
 int						pf_putchar(char c);
 int						pf_printstr(char *str, t_flags flags);
-int						pf_printint(intmax_t num, t_flags flags, signed char format);
-int						pf_printuint(uintmax_t num, t_flags flags, signed char format);
+int						pf_printint(intmax_t num, t_flags flags,
+		signed char format);
+int						pf_printuint(uintmax_t num, t_flags flags,
+		signed char format);
 char					*pf_putflag(char *str, char flag);
 char					*pf_putzero(char *str, int width);
 char					*pf_putspace(char *str, int width);
@@ -97,10 +99,13 @@ int						pf_flagtrue(char *str, int n);
 int						pf_isflag(char c);
 int						pf_isformat(char c);
 void					pf_flagzero(t_flags *flags);
-/*
-**libft functions
-*/
-int						ft_isdigit(int c);
-int						ft_strlen(char *s);
+
+int						pf_isdigit(int c);
+int						pf_strlen(char *s);
+
+int						pf_putstr_wl(char *str, int pwidth, int fwidth,
+		int left);
+int						pf_putstr_w(char *str, int pwidth, int fwidth,
+		int left);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 03:31:52 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 23:55:02 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char		*pf_putflag(char *str, char flag)
 
 	i = 1;
 	j = 0;
-	len = ft_strlen(str);
+	len = pf_strlen(str);
 	ret = malloc(sizeof(char) * (len + 2));
 	ret[0] = flag;
 	while (str[j] != '\0')
@@ -42,7 +42,7 @@ char		*pf_putzero(char *str, int width)
 	int		j;
 	char	*ret;
 
-	len = ft_strlen(str);
+	len = pf_strlen(str);
 	i = 0;
 	j = 0;
 	ret = malloc(sizeof(char) * (width + 1));
@@ -70,7 +70,7 @@ char		*pf_putspace(char *str, int width)
 	int		j;
 	char	*ret;
 
-	len = ft_strlen(str);
+	len = pf_strlen(str);
 	i = 0;
 	j = 0;
 	ret = malloc(sizeof(char) * (width + 1));
@@ -97,7 +97,7 @@ char		*pf_putleft(char *str, int width)
 	int		i;
 	char	*ret;
 
-	len = ft_strlen(str);
+	len = pf_strlen(str);
 	i = 0;
 	ret = malloc(sizeof(char) * (width + 1));
 	while (str[i] != '\0')

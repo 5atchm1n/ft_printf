@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 20:45:11 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/14 23:57:13 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char		*pf_string(char const *str, size_t len)
 	return (ret);
 }
 
-static size_t	pf_strlen(const char *str)
+static size_t	pf_splitlen(const char *str)
 {
 	size_t		n;
 
@@ -103,7 +103,7 @@ char			**pf_split(char const *str)
 		{
 			if (*str == '%')
 			{
-				len = pf_strlen(str);
+				len = pf_splitlen(str);
 				tab[n] = pf_string(str, len);
 				n++;
 				str++;
