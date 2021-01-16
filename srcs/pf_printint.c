@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/15 00:48:00 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/15 20:48:33 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,25 @@ static char			*pf_putfwidth(char *str, int width, int left)
 	return (ret);
 }
 
-static void			pf_putneg(char *str)
-{
-	str[0] = '-';
-}
-
-static char			*pf_addflags(char *str, t_flags flags, int neg)
+static char			*pf_addflags(char *str, t_flags flags, int neg, int l)
 {
 	int				len;
 	char			*ret;
 
 	len = pf_strlen(str);
 	ret = str;
-	if (neg == 1 && flags.zero == 0)
+	if (neg == 1 && (flags.zero == 0 || flags.fwidth <= l)) 
 		ret = pf_putflag(str, '-');
-	if (neg == 1 && flags.zero == 1)
-		pf_putneg(str);
-	if (neg == 0 && flags.zero == 0)
+	if (neg == 1 && flags.zero == 1 && flags.fwidth > l)
+		str[0] = '-';
+	if (neg == 0 && (flags.zero == 0 || flags.fwidth == l))
 	{
 		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
 			ret = pf_putflag(str, '+');
 		else if (flags.space == 1)
 			ret = pf_putflag(str, ' ');
 	}
-	if (neg == 0 && flags.zero == 1)
+	if (neg == 0 && flags.zero == 1 && flags.fwidth > l)
 	{
 		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
 			str[0] = '+';
@@ -88,7 +83,7 @@ int					pf_printint(intmax_t num, t_flags flags, signed char format)
 	{
 		if (flags.zero == 1 && flags.fwidth > len && flags.left == 0)
 			pfstring = pf_putzero(pfstring, flags.fwidth);
-		pfstring = pf_addflags(pfstring, flags, neg);
+		pfstring = pf_addflags(pfstring, flags, neg, len);
 	}
 	len = pf_strlen(pfstring);
 	if (flags.fwidth > 0 && flags.fwidth > len)

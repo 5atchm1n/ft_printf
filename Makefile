@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/15 01:14:34 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/16 00:51:05 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,11 @@ SRCS =	ft_printf.c \
 
 TEST = tests/test_final.c
 
+TEST2 = tests/test_final2.c
+
 TEST1 =	srcs/pf_split.c tests/test_pfsplit.c
 
-TEST2 = srcs/pf_setflags.c tests/test_setflags.c srcs/ft_printf_utils.c \
+TESTFLAGS = srcs/pf_setflags.c tests/test_setflags.c srcs/ft_printf_utils.c \
 		srcs/ft_printf_libft.c
 
 TEST3 = srcs/pf_setstring.c tests/test_setstring.c srcs/ft_printf_utils.c \
@@ -61,11 +63,14 @@ MEM = -fsanitize=address
 test:
 	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST} && ./a.out
 
+test2:
+	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST2} && ./a.out
+
 testsplit:
 	${CC} ${CFLAGS} ${MEM} ${TEST1} && ./a.out
 
 testflags: 
-	${CC} ${CFLAGS} ${MEM} ${TEST2} ${INCLUDE} && ./a.out
+	${CC} ${CFLAGS} ${MEM} ${TESTFLAGS} ${INCLUDE} && ./a.out
 
 teststr:
 	${CC} ${CFLAGS} ${MEM} ${TEST3} ${INCLUDE} && ./a.out
