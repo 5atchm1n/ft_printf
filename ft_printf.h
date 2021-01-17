@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 06:18:04 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 07:54:44 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char					*pf_convertexp(double number, int pwidth);
 double					pf_exp(double pow, int *exp);
 double					pf_pow(double pow, int pwidth);
 char					*pf_addexp(char *str, int exp);
+char					*pf_addpow(char *str, int exp, int pwidth);
 /*
 **FLAG UTILS
 */
