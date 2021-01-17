@@ -6,11 +6,23 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 23:55:02 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 01:58:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+char				*pf_putfwidth(char *str, int width, int left)
+{
+	char			*ret;
+
+	ret = NULL;
+	if (left == 0)
+		ret = pf_putspace(str, width);
+	if (left == 1)
+		ret = pf_putleft(str, width);
+	return (ret);
+}
 
 char		*pf_putflag(char *str, char flag)
 {

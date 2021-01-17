@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 21:05:04 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 01:35:32 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		pf_setflagdata(char *str, t_flags *flags)
 	if (flags->precision == 1)
 		flags->pwidth = pf_pwidth(str);
 	else
-		flags->pwidth = 0;
+		flags->pwidth = -1;
 }
 
 t_flags			*pf_setflags(char *str, t_flags *flags, va_list args)

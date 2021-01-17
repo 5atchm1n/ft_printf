@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/15 20:48:33 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 01:57:16 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ static uintmax_t	pf_isnegative(intmax_t num, int *neg)
 	if (num > 0)
 		n = num;
 	return (n);
-}
-
-static char			*pf_putfwidth(char *str, int width, int left)
-{
-	char			*ret;
-
-	ret = NULL;
-	if (left == 0)
-		ret = pf_putspace(str, width);
-	if (left == 1)
-		ret = pf_putleft(str, width);
-	return (ret);
 }
 
 static char			*pf_addflags(char *str, t_flags flags, int neg, int l)

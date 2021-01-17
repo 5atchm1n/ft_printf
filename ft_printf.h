@@ -6,14 +6,14 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/15 01:18:53 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 01:56:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define FLAGS "# +-0.*"
-# define FORMAT "%cspiduxX"
+# define FORMAT "%cspiduxXfge"
 
 # include <stdarg.h>
 # include <stdio.h>
@@ -41,6 +41,7 @@ typedef union			u_arg
 	intmax_t			nbr;
 	uintmax_t			unbr;
 	intptr_t			ptr;
+	double				dbl;
 }						t_arg;
 
 typedef struct			s_pfdata
@@ -80,14 +81,21 @@ int						pf_printint(intmax_t num, t_flags flags,
 		signed char format);
 int						pf_printuint(uintmax_t num, t_flags flags,
 		signed char format);
+
+int						pf_printfloat(double number, t_flags flags,
+		signed char format);
 char					*pf_putflag(char *str, char flag);
 char					*pf_putzero(char *str, int width);
 char					*pf_putspace(char *str, int width);
 char					*pf_putleft(char *str, int width);
+char					*pf_putfwidth(char *str, int width, int left);
 /*
 ** CONVERT UTILS
 */
 char					*pf_convert(uintmax_t number, signed char format);
+char					*pf_revstr(char *str);
+char					*pf_convertbase(uintmax_t num, char *base);
+
 /*
 **FLAG UTILS
 */

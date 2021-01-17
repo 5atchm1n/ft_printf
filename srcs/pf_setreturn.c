@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 20:49:25 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 01:15:57 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int		pf_ret_type(signed char format)
 		return (4);
 	if (n == 6 || n == 7 || n == 8)
 		return (5);
+	if (n == 9 || n == 10 || n == 11)
+		return (6);
 	return (0);
 }
 
@@ -60,5 +62,7 @@ int				pf_setreturn(t_pfdata *pfdata)
 		n = pf_printint(pfdata->arg.nbr, pfdata->flags, pfdata->format);
 	if (type == 5)
 		n = pf_printuint(pfdata->arg.unbr, pfdata->flags, pfdata->format);
+	if (type == 6)
+		n = pf_printfloat(pfdata->arg.dbl, pfdata->flags, pfdata->format);
 	return (n);
 }

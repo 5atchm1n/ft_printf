@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 22:29:39 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 01:07:37 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ static int		pf_settype(signed char c)
 		return (4);
 	if (n == 6)
 		return (5);
-	if (n == 7)
+	if (n == 7 || n == 8)
 		return (6);
+	if (n == 9 || n == 10 || n == 11)
+		return (7);
 	return (-1);
 }
 
@@ -61,6 +63,8 @@ static t_arg	pf_setarg(t_arg arg, int type, va_list args)
 		arg.unbr = (uintmax_t)va_arg(args, unsigned int);
 	if (type == 6)
 		arg.unbr = (uintmax_t)va_arg(args, unsigned int);
+	if (type == 7)
+		arg.dbl = va_arg(args, double);
 	return (arg);
 }
 
