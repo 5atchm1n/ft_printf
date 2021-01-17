@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 08:49:24 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 08:56:41 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ char			*pf_addexp(char *str, int exp)
 static char		pf_perr(char c)
 {
 	if (c == '9')
-		return('0');
+		return ('0');
 	return (c + 1);
 }
 
@@ -142,10 +142,10 @@ static char		*pf_setperr(char *str)
 {
 	int			len;
 	int			err;
-	
+
 	len = pf_strlen(str);
 	err = 1;
-	while(len && err == 1)
+	while (len && err == 1)
 	{
 		str[len - 1] = pf_perr(str[len - 1]);
 		err = 0;
@@ -155,7 +155,6 @@ static char		*pf_setperr(char *str)
 	}
 	return (str);
 }
-
 
 char			*pf_addpow(char *str, int exp, int pwidth)
 {
