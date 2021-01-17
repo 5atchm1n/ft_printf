@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 02:04:40 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 04:34:00 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,31 @@ static double	pf_pow(double pow, int pwidth)
 	}
 	return (ret);
 }
+/*
+static double	pf_exp(double pow)
+{
+	int			n;
 
+	n = 0;
+	if (pow < 1)
+	{
+		while (pow < 10)
+		{
+			pow = pow * 10;
+			n--;
+		}
+	}
+	if (pow > 1)
+	{
+		while (pow != 1)
+		{
+			pow = pow / 10;
+			n++;
+		}
+	}
+	return (n);
+}
+*/
 static char		*pf_join(char *s1, char *s2)
 {
 	char	*str;
@@ -72,7 +96,27 @@ static char		*pf_join(char *s1, char *s2)
 	str[i] = '\0';
 	return (str);
 }
+/*
+static char		*pf_convertexp(double number, int pwidth)
+{
+	char		*dig;
+	char		*flt;
+	char		*ret;
+	double		deci;
+	intmax_t	digit;
+	int			i;
 
+	digit = (uintmax_t)number;
+	deci = number - (double)digit;
+
+	dig = pf_convertbase(digit, "0123456789");
+	i = pf_strlen(dig);
+	deci = deci * pf_pow(10, pwidth);
+	flt = pf_convertbase((uintmax_t)deci, "0123456789");
+	ret = pf_join(dig, flt);
+	return (ret);
+}
+*/
 static char		*pf_convertfloat(double number, int pwidth)
 {
 	char		*dig;

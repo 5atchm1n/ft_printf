@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/17 01:30:11 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/17 04:44:18 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,15 @@ SRCS =	ft_printf.c \
 		srcs/pf_printfloat.c \
 		srcs/pf_printint_utils.c
 
-TEST = tests/test_final.c
+TEST1 = tests/test_mypf_int.c
 
-TEST2 = tests/test_final2.c
+TEST4 = tests/test_mypf_str.c
 
-TEST3 = tests/test_final3.c
+TEST2 = tests/test_mypf_hexp.c
 
-TEST1 =	srcs/pf_split.c tests/test_pfsplit.c
+TEST3 = tests/test_mypf_fge.c
+
+TESTSPLT =	srcs/pf_split.c tests/test_pfsplit.c
 
 TESTFLAGS = srcs/pf_setflags.c tests/test_setflags.c srcs/ft_printf_utils.c \
 		srcs/ft_printf_libft.c
@@ -55,6 +57,12 @@ TESTLST = tests/test_setlst2.c srcs/pf_split.c srcs/pf_setlst.c \
 
 TESTPF = tests/test_printf.c
 
+TESTPF2 = tests/test_printf2.c
+
+TESTPF3 = tests/test_printf3.c
+
+TESTPF4 = tests/test_printf4.c
+
 TESTMYPF = tests/test_mypf.c
 
 CC = clang
@@ -63,17 +71,20 @@ CFLAGS	= -Wall -Wextra -Werror -g
 
 MEM = -fsanitize=address
 
-test:
-	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST} && ./a.out
+test-int:
+	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST1} && ./a.out
 
-test2:
+test-str:
+	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST4} && ./a.out
+
+test-hexp:
 	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST2} && ./a.out
 
-test3:
+test-fge:
 	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TEST3} && ./a.out
 
 testsplit:
-	${CC} ${CFLAGS} ${MEM} ${TEST1} && ./a.out
+	${CC} ${CFLAGS} ${MEM} ${TESTSPLT} && ./a.out
 
 testflags: 
 	${CC} ${CFLAGS} ${MEM} ${TESTFLAGS} ${INCLUDE} && ./a.out
@@ -84,8 +95,15 @@ teststr:
 testlst:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTLST} && ./a.out
 
-testpf:
+testpf-int:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF} && ./a.out
+testpf-lenmod:
+	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF2} && ./a.out
+testpf-flt:
+	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF3} && ./a.out
+testpf-hex:
+	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF4} && ./a.out
+
 
 testmypf:
 	${CC} ${CFLAGS} ${INCLUDE} ${SRCS} ${TESTMYPF} && ./a.out
