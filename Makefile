@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/17 04:44:18 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/17 05:29:39 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS =	ft_printf.c \
 		srcs/pf_printint.c \
 		srcs/pf_printuint.c \
 		srcs/pf_printfloat.c \
+		srcs/pf_convert_float.c \
+		srcs/pf_float_utils.c \
 		srcs/pf_printint_utils.c
 
 TEST1 = tests/test_mypf_int.c
@@ -99,7 +101,7 @@ testpf-int:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF} && ./a.out
 testpf-lenmod:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF2} && ./a.out
-testpf-flt:
+testpf-fge:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF3} && ./a.out
 testpf-hex:
 	${CC} ${CFLAGS} ${MEM} ${INCLUDE} ${TESTPF4} && ./a.out

@@ -6,15 +6,15 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 01:58:27 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 06:46:16 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char				*pf_putfwidth(char *str, int width, int left)
+char		*pf_putfwidth(char *str, int width, int left)
 {
-	char			*ret;
+	char	*ret;
 
 	ret = NULL;
 	if (left == 0)

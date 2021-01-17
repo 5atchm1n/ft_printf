@@ -6,13 +6,13 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 00:53:25 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 06:39:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char		*pf_revstr(char *str)
+char			*pf_revstr(char *str)
 {
 	int			len;
 	int			i;
@@ -34,7 +34,7 @@ char		*pf_revstr(char *str)
 	return (ret);
 }
 
-char		*pf_convertbase(uintmax_t num, char *base)
+char			*pf_convertbase(uintmax_t num, char *base)
 {
 	char		*ret;
 	int			j;
