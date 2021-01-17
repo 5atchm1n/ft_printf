@@ -1,56 +1,88 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils_2.c                                :+:      :+:    :+:   */
+/*   pf_float_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 15:08:14 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 23:50:42 by sshakya          ###   ########.fr       */
+/*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
+/*   Updated: 2021/01/17 23:45:25 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int			pf_putchar(char c)
+int			pf_isneg(int *exp)
 {
-	write(1, &c, 1);
-	return (1);
-}
+	int		neg;
 
-int			pf_putstr(char *str)
-{
-	int		l;
-
-	l = pf_strlen(str);
-	write(1, str, l);
-	return (l);
-}
-
-int			pf_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
-}
-
-int			pf_strlen(char *s)
-{
-	int		i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (s[i] == '\0')
-		return (0);
-	while (s[i] != '\0')
+	neg = 0;
+	if (*exp < 0)
 	{
-		i++;
+		*exp = *exp * -1;
+		neg = 1;
 	}
-	return (i);
+	return (neg);
 }
 
-char		*pf_joinfloat(char *s1, char *s2)
+double		pf_pow(double pow, int pwidth)
+{
+	double	ret;
+	int		def;
+
+	ret = 1;
+	def = pwidth;
+	if (pwidth <= -1)
+		def = 6;
+	while (def)
+	{
+		ret = ret * pow;
+		def--;
+	}
+	return (ret);
+}
+
+double		pf_exp(double pow, int *exp)
+{
+	int		n;
+
+	n = 0;
+	if (pow < 1)
+	{
+		while (pow < 10)
+		{
+			pow = pow * 10;
+			n--;
+		}
+	}
+	if (pow > 1)
+	{
+		while (pow > 10)
+		{
+			pow = pow / 10;
+			n++;
+		}
+	}
+	*exp = n;
+	return (pow);
+}
+
+double		pf_isnegdouble(double num, int *neg)
+{
+	double	n;
+
+	*neg = 0;
+	if (num < 0)
+	{
+		n = num * -1;
+		*neg = 1;
+	}
+	if (num > 0)
+		n = num;
+	return (n);
+}
+
+char		*pf_joinstr(char *s1, char *s2)
 {
 	char	*str;
 	size_t	len;
@@ -67,8 +99,6 @@ char		*pf_joinfloat(char *s1, char *s2)
 		i++;
 	}
 	j = 0;
-	str[i] = '.';
-	i++;
 	while (s2[j] != '\0')
 	{
 		str[i] = s2[j];

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 07:54:44 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 23:50:00 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char					*pf_setstring(char *str, char **string);
 t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
 /*
-** SET_RETURN UTILS
+** PRINTF RETURN FUNCTIONS
 */
 int						pf_print(t_pfdata *pfdata, char **strlist, char *str);
 int						pf_putstr(char *str);
@@ -90,12 +90,13 @@ char					*pf_putspace(char *str, int width);
 char					*pf_putleft(char *str, int width);
 char					*pf_putfwidth(char *str, int width, int left);
 /*
-** CONVERT UTILS
+** CONVERT INT, UINT, DOUBLE UTILS
 */
 char					*pf_convert(uintmax_t number, signed char format);
 char					*pf_revstr(char *str);
 char					*pf_convertbase(uintmax_t num, char *base);
-char					*pf_join(char *s1, char *s2);
+char					*pf_joinfloat(char *s1, char *s2);
+char					*pf_joinstr(char *s1, char *s2);
 char					*pf_convertfloat(double number, int pwidth);
 double					pf_isnegdouble(double num, int *neg);
 char					*pf_convertexp(double number, int pwidth);
@@ -104,7 +105,7 @@ double					pf_pow(double pow, int pwidth);
 char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
 /*
-**FLAG UTILS
+** PARSE FORMAT STRING - FLAG UTILS
 */
 int						pf_precision(char *str);
 int						pf_asterisk(char *str);
@@ -117,7 +118,7 @@ void					pf_flagzero(t_flags *flags);
 
 int						pf_isdigit(int c);
 int						pf_strlen(char *s);
-
+int						pf_isneg(int *exp);
 int						pf_putstr_wl(char *str, int pwidth, int fwidth,
 		int left);
 int						pf_putstr_w(char *str, int pwidth, int fwidth,

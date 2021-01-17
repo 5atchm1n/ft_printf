@@ -6,97 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 08:56:41 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/17 23:45:10 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-double			pf_pow(double pow, int pwidth)
-{
-	double		ret;
-	int			def;
-
-	ret = 1;
-	def = pwidth;
-	if (pwidth <= -1)
-		def = 6;
-	while (def)
-	{
-		ret = ret * pow;
-		def--;
-	}
-	return (ret);
-}
-
-double			pf_exp(double pow, int *exp)
-{
-	int			n;
-
-	n = 0;
-	if (pow < 1)
-	{
-		while (pow < 10)
-		{
-			pow = pow * 10;
-			n--;
-		}
-	}
-	if (pow > 1)
-	{
-		while (pow > 10)
-		{
-			pow = pow / 10;
-			n++;
-		}
-	}
-	*exp = n;
-	return (pow);
-}
-
-double			pf_isnegdouble(double num, int *neg)
-{
-	double		n;
-
-	*neg = 0;
-	if (num < 0)
-	{
-		n = num * -1;
-		*neg = 1;
-	}
-	if (num > 0)
-		n = num;
-	return (n);
-}
-
-static char		*pf_joinstr(char *s1, char *s2)
-{
-	char	*str;
-	size_t	len;
-	size_t	i;
-	size_t	j;
-
-	len = pf_strlen(s1) + pf_strlen(s2) + 1;
-	if (!(str = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	free(s1);
-	free(s2);
-	return (str);
-}
 
 char			*pf_addexp(char *str, int exp)
 {
@@ -105,15 +19,12 @@ char			*pf_addexp(char *str, int exp)
 	int			neg;
 	int			i;
 
-	neg = 0;
 	i = 0;
 	base = "0123456789";
 	ret = malloc(sizeof(char) * 5);
-	if (exp < 0)
-	{
-		exp = exp * -1;
-		neg = 1;
-	}
+	if (ret == NULL)
+		return (NULL);
+	neg = pf_isneg(&exp);
 	while (exp > 0)
 	{
 		ret[i] = base[exp % 10];
@@ -156,6 +67,24 @@ static char		*pf_setperr(char *str)
 	return (str);
 }
 
+static int		pf_setfzero(char **str, int *exp, int *pwidth)
+{
+	int			i;
+
+	i = 0;
+	if (*pwidth == -1)
+		*pwidth = 6;
+	while (*exp < -1)
+	{
+		(*str)[i] = '0';
+		(*exp)++;
+		(*pwidth)--;
+		i++;
+	}
+	(*str)[i] = '\0';
+	return (i);
+}
+
 char			*pf_addpow(char *str, int exp, int pwidth)
 {
 	char		*ret;
@@ -163,19 +92,12 @@ char			*pf_addpow(char *str, int exp, int pwidth)
 	int			j;
 	int			len;
 
-	i = 0;
 	j = 0;
 	len = pf_strlen(str);
 	ret = malloc(sizeof(char) * (len + (exp * -1)));
-	if (pwidth == -1)
-		pwidth = 6;
-	while (exp < -1)
-	{
-		ret[i] = '0';
-		i++;
-		exp++;
-		pwidth--;
-	}
+	if (ret == NULL)
+		return (NULL);
+	i = pf_setfzero(&ret, &exp, &pwidth);
 	while (len && pwidth > 0)
 	{
 		ret[i] = str[j];
