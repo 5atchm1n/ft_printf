@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/18 01:43:54 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/18 22:40:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double		pf_pow(double pow, int pwidth)
 {
 	double	ret;
 	int		def;
-
+	
 	ret = 1;
 	def = pwidth;
 	if (pwidth <= -1)
@@ -40,31 +40,6 @@ double		pf_pow(double pow, int pwidth)
 		def--;
 	}
 	return (ret);
-}
-
-double		pf_exp(double pow, int *exp)
-{
-	int		n;
-
-	n = 0;
-	if (pow < 1)
-	{
-		while (pow < 10 && pow != 0)
-		{
-			pow = pow * 10;
-			n--;
-		}
-	}
-	if (pow > 1)
-	{
-		while (pow > 10)
-		{
-			pow = pow / 10;
-			n++;
-		}
-	}
-	*exp = n;
-	return (pow);
 }
 
 double		pf_isnegdouble(double num, int *neg)

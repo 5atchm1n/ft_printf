@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/18 02:33:10 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/18 22:47:25 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int		pf_convert_exp(char *ret, int exp)
 		exp = exp / 10;
 		i++;
 	}
+	if (i == 1 || i == 0)
+		ret[i++] = '0';
 	if (i == 1)
 		ret[i++] = '0';
 	if (neg == 1)
@@ -51,4 +53,49 @@ char			*pf_addexp(char *str, int exp)
 	ret = pf_revstr(ret);
 	ret = pf_joinstr(str, ret);
 	return (ret);
+}
+
+double		pf_exp(double num)
+{
+	if (num == 1)
+		return (num);
+	if (num < 1)
+	{
+		while (num < 10 && num != 0)
+		{
+			num = num * 10;
+		}
+	}
+	if (num > 1)
+	{
+		while (num > 10)
+		{
+			num = num / 10;
+		}
+	}
+	return (num);
+}
+
+int			pf_expi(double num)
+{
+	int		n;
+
+	n = 0;
+	if (num < 1)
+	{
+		while (num < 10 && num != 0)
+		{
+			num = num * 10;
+			n--;
+		}
+	}
+	if (num > 1)
+	{
+		while (num > 10)
+		{
+			num = num / 10;
+			n++;
+		}
+	}
+	return (n);
 }
