@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 23:47:53 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/18 02:32:19 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char			*pf_convertexp(double number, int pwidth)
 {
 	char		*dig;
 	char		*flt;
-	char		*ret;
 	double		deci;
 	intmax_t	digit;
 	int			exp;
@@ -28,16 +27,15 @@ char			*pf_convertexp(double number, int pwidth)
 	dig = pf_convertbase(digit, "0123456789");
 	deci = deci * pf_pow(10, pwidth);
 	flt = pf_convertbase((uintmax_t)deci, "0123456789");
-	ret = pf_joinfloat(dig, flt);
-	ret = pf_addexp(ret, exp);
-	return (ret);
+	flt = pf_joinfloat(dig, flt);
+	flt = pf_addexp(flt, exp);
+	return (flt);
 }
 
 char			*pf_convertfloat(double number, int pwidth)
 {
 	char		*dig;
 	char		*flt;
-	char		*ret;
 	double		deci;
 	intmax_t	digit;
 	int			exp;
@@ -50,6 +48,6 @@ char			*pf_convertfloat(double number, int pwidth)
 	deci = deci * pf_pow(10, pwidth + exp);
 	flt = pf_convertbase((uintmax_t)deci, "0123456789");
 	flt = pf_addpow(flt, exp, pwidth);
-	ret = pf_joinfloat(dig, flt);
-	return (ret);
+	flt = pf_joinfloat(dig, flt);
+	return (flt);
 }

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 23:45:25 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/18 01:43:54 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ double		pf_exp(double pow, int *exp)
 	n = 0;
 	if (pow < 1)
 	{
-		while (pow < 10)
+		while (pow < 10 && pow != 0)
 		{
 			pow = pow * 10;
 			n--;

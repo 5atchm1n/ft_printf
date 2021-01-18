@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/17 23:35:29 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/18 02:32:49 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS =	ft_printf.c \
 		srcs/pf_printfloat.c \
 		srcs/pf_convert_float.c \
 		srcs/pf_float_utils.c \
+		srcs/pf_float_exp.c \
 		srcs/pf_float_utils_2.c \
 		srcs/pf_printint_utils.c
 
