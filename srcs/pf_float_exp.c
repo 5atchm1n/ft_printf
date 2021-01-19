@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/18 22:47:25 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/19 01:10:07 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char			*pf_addexp(char *str, int exp)
 	return (ret);
 }
 
-double		pf_exp(double num)
+double			pf_exp(double num)
 {
 	if (num == 1)
 		return (num);
@@ -76,7 +76,7 @@ double		pf_exp(double num)
 	return (num);
 }
 
-int			pf_expi(double num)
+int				pf_expi(double num)
 {
 	int		n;
 

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 11:13:33 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 06:39:39 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/18 23:30:45 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ char			*pf_convertbase(uintmax_t num, char *base)
 {
 	char		*ret;
 	int			j;
+	int			i;
 	uintmax_t	len;
 
 	j = 0;
+	i = 0;
 	len = pf_strlen(base);
 	ret = malloc(sizeof(char) * 34);
 	while (num >= len)
