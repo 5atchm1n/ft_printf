@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 06:40:33 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/19 02:41:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static uintmax_t	pf_isnegative(intmax_t num, int *neg)
 	uintmax_t		n;
 
 	*neg = 0;
+	if (num == 0)
+		return (0);
 	if (num < 0)
 	{
 		n = num * -1;

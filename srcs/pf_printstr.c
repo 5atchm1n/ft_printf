@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:34:29 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/15 01:15:33 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/19 03:19:29 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ int			pf_printstr(char *str, t_flags flags)
 
 	i = 0;
 	len = pf_strlen(str);
+	if (len == 0)
+	{
+		free(str);
+		str = "(null)";
+	}
 	if (flags.fwidth == 0 && flags.precision == 0)
 		i = pf_putstr(str);
 	if (flags.precision == 1)
