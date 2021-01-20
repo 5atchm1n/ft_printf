@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 01:15:57 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/20 05:50:53 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int				pf_setreturn(t_pfdata *pfdata)
 	pfstring = NULL;
 	n = 0;
 	type = pf_ret_type(pfdata->format);
+	if (type == 0)
+		n = pf_putchar(pfdata->format);
 	if (type == 1)
 		n = pf_putchar(pfdata->arg.ch);
 	if (type == 2)

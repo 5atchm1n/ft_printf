@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 22:10:58 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 20:48:41 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/20 05:49:53 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int				pf_print(t_pfdata *arglist, char **strlist, char *str)
 	while (arglist != NULL)
 	{
 		n += pf_setreturn(arglist);
-		n += pf_putstr(arglist->str);
+		if (arglist->format != '%')
+			n += pf_putstr(arglist->str);
 		arglist = arglist->next;
 	}
 	pf_cleartab(strlist);
