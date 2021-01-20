@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 00:50:53 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/20 05:48:28 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/20 06:08:22 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char			*pf_setstring(char *str, char **string)
 	if (*tmp == '%')
 		tmp++;
 	if (*tmp == '%')
-		return (str);
+		return (*string = tmp);
 	str++;
 	while (*str && (pf_isdigit(*str) || pf_isflag(*str) >= 0))
 		str++;
