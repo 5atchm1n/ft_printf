@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/21 03:03:13 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/21 15:20:23 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,11 @@ char					*pf_putzero(char *str, int width);
 char					*pf_putspace(char *str, int width);
 char					*pf_putleft(char *str, int width);
 char					*pf_putfwidth(char *str, int width, int left);
+
+int						pf_write_space(int size);
+int						pf_write_fwidth_r(char *str, int fwidth);
+int						pf_write_preci(char *str, int pwidth);
+int						pf_write_fwidth_l(char *str, int fwidth);
 /*
 ** CONVERT INT, UINT, DOUBLE UTILS
 */
