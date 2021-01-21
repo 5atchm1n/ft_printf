@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 22:10:58 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/20 06:11:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/20 08:20:31 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				pf_print(t_pfdata *arglist, char **strlist, char *str)
 
 	head = arglist;
 	n = 0;
-	while (str[n] != '%')
+	while (str[n] != '%') 
 	{
 		write(1, &str[n], 1);
 		n++;

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/19 03:18:30 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/20 21:38:38 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,28 @@ static int		pf_setfzero(char **str, int *exp, int *pwidth)
 	}
 	(*str)[i] = '\0';
 	return (i);
+}
+
+char			*pf_doublezero(int pwidth)
+{
+	int			width;
+	char		*ret;
+	int			i;
+
+	i = 0;
+	width = pwidth;
+	if (pwidth == -1)
+		width = 6;
+	ret = malloc(sizeof(char) * (pwidth + 1));
+	if (ret == NULL)
+		return (NULL);
+	while (i < width)
+	{
+		ret[i] = '0';
+		i++;
+	}
+	ret[i++] = '\0';
+	return (ret);
 }
 
 char			*pf_addpow(char *str, int exp, int pwidth)

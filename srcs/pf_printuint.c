@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 01:57:10 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/20 08:00:14 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char			*pf_addflags(char *str, t_flags flags, signed char format)
 
 	len = pf_strlen(str);
 	ret = str;
-	if (flags.hash == 1)
+	if (flags.hash == 1 && format != 'p')
 	{
 		if (format == 'x')
 			ret = pf_putflag(str, (char)format);
@@ -44,8 +44,10 @@ int					pf_printuint(uintmax_t num, t_flags flags,
 
 	pfstring = pf_convert(num, format);
 	len = pf_strlen(pfstring);
-	if (flags.precision == 1 && flags.pwidth > len)
+	if (flags.precision == 1 && flags.pwidth > len && format != 'p')
 		pfstring = pf_putzero(pfstring, flags.pwidth);
+	if (num == 0 && format == 'p')
+		pfstring = pf_putzero(pfstring, 12);
 	if (flags.precision == 0)
 	{
 		if (flags.zero == 1 && flags.fwidth > len && flags.left == 0)

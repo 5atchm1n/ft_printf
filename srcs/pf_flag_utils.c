@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 21:13:15 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 01:33:41 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/20 07:57:33 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			pf_fwidth(char *str)
 		i = pf_isflag(*str);
 		if (i < 0)
 			break ;
+		if (i == 5)
+			return (0);
 		str++;
 	}
 	if (pf_isdigit(*str))
