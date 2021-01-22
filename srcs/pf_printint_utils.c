@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/22 19:40:36 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 00:40:46 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char		*pf_putzero(char *str, int width)
 	len = pf_strlen(str);
 	i = 0;
 	j = 0;
-	if (width == -1)
+	if (width == -1 || width < len)
 		width = len;
 	ret = malloc(sizeof(char) * (width + 1));
 	while (len < width)
@@ -73,6 +73,7 @@ char		*pf_putzero(char *str, int width)
 		j++;
 	}
 	ret[width] = '\0';
+	printf("%s\n", ret);
 	free(str);
 	return (ret);
 }
