@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 00:52:11 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/21 15:44:51 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 00:21:01 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			pf_write_fwidth_l(char *str, int fwidth)
 	write(1, ret, len);
 	if (fwidth >= 0)
 		n += pf_write_space(fwidth - len);
-	return (fwidth);
+	return (len + n);
 }
 
 int			pf_write_fwidth_r(char *str, int fwidth)
@@ -89,5 +89,5 @@ int			pf_write_fwidth_r(char *str, int fwidth)
 	if (fwidth >= 0)
 		n += pf_write_space(fwidth - len);
 	write(1, ret, len);
-	return (fwidth);
+	return (n + len);
 }
