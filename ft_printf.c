@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:12:55 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/20 22:00:16 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/22 19:54:35 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int				ft_printf(const char *str, ...)
 	char		**strlist;
 	t_pfdata	*arglist;
 	va_list		args;
+	size_t		n;
 
 	strlist = pf_split(str);
 	if (strlist[0] == NULL)
@@ -28,6 +29,6 @@ int				ft_printf(const char *str, ...)
 	va_start(args, str);
 	arglist = pf_setlist(strlist, args);
 	va_end(args);
-	pf_print(arglist, strlist, (char *)str);
-	return (0);
+	n = pf_print(arglist, strlist, (char *)str);
+	return (n);
 }
