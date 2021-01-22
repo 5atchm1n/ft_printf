@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 00:40:46 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 00:43:15 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char		*pf_putzero(char *str, int width)
 		j++;
 	}
 	ret[width] = '\0';
-	printf("%s\n", ret);
 	free(str);
 	return (ret);
 }
