@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/20 07:09:13 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/22 02:50:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,38 @@ static int		pf_ret_type(signed char format)
 	return (0);
 }
 
+static int		pf_printchar(char c, t_flags flags)
+{
+	int			n;
+
+	n = 0;
+	if (flags.left == 0)
+	{
+		if (flags.fwidth > 1)
+		{
+			while(n < flags.fwidth - 1)
+			{
+				write(1, " ", 1);
+				n++;
+			}
+		}
+		write(1, &c ,1);
+	}
+	if (flags.left == 1)
+	{
+		write(1, &c, 1);
+		if (flags.fwidth > 1)
+		{
+			while(n < flags.fwidth - 1)
+			{
+				write(1, " ", 1);
+				n++;
+			}
+		}
+	}
+	return (n);
+}
+
 int				pf_setreturn(t_pfdata *pfdata)
 {
 	int			type;
@@ -55,7 +87,7 @@ int				pf_setreturn(t_pfdata *pfdata)
 	if (type == 0)
 		n = pf_putstr(pfdata->str);
 	if (type == 1)
-		n = pf_putchar(pfdata->arg.ch);
+		n = pf_printchar(pfdata->arg.ch, pfdata->flags);
 	if (type == 2)
 		n = pf_printstr(pfdata->arg.str, pfdata->flags);
 	if (type == 3)
