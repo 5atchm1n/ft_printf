@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/22 03:33:03 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/22 19:41:15 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,32 @@ static uintmax_t	pf_isnegative(intmax_t num, int *neg)
 	if (num > 0)
 		n = num;
 	return (n);
+}
+
+static char			*pf_addflags_p(char *str, t_flags flags, int neg, int l)
+{
+	char			*ret;
+
+	ret = str;
+	if (neg == 1 && flags.pwidth <= l)
+		ret = pf_putflag(str, '-');
+	if (neg == 1 && flags.pwidth > l)
+		str[0] = '-';
+	if (neg == 0 && flags.pwidth <= l)
+	{
+		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+			ret = pf_putflag(str, '+');
+		else if (flags.space == 1)
+			ret = pf_putflag(str, ' ');
+	}
+	if (neg == 0 && flags.pwidth > l)
+	{
+		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+			str[0] = '+';
+		else if (flags.space == 1)
+			str[0] = ' ';
+	}
+	return (ret);
 }
 
 static char			*pf_addflags(char *str, t_flags flags, int neg, int l)
@@ -67,8 +93,11 @@ int					pf_printint(intmax_t num, t_flags flags, signed char format)
 	n = pf_isnegative(num, &neg);
 	pfstring = pf_convert(n, format);
 	len = pf_strlen(pfstring);
-	if (flags.precision == 1 && flags.pwidth > len)
+	if (flags.precision == 1 && flags.pwidth >= -1)
+	{
 		pfstring = pf_putzero(pfstring, flags.pwidth);
+		pfstring = pf_addflags_p(pfstring, flags, neg, len);
+	}
 	if (flags.precision == 0)
 	{
 		if (flags.zero == 1 && flags.fwidth > len && flags.left == 0)

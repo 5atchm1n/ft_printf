@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/21 15:20:23 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/22 16:08:15 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct			s_pfdata
 }						t_pfdata;
 
 int						ft_printf(const char *str, ...)
-	__attribute__ ((format (printf, 1, 2)));
+		__attribute__ ((format (printf, 1, 2)));
 /*
 ** SPLIT STRING
 */
