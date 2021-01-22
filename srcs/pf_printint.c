@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/22 19:41:15 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/22 19:56:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ int					pf_printint(intmax_t num, t_flags flags, signed char format)
 		pfstring = pf_putfwidth(pfstring, flags.fwidth, flags.left);
 	len = pf_putstr(pfstring);
 	free(pfstring);
-	return (0);
+	return (len);
 }
