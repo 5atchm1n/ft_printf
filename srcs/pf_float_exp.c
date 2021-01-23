@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/20 21:25:38 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 02:29:25 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char			*pf_addexp(char *str, int exp)
 	int			i;
 
 	i = 0;
-	ret = malloc(sizeof(char) * 5);
+	ret = malloc(sizeof(char) * 6);
 	if (ret == NULL)
 		return (NULL);
 	i = pf_convert_exp(ret, exp);

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/20 21:41:32 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 02:20:14 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char			*pf_convertexp(double number, int pwidth)
 	intmax_t	digit;
 	int			exp;
 
-	if (number > 0 && number < 0.00000000000000000000001)
+	if (number > 0 && number < DBL_EPSILON)
 	{
 		flt = pf_doublezero(pwidth);
 		dig = pf_convertbase(0, "0123456789");
