@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 00:52:11 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 00:21:01 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 02:02:49 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int			pf_write_preci(char *str, int pwidth)
 	len = pf_strlen(str);
 	if (pwidth <= 0)
 		return (0);
-	if (str == NULL)
-	{
-		ret = "(null)";
-		len = pf_strlen(ret);
-	}
 	if (len > pwidth && str != NULL)
 	{
 		write(1, ret, pwidth);
@@ -61,11 +56,6 @@ int			pf_write_fwidth_l(char *str, int fwidth)
 	n = 0;
 	len = pf_strlen(str);
 	ret = str;
-	if (str == NULL)
-	{
-		ret = "(null)";
-		len = pf_strlen(ret);
-	}
 	write(1, ret, len);
 	if (fwidth >= 0)
 		n += pf_write_space(fwidth - len);
@@ -81,11 +71,6 @@ int			pf_write_fwidth_r(char *str, int fwidth)
 	n = 0;
 	len = pf_strlen(str);
 	ret = str;
-	if (str == NULL)
-	{
-		ret = "(null)";
-		len = pf_strlen(ret);
-	}
 	if (fwidth >= 0)
 		n += pf_write_space(fwidth - len);
 	write(1, ret, len);

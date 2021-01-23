@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:34:29 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 00:07:12 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 02:01:54 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	pf_str_putspace(char *str, int fwidth, int pwidth)
 	len = pf_strlen(str);
 	n = 0;
 	width = pwidth;
-	if (str == NULL)
-		len = pf_strlen("(null)");
+//	if (str == NULL)
+//		len = pf_strlen("(null)");
 	if (pwidth <= 0)
 	{
 		n = pf_write_space(fwidth);
@@ -85,11 +85,15 @@ static int	pf_putstr_l(char *str, t_flags flags)
 int			pf_printstr(char *str, t_flags flags)
 {
 	int		n;
+	char	*ret;
 
 	n = 0;
+	ret = str;
+	if (str == NULL && flags.pwidth > 0 )
+		ret = "(null)";
 	if (flags.left == 0)
-		n = pf_putstr_r(str, flags);
+		n = pf_putstr_r(ret, flags);
 	if (flags.left == 1)
-		n = pf_putstr_l(str, flags);
+		n = pf_putstr_l(ret, flags);
 	return (n);
 }
