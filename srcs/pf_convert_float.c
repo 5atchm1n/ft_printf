@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 02:20:14 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/23 16:45:41 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char		*pf_convertexpg(double number, int pwidth)
 	digit = (uintmax_t)number;
 	deci = number - (double)digit;
 	dig = pf_convertbase(digit, "0123456789");
-	deci = deci * pf_pow(10, pwidth);
+	deci = deci * pf_pow(10, pwidth ,exp);
 	flt = pf_convertbase((uintmax_t)deci, "0123456789");
 	pf_setendg(flt);
 	flt = pf_joinfloat(dig, flt);
@@ -72,6 +72,7 @@ char			*pf_convertexp(double number, int pwidth)
 	double		deci;
 	intmax_t	digit;
 	int			exp;
+	int			exp2;
 
 	if (number > 0 && number < DBL_EPSILON)
 	{
@@ -83,11 +84,16 @@ char			*pf_convertexp(double number, int pwidth)
 	{
 		exp = pf_expi(number);
 		number = pf_exp(number);
+//		printf("exp = %i\n", exp);
 		digit = (uintmax_t)number;
 		deci = number - (double)digit;
+		exp2 = pf_expi(deci);
+//		printf("exp2 = %i\n", exp2);
 		dig = pf_convertbase(digit, "0123456789");
-		deci = deci * pf_pow(10, pwidth);
+		deci = deci * pf_pow(10, pwidth, exp2) + 0.5;
+//		printf("fl = %.2f\n", deci);
 		flt = pf_convertbase((uintmax_t)deci, "0123456789");
+		flt = pf_addpow(flt, exp2, pwidth);
 	}
 	flt = pf_joinfloat(dig, flt);
 	flt = pf_addexp(flt, exp);
@@ -102,17 +108,21 @@ char			*pf_convertfloat(double number, int pwidth)
 	intmax_t	digit;
 	int			exp;
 
-	exp = pf_expi(number);
 	digit = (uintmax_t)number;
 	deci = number - (double)digit;
 	dig = pf_convertbase(digit, "0123456789");
-	if (number > 0 && number < 0.00000000000000000000001)
+	if (number > 0 && number < DBL_EPSILON)
 		flt = pf_doublezero(pwidth);
 	else
 	{
+		exp = pf_expi(deci);
+//		printf("exp = %i\n", exp);
 		deci = pf_exp(deci);
-		deci = deci * pf_pow(10, pwidth + exp);
+//		printf("fl = %.2f\n", deci);
+		deci = deci * pf_pow(10, pwidth, exp) + 0.5;
+		printf("fl2 = %.2f\n", deci);
 		flt = pf_convertbase((uintmax_t)deci, "0123456789");
+//		printf("str = %s\n", flt);
 		flt = pf_addpow(flt, exp, pwidth);
 	}
 	flt = pf_joinfloat(dig, flt);
@@ -127,7 +137,7 @@ char			*pf_convertfloatg(double number, int pwidth)
 
 	width = pwidth;
 	exp = pf_expi(number);
-	if (number > 0 && number < 0.00000000000000000000001)
+	if (number > 0 && number < DBL_EPSILON)
 	{
 		ret = pf_convertbase(0, "0123456798");
 		return (ret);
