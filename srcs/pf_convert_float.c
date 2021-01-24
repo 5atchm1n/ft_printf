@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 16:45:41 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/24 16:27:51 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char		*pf_convertexpg(double number, int pwidth)
 	digit = (uintmax_t)number;
 	deci = number - (double)digit;
 	dig = pf_convertbase(digit, "0123456789");
-	deci = deci * pf_pow(10, pwidth ,exp);
+	deci = deci * pf_pow_g(10, pwidth, exp);
 	flt = pf_convertbase((uintmax_t)deci, "0123456789");
 	pf_setendg(flt);
 	flt = pf_joinfloat(dig, flt);
@@ -90,7 +90,7 @@ char			*pf_convertexp(double number, int pwidth)
 		exp2 = pf_expi(deci);
 //		printf("exp2 = %i\n", exp2);
 		dig = pf_convertbase(digit, "0123456789");
-		deci = deci * pf_pow(10, pwidth, exp2) + 0.5;
+		deci = deci * pf_pow_e(10, pwidth, exp) + 0.5;
 //		printf("fl = %.2f\n", deci);
 		flt = pf_convertbase((uintmax_t)deci, "0123456789");
 		flt = pf_addpow(flt, exp2, pwidth);
@@ -119,8 +119,8 @@ char			*pf_convertfloat(double number, int pwidth)
 //		printf("exp = %i\n", exp);
 		deci = pf_exp(deci);
 //		printf("fl = %.2f\n", deci);
-		deci = deci * pf_pow(10, pwidth, exp) + 0.5;
-		printf("fl2 = %.2f\n", deci);
+		deci = deci * pf_pow_f(10, pwidth, exp) + 0.5;
+//		printf("fl2 = %.2f\n", deci);
 		flt = pf_convertbase((uintmax_t)deci, "0123456789");
 //		printf("str = %s\n", flt);
 		flt = pf_addpow(flt, exp, pwidth);
@@ -128,6 +128,7 @@ char			*pf_convertfloat(double number, int pwidth)
 	flt = pf_joinfloat(dig, flt);
 	return (flt);
 }
+
 
 char			*pf_convertfloatg(double number, int pwidth)
 {
@@ -147,9 +148,16 @@ char			*pf_convertfloatg(double number, int pwidth)
 		ret = pf_convertbase(1, "0123456789");
 		return (ret);
 	}
-	else if (exp < -4 || exp >= pwidth)
-		ret = pf_convertexpg(number, (pwidth - exp + 1));
-	else
+	else if (exp < -4 || (exp >= pwidth && pwidth != -1))
+		ret = pf_convertexpg(number, pwidth);
+	else if (exp < 0 && !(exp < -4) && pwidth != -1)
 		ret = pf_convertfloat(number, width - (exp + 1));
+	else
+	{
+		if (pwidth == -1)
+			ret = pf_convertfloat(number, 5 - exp);
+		else
+			ret = pf_convertfloat(number, pwidth - 1);
+	}
 	return (ret);
 }

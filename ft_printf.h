@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 16:04:32 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/24 16:03:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ char					*pf_convertfloat(double number, int pwidth);
 double					pf_isnegdouble(double num, int *neg);
 char					*pf_convertexp(double number, int pwidth);
 double					pf_exp(double pow);
-double					pf_pow(double pow, int pwidth, int exp);
+double					pf_pow_e(double pow, int pwidth, int exp);
+double					pf_pow_f(double pow, int pwidth, int exp);
+double					pf_pow_g(double pow, int pwidth, int exp);
 char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
 char					*pf_convertfloatg(double number, int pwidth);
