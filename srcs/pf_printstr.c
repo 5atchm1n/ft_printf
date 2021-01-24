@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 16:34:29 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 02:01:54 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 00:33:08 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static int	pf_putstr_r(char *str, t_flags flags)
 	int		n;
 
 	n = 0;
-	if (str == NULL && flags.precision == 0)
-	{
-		n = pf_write_fwidth_r(str, flags.fwidth);
-		return (n);
-	}
+//	if (str == NULL && flags.precision == 0)
+//	{
+//		n = pf_write_fwidth_r(str, flags.fwidth);
+//		return (n);
+//	}
 	if (flags.precision == 1)
 	{
 		n += pf_str_putspace(str, flags.fwidth, flags.pwidth);
@@ -67,11 +67,11 @@ static int	pf_putstr_l(char *str, t_flags flags)
 	int		n;
 
 	n = 0;
-	if (str == NULL && flags.precision == 0)
-	{
-		n = pf_write_fwidth_l(str, flags.fwidth);
-		return (n);
-	}
+//	if (str == NULL && flags.precision == 0)
+//	{
+//		n = pf_write_fwidth_l(str, flags.fwidth);
+//		return (n);
+//	}
 	if (flags.precision == 1)
 	{
 		n = pf_write_preci(str, flags.pwidth);

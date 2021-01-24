@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/25 00:26:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 00:26:31 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int					pf_printuint(uintmax_t num, t_flags flags,
 	{	
 		if (flags.pwidth == 0 || flags.pwidth == 1)
 			pfstring = NULL;
-		pfstring = pf_putzero(pfstring, flags.pwidth);
+		else
+			pfstring = pf_putzero(pfstring, flags.pwidth);
 	}
 	if (flags.precision == 0)
 	{
