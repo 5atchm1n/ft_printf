@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/24 16:27:51 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/24 16:51:22 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,12 @@ char			*pf_convertfloat(double number, int pwidth)
 	digit = (uintmax_t)number;
 	deci = number - (double)digit;
 	dig = pf_convertbase(digit, "0123456789");
-	if (number > 0 && number < DBL_EPSILON)
+	if ((number > 0 && number < DBL_EPSILON) || deci < DBL_EPSILON)
 		flt = pf_doublezero(pwidth);
 	else
 	{
 		exp = pf_expi(deci);
-//		printf("exp = %i\n", exp);
+		printf("exp = %i\n", exp);
 		deci = pf_exp(deci);
 //		printf("fl = %.2f\n", deci);
 		deci = deci * pf_pow_f(10, pwidth, exp) + 0.5;
