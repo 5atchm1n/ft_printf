@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/25 00:52:00 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 00:55:10 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char			*pf_addflags(char *str, t_flags flags, signed char format)
 
 	len = pf_strlen(str);
 	ret = str;
-	if (str = NULL)
+	if (str == NULL && format != 'p')
 		return (NULL);
 	if (flags.hash == 1 && format != 'p')
 	{
