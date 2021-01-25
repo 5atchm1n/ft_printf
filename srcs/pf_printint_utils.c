@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/25 01:18:42 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 01:29:40 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char		*pf_putflag(char *str, char flag)
 	len = pf_strlen(str);
 	ret = malloc(sizeof(char) * (len + 2));
 	ret[0] = flag;
-	while (str[j] != '\0')
+	while (str && str[j] != '\0')
 	{
 		ret[i] = str[j];
 		i++;
