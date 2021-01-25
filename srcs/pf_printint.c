@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 02:11:47 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 00:58:51 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ static char			*pf_addflags_p(char *str, t_flags flags, int neg, int l)
 	char			*ret;
 
 	ret = str;
-//	if (neg == 1 && flags.pwidth <= l)
 	if (neg == 1)
 		ret = pf_putflag(str, '-');
-//	if (neg == 1 && flags.pwidth > l)
-//		str[0] = '-';
 	if (neg == 0 && flags.pwidth <= l)
 	{
 		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
@@ -94,7 +91,9 @@ int					pf_printint(intmax_t num, t_flags flags, signed char format)
 	n = pf_isnegative(num, &neg);
 	pfstring = pf_convert(n, format);
 	len = pf_strlen(pfstring);
-	if (flags.precision == 1 && flags.pwidth >= -1)
+	if (flags.precision == 1 && (flags.pwidth == 0 || flags.pwidth == 1))
+		pfstring == NULL;
+	if (flags.precision == 1 && flags.pwidth > 0)
 	{
 		pfstring = pf_putzero(pfstring, flags.pwidth);
 		pfstring = pf_addflags_p(pfstring, flags, neg, len);
