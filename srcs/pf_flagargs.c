@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 04:52:17 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/07 22:06:17 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 01:34:59 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int	pf_setargp(char *str, va_list args)
 		if (pf_isflag(*str) == 6 && precision)
 		{
 			res = va_arg(args, int);
+			if (res < 0)
+				res = -res;
 			return (res);
 		}
 		str++;
@@ -59,6 +61,8 @@ static int	pf_setargw(char *str, va_list args)
 		if (pf_isflag(*str) == 6)
 		{
 			res = va_arg(args, int);
+			if (res < 0)
+				res = -res;
 			return (res);
 		}
 		str++;
