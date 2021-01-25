@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/22 23:44:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 01:32:17 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int		pf_printchar(char c, t_flags flags)
 	{
 		if (flags.fwidth > 1)
 		{
-			while(n < flags.fwidth - 1)
+			while(n < flags.fwidth)
 			{
 				write(1, " ", 1);
 				n++;
@@ -65,7 +65,7 @@ static int		pf_printchar(char c, t_flags flags)
 		write(1, &c, 1);
 		if (flags.fwidth > 1)
 		{
-			while(n < flags.fwidth - 1)
+			while(n < flags.fwidth)
 			{
 				write(1, " ", 1);
 				n++;
