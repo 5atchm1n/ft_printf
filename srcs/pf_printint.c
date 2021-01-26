@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 15:30:37 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 15:45:32 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char			*pf_addflags_p(char *str, t_flags flags, int neg)
 //	}
 	return (ret);
 }
-/*
+
 static char			*pf_addflags(char *str, t_flags flags, int neg, int l)
 {
 	int				len;
@@ -72,16 +72,16 @@ static char			*pf_addflags(char *str, t_flags flags, int neg, int l)
 		else if (flags.space == 1)
 			ret = pf_putflag(str, ' ');
 	}
-	if (neg == 0 && flags.zero == 1 && flags.fwidth > l)
-	{
-		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
-			str[0] = '+';
-		else if (flags.space == 1)
-			str[0] = ' ';
-	}
+//	if (neg == 0 && flags.zero == 1 && flags.fwidth > l)
+//	{
+//		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+//			str[0] = '+';
+//		else if (flags.space == 1)
+//			str[0] = ' ';
+//	}
 	return (ret);
 }
-*/
+
 int					pf_printint(intmax_t num, t_flags flags, signed char format)
 {
 	char			*pfstring;
@@ -103,7 +103,7 @@ int					pf_printint(intmax_t num, t_flags flags, signed char format)
 	{
 		if (flags.zero == 1 && flags.fwidth > len && flags.left == 0)
 			pfstring = pf_putzero(pfstring, flags.fwidth);
-		pfstring = pf_addflags_p(pfstring, flags, neg);
+		pfstring = pf_addflags(pfstring, flags, neg, l);
 	}
 	len = pf_strlen(pfstring);
 	if (flags.fwidth > 0 && flags.fwidth > len)
