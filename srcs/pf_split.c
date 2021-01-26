@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/25 18:31:27 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 01:49:21 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,44 @@ static char		*pf_string(char const *str, size_t len)
 	return (ret);
 }
 
-static size_t	pf_splitlen(const char *str)
+static size_t	pf_splitsize(const char *str)
 {
 	size_t		n;
 
 	n = 0;
+	while (*str != '\0' && (pf_isflag(*str) >= 0 ||
+				pf_isdigit(*str) == 1))
+	{
+		n++;
+		str++;
+	}
+	if (pf_isformat(*str) == 0)
+	{
+		str++;
+		n++;
+	}
+	while (*str != '\0' && *str != '%')
+	{
+		n++;
+		str++;
+	}
+	return (n);
+}
+
+static size_t	pf_splitlen(const char *str)
+{
+	size_t		n;
+	int			flag;
+
+	n = 0;
+	flag = 0;
 	while (*str != '\0' && n == 0)
 	{
 		if (*str == '%')
 		{
 			str++;
 			n++;
-			while (*str != '\0' && (pf_isflag(*str) >= 0 || pf_isdigit(*str) == 1))
-			{
-				n++;
-				str++;
-			}
-			if (pf_isformat(*str) == 0)
-			{
-				str++;
-				n++;
-			}
-			while (*str != '\0' && *str != '%')
-			{
-				n++;
-				str++;
-			}
+			n += pf_splitsize(str);
 		}
 		if (*str)
 			str++;
@@ -73,7 +85,8 @@ static size_t	pf_tabsize(const char *str)
 		{
 			str++;
 			n++;
-			while (*str != '\0' && (pf_isflag(*str) >= 0 || pf_isdigit(*str) == 1))
+			while (*str != '\0' && (pf_isflag(*str) >= 0 ||
+						pf_isdigit(*str) == 1))
 				str++;
 			if (pf_isformat(*str) == 0)
 				str++;
@@ -83,48 +96,41 @@ static size_t	pf_tabsize(const char *str)
 		if (*str && *str != '%')
 			str++;
 	}
-		return (n);
+	return (n);
 }
 
-	static char		**pf_settab(const char *str)
+static char		**pf_settab(const char *str)
+{
+	size_t		size;
+	char		**tab;
+
+	size = pf_tabsize(str);
+	if (!(tab = malloc(sizeof(char *) * (size + 1))))
+		return (tab = NULL);
+	tab[size] = NULL;
+	return (tab);
+}
+
+char			**pf_split(char const *str)
+{
+	char		**tab;
+	size_t		size;
+	size_t		n;
+	size_t		len;
+
+	tab = pf_settab(str);
+	size = pf_tabsize(str);
+	n = 0;
+	while (str && *str != '\0' && n < size)
 	{
-		size_t		size;
-		char		**tab;
-
-		size = pf_tabsize(str);
-		if (!(tab = malloc(sizeof(char *) * (size + 1))))
-			return (tab = NULL);
-		tab[size] = NULL;
-		return (tab);
-	}
-
-	char			**pf_split(char const *str)
-	{
-		char		**tab;
-		size_t		size;
-		size_t		n;
-		size_t		len;
-
-		tab = pf_settab(str);
-		size = pf_tabsize(str);
-//		printf("tabsize = %zu\n", size);
-		n = 0;
-		//	while (n < size && str)
-		//	{
-		while (str && *str != '\0' && n < size)
+		if (*str == '%')
 		{
-			if (*str == '%')
-			{
-				len = pf_splitlen(str);
-				tab[n] = pf_string(str, len);
-//	 			printf("tab[%zu] = %s\n", n, tab[n]);
-				n++;
-//				printf("s1 = %s\n", str);
-				str = str + len - 1;
-//				printf("s2 = %s\n", str);
-			}
-			str++;
+			len = pf_splitlen(str);
+			tab[n] = pf_string(str, len);
+			n++;
+			str = str + len - 1;
 		}
-		//	}
-		return (tab);
+		str++;
 	}
+	return (tab);
+}
