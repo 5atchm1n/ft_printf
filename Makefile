@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/26 19:37:34 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/26 20:49:23 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,14 +33,17 @@ SRCS =	ft_printf.c \
 		srcs/pf_print.c \
 		srcs/pf_printint.c \
 		srcs/pf_printuint.c \
-		srcs/pf_printfloat.c \
+		srcs/pf_printint_utils.c
+
+BONUS =	srcs/pf_printfloat.c \
 		srcs/pf_convert_float.c \
 		srcs/pf_float_utils.c \
 		srcs/pf_float_exp.c \
-		srcs/pf_float_utils_2.c \
-		srcs/pf_printint_utils.c
+		srcs/pf_float_utils_2.c
 
 OBJS = ${SRCS:.c=.o}
+
+BONUSOBJS = ${BONUS:.c=.o}
 
 CC = clang
 
@@ -48,7 +51,7 @@ CFLAGS	= -Wall -Wextra -Werror -g
 
 MEM = -fsanitize=address
 
-$(NAME) : ${OBJS} ${INCLUDE}
+$(NAME) : ${OBJS} ${BONUS} ${INCLUDE}
 	ar rcs $@ $?
 
 .c.o:
@@ -56,6 +59,8 @@ $(NAME) : ${OBJS} ${INCLUDE}
 
 all : ${NAME}
 
+bonus:	${BONUSOBJS} ${OBJS}
+		ar rcs ${NAME} $?
 clean :
 	${RM} ${OBJS}
 
