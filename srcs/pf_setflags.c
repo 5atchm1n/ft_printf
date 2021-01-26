@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:06:23 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/20 08:05:55 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 00:50:55 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_flags			*pf_setflags(char *str, t_flags *flags, va_list args)
 	str++;
 	if (!flags)
 		return (NULL);
-	if (pf_isformat(*str) == 0 || pf_isformat(*str) == 12)
+	if (pf_isformat(*str) == 12)
 	{
 		pf_flagzero(flags);
 		return (flags);

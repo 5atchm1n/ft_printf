@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 23:12:57 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/17 01:07:37 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 00:44:18 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int		pf_settype(signed char c)
 
 static t_arg	pf_setarg(t_arg arg, int type, va_list args)
 {
+	if (type == 0)
+		arg.ch = '%';
 	if (type == 1)
 		arg.ch = (char)va_arg(args, int);
 	if (type == 2)

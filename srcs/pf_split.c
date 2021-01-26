@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 04:03:47 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/21 22:43:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 18:31:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static size_t	pf_splitlen(const char *str)
 		if (*str)
 			str++;
 	}
-	//	printf("n = %zu\n", n);
 	return (n);
 }
 

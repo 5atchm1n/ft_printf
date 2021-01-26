@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/24 16:51:22 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/25 20:01:06 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ char			*pf_convertfloat(double number, int pwidth)
 	else
 	{
 		exp = pf_expi(deci);
-		printf("exp = %i\n", exp);
+//		printf("exp = %i\n", exp);
 		deci = pf_exp(deci);
 //		printf("fl = %.2f\n", deci);
 		deci = deci * pf_pow_f(10, pwidth, exp) + 0.5;
@@ -128,7 +128,6 @@ char			*pf_convertfloat(double number, int pwidth)
 	flt = pf_joinfloat(dig, flt);
 	return (flt);
 }
-
 
 char			*pf_convertfloatg(double number, int pwidth)
 {
