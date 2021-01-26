@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 04:52:17 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 16:40:13 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 16:41:56 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		pf_flagargs(t_flags *flags, va_list args, char *str)
 	if (flags->asterisk == 2)
 	{
 		flags->fwidth = pf_setargw(str, args, flags);
-		flags->pwidth = pf_setargp(str, args);
+		flags->pwidth = pf_setargp(str, args, flags);
 		return ;
 	}
 	if (flags->asterisk == 1)
