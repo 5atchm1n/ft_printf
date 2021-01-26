@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 15:47:25 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 15:51:29 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char			*pf_addflags(char *str, t_flags flags, int neg, int l)
 	ret = str;
 	if (neg == 1 && (flags.zero == 0 || flags.fwidth <= l))
 		ret = pf_putflag(str, '-');
-	if (neg == 1 && flags.zero == 1 && flags.fwidth > l)
+	if (neg == 1 && flags.zero == 1 && flags.fwidth > len)
 		str[0] = '-';
 	if (neg == 0 && (flags.zero == 0 || flags.fwidth == l))
 	{
