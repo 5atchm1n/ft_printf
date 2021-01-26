@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 04:52:17 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/25 01:37:32 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 15:25:20 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	pf_setargp(char *str, va_list args)
 	return (res);
 }
 
-static int	pf_setargw(char *str, va_list args)
+static int	pf_setargw(char *str, va_list args, t_flags *flags)
 {
 	int		res;
 
@@ -60,7 +60,10 @@ static int	pf_setargw(char *str, va_list args)
 		{
 			res = va_arg(args, int);
 			if (res < 0)
+			{
+				flags->left = 1;
 				res = -res;
+			}
 			return (res);
 		}
 		str++;
@@ -72,14 +75,14 @@ void		pf_flagargs(t_flags *flags, va_list args, char *str)
 {
 	if (flags->asterisk == 2)
 	{
-		flags->fwidth = pf_setargw(str, args);
+		flags->fwidth = pf_setargw(str, args, flags);
 		flags->pwidth = pf_setargp(str, args);
 		return ;
 	}
 	if (flags->asterisk == 1)
 	{
 		if (pf_checkarg(str))
-			flags->fwidth = pf_setargw(str, args);
+			flags->fwidth = pf_setargw(str, args, flags);
 		else
 			flags->pwidth = pf_setargp(str, args);
 	}
