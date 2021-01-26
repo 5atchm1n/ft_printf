@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/19 02:12:00 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/26 19:37:34 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ INCLUDE = ft_printf.h
 
 SRCS =	ft_printf.c \
 		srcs/pf_split.c \
+		srcs/pf_split_utils.c \
 		srcs/pf_setlst.c \
 		srcs/ft_printf_utils.c \
 		srcs/ft_printf_utils_2.c \

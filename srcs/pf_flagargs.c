@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 04:52:17 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 16:42:47 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 18:26:37 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static int	pf_setargp(char *str, va_list args, t_flags *flags)
 		{
 			res = va_arg(args, int);
 			if (res < 0)
+			{
 				flags->precision = 0;
+				res = -1;
+			}
 			return (res);
 		}
 		str++;

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/24 16:03:05 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 19:37:04 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # define FORMAT "%cspiduxXfgen"
 
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
 # include <float.h>
+# include <stdio.h>
 
 typedef struct			s_flags
 {
@@ -56,12 +56,14 @@ typedef struct			s_pfdata
 	struct s_pfdata		*next;
 }						t_pfdata;
 
-int						ft_printf(const char *str, ...)
-		__attribute__ ((format (printf, 1, 2)));
+int						ft_printf(const char *str, ...);
 /*
 ** SPLIT STRING
 */
 char					**pf_split(char const *str);
+size_t					pf_splitlen(const char *str);
+size_t					pf_splitsize(const char *str);
+char					*pf_string(char const *str, size_t len);
 /*
 ** CREATE LIST FUNCTIONS
 */
@@ -75,29 +77,35 @@ signed char				pf_setformat(char *str, signed char *format);
 ** PRINTF RETURN FUNCTIONS
 */
 int						pf_print(t_pfdata *pfdata, char **strlist, char *str);
-int						pf_putstr(char *str);
 int						pf_setreturn(t_pfdata *pfdata);
-int						pf_putchar(char c);
 int						pf_printstr(char *str, t_flags flags);
-int						pf_printint(intmax_t num, t_flags flags, signed char format);
-int						pf_printuint(uintmax_t num, t_flags flags, signed char format);
-int						pf_printfloat(double number, t_flags flags, signed char format);
+int						pf_printint(intmax_t num, t_flags flags,
+		signed char format);
+int						pf_printuint(uintmax_t num, t_flags flags,
+		signed char format);
+int						pf_printfloat(double number, t_flags flags,
+		signed char format);
+/*
+** SET FORMAT
+*/
 char					*pf_putflag(char *str, char flag);
 char					*pf_putzero(char *str, int width);
 char					*pf_putspace(char *str, int width);
 char					*pf_putleft(char *str, int width);
 char					*pf_putfwidth(char *str, int width, int left);
-
 int						pf_write_space(int size);
 int						pf_write_fwidth_r(char *str, int fwidth);
 int						pf_write_preci(char *str, int pwidth);
 int						pf_write_fwidth_l(char *str, int fwidth);
 /*
-** CONVERT INT, UINT, DOUBLE UTILS
+** CONVERT TO STRING
 */
 char					*pf_convert(uintmax_t number, signed char format);
 char					*pf_revstr(char *str);
 char					*pf_convertbase(uintmax_t num, char *base);
+/*
+* CONVERT F,G,E
+*/
 char					*pf_joinfloat(char *s1, char *s2);
 char					*pf_joinstr(char *s1, char *s2);
 char					*pf_convertfloat(double number, int pwidth);
@@ -123,9 +131,13 @@ int						pf_flagtrue(char *str, int n);
 int						pf_isflag(char c);
 int						pf_isformat(char c);
 void					pf_flagzero(t_flags *flags);
-
 int						pf_isdigit(int c);
 int						pf_strlen(char *s);
 int						pf_isneg(int *exp);
+/*
+* WRITE TO STDOUT
+*/
+int						pf_putstr(char *str);
+int						pf_putchar(char c);
 
 #endif
