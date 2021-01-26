@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 14:51:31 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 15:10:19 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,28 @@ static uintmax_t	pf_isnegative(intmax_t num, int *neg)
 	return (n);
 }
 
-static char			*pf_addflags_p(char *str, t_flags flags, int neg, int l)
+static char			*pf_addflags_p(char *str, t_flags flags, int neg)
 {
 	char			*ret;
 
 	ret = str;
 	if (neg == 1)
 		ret = pf_putflag(str, '-');
-	if (neg == 0 && flags.pwidth <= l)
+//	if (neg == 0 && flags.pwidth <= l)
+	if (neg == 0)
 	{
 		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
 			ret = pf_putflag(str, '+');
 		else if (flags.space == 1)
 			ret = pf_putflag(str, ' ');
 	}
-	if (neg == 0 && flags.pwidth > l)
-	{
-		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
-			str[0] = '+';
-		else if (flags.space == 1)
-			str[0] = ' ';
-	}
+//	if (neg == 0 && flags.pwidth > l)
+//	{
+//		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+//			str[0] = '+';
+//		else if (flags.space == 1)
+//			str[0] = ' ';
+//	}
 	return (ret);
 }
 
@@ -96,7 +97,7 @@ int					pf_printint(intmax_t num, t_flags flags, signed char format)
 	if (flags.precision == 1)
 	{
 		pfstring = pf_putzero(pfstring, flags.pwidth);
-		pfstring = pf_addflags_p(pfstring, flags, neg, len);
+		pfstring = pf_addflags_p(pfstring, flags, neg);
 	}
 	if (flags.precision == 0)
 	{
