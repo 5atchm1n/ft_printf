@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 16:35:41 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/26 18:09:28 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int					pf_printint(intmax_t num, t_flags flags, signed char format)
 	n = pf_isnegative(num, &neg);
 	pfstring = pf_convert(n, format);
 	len = pf_strlen(pfstring);
-	if (n == 0 && flags.precision == 1 && (flags.pwidth == 0 || flags.pwidth == -1))
+	if (num == 0 && flags.precision == 1 && (flags.pwidth == 0 || flags.pwidth == -1))
 		pfstring = NULL;
 	if (flags.precision == 1)
 	{
