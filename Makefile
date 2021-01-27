@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/27 04:12:51 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/27 04:42:58 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,18 @@ SRCS2 = srcs/pf_setreturn.c \
 		srcs/pf_printuint.c \
 		srcs/pf_printint.c
 
-BONUS = bonus/pf_setreturn_bonus.c \
+BONUS = bonus/pf_printfloat_bonus.c \
+		bonus/pf_setreturn_bonus.c \
 		bonus/pf_printuint_bonus.c \
 		bonus/pf_printint_bonus.c \
-		bonus/pf_printfloat_bonus.c \
 		bonus/pf_convert_float_bonus.c \
 		bonus/pf_float_utils_bonus.c \
 		bonus/pf_float_exp_bonus.c \
 		bonus/pf_float_utils_2_bonus.c
 
 OBJS = ${SRCS1:.c=.o} ${SRCS2:.c=.o}
+
+BONUSOBJS = ${BONUS:.c=.o}
 
 CC = clang
 
@@ -65,7 +67,7 @@ bonus : ${BONUSOBJS} ${OBJS}
 	ar rcs ${NAME} $?
 
 clean :
-	${RM} ${OBJS}
+	${RM} ${OBJS} ${BONUSOBJS}
 
 fclean : clean
 	${RM} ${NAME}

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 04:18:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/27 04:43:49 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ double					pf_pow_g(double pow, int pwidth, int exp);
 char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
 char					*pf_doublezero(int pwidth);
+int						pf_printfloat(double number, t_flags flags,
+		signed char format);
 /*
 ** PARSE FORMAT STRING - FLAG UTILS
 */
