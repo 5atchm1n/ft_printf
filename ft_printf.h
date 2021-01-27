@@ -6,14 +6,14 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 00:31:46 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/27 04:18:20 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define FLAGS "# +-0.*"
-# define FORMAT "%cspiduxXfgen"
+# define FORMAT "%cspiduxXfge"
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -68,11 +68,11 @@ char					*pf_string(char const *str, size_t len);
 ** CREATE LIST FUNCTIONS
 */
 t_pfdata				*pf_setlist(char **strlist, va_list args);
-t_arg					pf_setargs(t_arg arg, va_list args, signed char f);
-void					pf_flagargs(t_flags *flags, va_list args, char *str);
-char					*pf_setstring(char *str, char **string);
-t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
 signed char				pf_setformat(char *str, signed char *format);
+t_flags					*pf_setflags(char *str, t_flags *flags, va_list args);
+void					pf_flagargs(t_flags *flags, va_list args, char *str);
+t_arg					pf_setargs(t_arg arg, va_list args, signed char f);
+char					*pf_setstring(char *str, char **string);
 /*
 ** PRINTF RETURN FUNCTIONS
 */
@@ -81,7 +81,6 @@ int						pf_setreturn(t_pfdata *pfdata);
 int						pf_printstr(char *str, t_flags flags);
 int						pf_printint(intmax_t num, t_flags flags, signed char format);
 int						pf_printuint(uintmax_t num, t_flags flags, signed char format);
-int						pf_printfloat(double number, t_flags flags, signed char format);
 /*
 ** SET FORMAT
 */
@@ -103,19 +102,19 @@ char					*pf_convertbase(uintmax_t num, char *base);
 /*
 * CONVERT F,G,E
 */
-char					*pf_joinfloat(char *s1, char *s2);
-char					*pf_joinstr(char *s1, char *s2);
 char					*pf_convertfloat(double number, int pwidth);
-double					pf_isnegdouble(double num, int *neg);
+char					*pf_convertfloatg(double number, int pwidth);
 char					*pf_convertexp(double number, int pwidth);
+char					*pf_joinstr(char *s1, char *s2);
+char					*pf_joinfloat(char *s1, char *s2);
+double					pf_isnegdouble(double num, int *neg);
 double					pf_exp(double pow);
+int						pf_expi(double num);
 double					pf_pow_e(double pow, int pwidth, int exp);
 double					pf_pow_f(double pow, int pwidth, int exp);
 double					pf_pow_g(double pow, int pwidth, int exp);
 char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
-char					*pf_convertfloatg(double number, int pwidth);
-int						pf_expi(double num);
 char					*pf_doublezero(int pwidth);
 /*
 ** PARSE FORMAT STRING - FLAG UTILS

@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/27 00:27:42 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/27 04:12:51 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 INCLUDE = ft_printf.h
 
-SRCS =	ft_printf.c \
+SRCS1 =	ft_printf.c \
 		srcs/pf_split.c \
 		srcs/pf_split_utils.c \
 		srcs/pf_setlst.c \
@@ -27,20 +27,25 @@ SRCS =	ft_printf.c \
 		srcs/pf_flagargs.c \
 		srcs/pf_setargs.c \
 		srcs/pf_convert.c \
-		srcs/pf_setreturn.c \
 		srcs/pf_printstr.c \
 		srcs/pf_printstr_utils.c \
 		srcs/pf_print.c \
-		srcs/pf_printint.c \
-		srcs/pf_printuint.c \
-		srcs/pf_printint_utils.c \
-		srcs/pf_printfloat.c \
-		srcs/pf_convert_float.c \
-		srcs/pf_float_utils.c \
-		srcs/pf_float_exp.c \
-		srcs/pf_float_utils_2.c
+		srcs/pf_printint_utils.c
 
-OBJS = ${SRCS:.c=.o}
+SRCS2 = srcs/pf_setreturn.c \
+		srcs/pf_printuint.c \
+		srcs/pf_printint.c
+
+BONUS = bonus/pf_setreturn_bonus.c \
+		bonus/pf_printuint_bonus.c \
+		bonus/pf_printint_bonus.c \
+		bonus/pf_printfloat_bonus.c \
+		bonus/pf_convert_float_bonus.c \
+		bonus/pf_float_utils_bonus.c \
+		bonus/pf_float_exp_bonus.c \
+		bonus/pf_float_utils_2_bonus.c
+
+OBJS = ${SRCS1:.c=.o} ${SRCS2:.c=.o}
 
 CC = clang
 
@@ -56,6 +61,9 @@ $(NAME) : ${OBJS} ${INCLUDE}
 
 all : ${NAME}
 
+bonus : ${BONUSOBJS} ${OBJS}
+	ar rcs ${NAME} $?
+
 clean :
 	${RM} ${OBJS}
 
@@ -63,6 +71,9 @@ fclean : clean
 	${RM} ${NAME}
 
 norm :
-	~/.norminette/norminette.rb ${SRCS} ${INCLUDE}
+	~/.norminette/norminette.rb ${SRCS1} ${SRCS2} ${INCLUDE}
 
-.PHONY : all norm  clean re fclean
+norm-bonus :
+	~/.norminette/norminette.rb ${SRCS1} ${BONUS} ${INCLUDE}
+
+.PHONY : all norm  clean re fclean bonus
