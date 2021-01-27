@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 03:35:37 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/27 00:59:12 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,35 @@ char			*pf_addpow(char *str, int exp, int pwidth)
 	ret[i] = '\0';
 	free(str);
 	return (ret);
+}
+
+char		*pf_joinfloat(char *s1, char *s2)
+{
+	char	*str;
+	size_t	len;
+	size_t	i;
+	size_t	j;
+
+	len = pf_strlen(s1) + pf_strlen(s2) + 1;
+	if (!(str = malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	str[i] = '.';
+	i++;
+	while (s2[j] != '\0')
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	free(s1);
+	free(s2);
+	return (str);
 }

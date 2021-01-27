@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 19:37:04 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/27 00:31:46 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,9 @@ signed char				pf_setformat(char *str, signed char *format);
 int						pf_print(t_pfdata *pfdata, char **strlist, char *str);
 int						pf_setreturn(t_pfdata *pfdata);
 int						pf_printstr(char *str, t_flags flags);
-int						pf_printint(intmax_t num, t_flags flags,
-		signed char format);
-int						pf_printuint(uintmax_t num, t_flags flags,
-		signed char format);
-int						pf_printfloat(double number, t_flags flags,
-		signed char format);
+int						pf_printint(intmax_t num, t_flags flags, signed char format);
+int						pf_printuint(uintmax_t num, t_flags flags, signed char format);
+int						pf_printfloat(double number, t_flags flags, signed char format);
 /*
 ** SET FORMAT
 */
