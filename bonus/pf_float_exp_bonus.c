@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_float_exp.c                                     :+:      :+:    :+:   */
+/*   pf_float_exp_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/23 03:16:33 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/27 08:03:32 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char			*pf_addexp(char *str, int exp)
 
 double			pf_exp(double num)
 {
+	if (num == 0 || num < DBL_EPSILON)
+		return (num);
 	if (num == 1)
 		return (num);
 	if (num < 1)
