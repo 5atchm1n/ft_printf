@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/27 04:42:58 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/27 22:03:43 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ BONUS = bonus/pf_printfloat_bonus.c \
 		bonus/pf_printuint_bonus.c \
 		bonus/pf_printint_bonus.c \
 		bonus/pf_convert_float_bonus.c \
+		bonus/pf_convert_float_utils_bonus.c \
 		bonus/pf_float_utils_bonus.c \
 		bonus/pf_float_exp_bonus.c \
 		bonus/pf_float_utils_2_bonus.c

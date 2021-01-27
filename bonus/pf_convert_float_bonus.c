@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 18:40:07 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/27 21:55:17 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ char			*pf_convertexp(double number, int pwidth)
 {
 	char		*dig;
 	char		*flt;
-	double		deci;
 	intmax_t	digit;
 	int			exp;
-	int			exp2;
+	int			n;
 
+	n = 0;
 	if (number > 0 && number < DBL_EPSILON)
 	{
 		flt = pf_doublezero(pwidth);
@@ -83,65 +83,16 @@ char			*pf_convertexp(double number, int pwidth)
 	else
 	{
 		exp = pf_expi(number);
+		flt = pf_convertdecimal_e(number, pwidth, &n);
 		number = pf_exp(number);
-//		printf("exp = %i\n", exp);
 		digit = (uintmax_t)number;
-		deci = number - (double)digit;
-		exp2 = pf_expi(deci);
-//		printf("exp2 = %i\n", exp2);
+		if (n == 1)
+			digit = digit + 1;
 		dig = pf_convertbase(digit, "0123456789");
-		deci = deci * pf_pow_e(10, pwidth, exp) + 0.5;
-//		printf("fl = %.2f\n", deci);
-		flt = pf_convertbase((uintmax_t)deci, "0123456789");
-		flt = pf_addpow(flt, exp2, pwidth);
 	}
 	flt = pf_joinfloat(dig, flt);
 	flt = pf_addexp(flt, exp);
 	return (flt);
-}
-
-static double	pf_roundfloat(double decimal, int *i)
-{
-	int			exp;
-	int			round;
-	double		temp;
-
-	exp = pf_expi(decimal);
-//	printf("\n exp-r1 = %d\n", exp);
-	temp = decimal + 0.5;
-	round = pf_expi(temp);
-//	printf("\n exp-r2 = %d\n", round);
-	*i = round - exp;
-	return (temp);
-}
-
-static char		*pf_convertdecimal(double number, int pwidth, int *n)
-{
-	char		*ret;
-	double		deci[2];
-	intmax_t	digit;
-	int			exp;
-	int			i;
-
-	i = 0;
-	digit = (uintmax_t)number;
-	deci[0] = number - (double)digit;
-	exp = pf_expi(deci[0]);
-//	printf("\n exp-main = %d\n", exp);
-	deci[0] = pf_exp(deci[0]);
-	deci[0] = deci[0] * pf_pow_f(10, pwidth, exp);
-	deci[1] = pf_roundfloat(deci[0], &i);
-	ret = pf_convertbase((uintmax_t)deci[1], "0123456789");
-//	printf("\n i = %d\n", i);
-	if (exp != -1)
-		ret = pf_addpow(ret, exp + i, pwidth);
-	if ((uintmax_t)deci[1] % (uintmax_t)deci[0] == 1 && exp == -1)
-	{
-		ret = pf_doublezero(pwidth);
-		*n = 1;
-	}
-//	printf("ret = %s\n", ret);
-	return (ret);
 }
 
 char			*pf_convertfloat(double number, int pwidth)

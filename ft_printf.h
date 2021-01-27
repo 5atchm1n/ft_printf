@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 04:43:49 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/27 22:02:27 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ char					*pf_setstring(char *str, char **string);
 int						pf_print(t_pfdata *pfdata, char **strlist, char *str);
 int						pf_setreturn(t_pfdata *pfdata);
 int						pf_printstr(char *str, t_flags flags);
-int						pf_printint(intmax_t num, t_flags flags, signed char format);
-int						pf_printuint(uintmax_t num, t_flags flags, signed char format);
+int						pf_printint(intmax_t num, t_flags flags,
+		signed char format);
+int						pf_printuint(uintmax_t num, t_flags flags,
+		signed char format);
 /*
 ** SET FORMAT
 */
@@ -93,15 +95,21 @@ int						pf_write_space(int size);
 int						pf_write_fwidth_r(char *str, int fwidth);
 int						pf_write_preci(char *str, int pwidth);
 int						pf_write_fwidth_l(char *str, int fwidth);
+
 /*
 ** CONVERT TO STRING
 */
+
 char					*pf_convert(uintmax_t number, signed char format);
 char					*pf_revstr(char *str);
 char					*pf_convertbase(uintmax_t num, char *base);
+
 /*
 * CONVERT F,G,E
 */
+
+int						pf_printfloat(double number, t_flags flags,
+		signed char format);
 char					*pf_convertfloat(double number, int pwidth);
 char					*pf_convertfloatg(double number, int pwidth);
 char					*pf_convertexp(double number, int pwidth);
@@ -116,8 +124,9 @@ double					pf_pow_g(double pow, int pwidth, int exp);
 char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
 char					*pf_doublezero(int pwidth);
-int						pf_printfloat(double number, t_flags flags,
-		signed char format);
+double					pf_roundfloat(double decimal, int *i);
+char					*pf_convertdecimal(double number, int pwidth, int *n);
+char					*pf_convertdecimal_e(double number, int pwidth, int *n);
 /*
 ** PARSE FORMAT STRING - FLAG UTILS
 */
