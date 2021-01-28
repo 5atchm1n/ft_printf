@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/27 22:03:43 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/28 22:16:36 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ BONUS = bonus/pf_printfloat_bonus.c \
 		bonus/pf_float_exp_bonus.c \
 		bonus/pf_float_utils_2_bonus.c
 
-OBJS = ${SRCS1:.c=.o} ${SRCS2:.c=.o}
+OBJS1 = ${SRCS1:.c=.o} 
+
+OBJS2 = ${SRCS2:.c=.o}
 
 BONUSOBJS = ${BONUS:.c=.o}
 
@@ -56,7 +58,7 @@ CFLAGS	= -Wall -Wextra -Werror -g
 
 MEM = -fsanitize=address
 
-$(NAME) : ${OBJS} ${INCLUDE}
+$(NAME) : ${OBJS1} ${OBJS2} ${INCLUDE}
 	ar rcs $@ $?
 
 .c.o:
@@ -64,14 +66,14 @@ $(NAME) : ${OBJS} ${INCLUDE}
 
 all : ${NAME}
 
-bonus : ${BONUSOBJS} ${OBJS}
-	ar rcs ${NAME} $?
-
 clean :
-	${RM} ${OBJS} ${BONUSOBJS}
+	${RM} ${OBJS1} ${OBJS2} ${BONUSOBJS}
 
 fclean : clean
 	${RM} ${NAME}
+
+bonus : ${BONUSOBJS} ${OBJS1} ${INCLUDE}
+	ar rcs ${NAME} $?
 
 norm :
 	~/.norminette/norminette.rb ${SRCS1} ${SRCS2} ${INCLUDE}
