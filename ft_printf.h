@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 22:02:27 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/28 23:14:09 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int						pf_printint(intmax_t num, t_flags flags,
 		signed char format);
 int						pf_printuint(uintmax_t num, t_flags flags,
 		signed char format);
+int						pf_printchar(char c, t_flags flags, signed char format);
 /*
 ** SET FORMAT
 */
@@ -95,6 +96,7 @@ int						pf_write_space(int size);
 int						pf_write_fwidth_r(char *str, int fwidth);
 int						pf_write_preci(char *str, int pwidth);
 int						pf_write_fwidth_l(char *str, int fwidth);
+int						pf_prepend(char *dest, int pwidth, int len, char c);
 
 /*
 ** CONVERT TO STRING
@@ -105,7 +107,7 @@ char					*pf_revstr(char *str);
 char					*pf_convertbase(uintmax_t num, char *base);
 
 /*
-* CONVERT F,G,E
+** CONVERT F,G,E
 */
 
 int						pf_printfloat(double number, t_flags flags,
@@ -142,7 +144,7 @@ int						pf_isdigit(int c);
 int						pf_strlen(char *s);
 int						pf_isneg(int *exp);
 /*
-* WRITE TO STDOUT
+** WRITE TO STDOUT
 */
 int						pf_putstr(char *str);
 int						pf_putchar(char c);

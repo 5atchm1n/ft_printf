@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 22:00:31 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/28 23:40:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,20 @@ char			*pf_addpow(char *str, int exp, int pwidth)
 	return (ret);
 }
 
+static int		pf_copystr(char *src, char *dest)
+{
+	size_t		n;
+
+	n = 0;
+	while (src[n] != '\0')
+	{
+		dest[n] = src[n];
+		n++;
+	}
+	free(src);
+	return (n);
+}
+
 char			*pf_joinfloat(char *s1, char *s2)
 {
 	char		*str;
@@ -88,14 +102,10 @@ char			*pf_joinfloat(char *s1, char *s2)
 	size_t		j;
 
 	len = pf_strlen(s1) + pf_strlen(s2) + 1;
-	if (!(str = malloc(sizeof(char) * (len + 1))))
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
 		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
+	i = pf_copystr(s1, str);
 	j = 0;
 	str[i] = '.';
 	i++;
@@ -106,7 +116,6 @@ char			*pf_joinfloat(char *s1, char *s2)
 		j++;
 	}
 	str[i] = '\0';
-	free(s1);
 	free(s2);
 	return (str);
 }
@@ -119,14 +128,10 @@ char			*pf_joinstr(char *s1, char *s2)
 	size_t		j;
 
 	len = pf_strlen(s1) + pf_strlen(s2) + 1;
-	if (!(str = malloc(sizeof(char) * (len + 1))))
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
 		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
+	i = pf_copystr(s1, str);
 	j = 0;
 	while (s2[j] != '\0')
 	{
@@ -135,7 +140,6 @@ char			*pf_joinstr(char *s1, char *s2)
 		j++;
 	}
 	str[i] = '\0';
-	free(s1);
 	free(s2);
 	return (str);
 }

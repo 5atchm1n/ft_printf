@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_setreturn.c                                     :+:      :+:    :+:   */
+/*   pf_setreturn_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/26 19:09:19 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/28 22:35:56 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,38 +43,6 @@ static int		pf_ret_type(signed char format)
 	return (0);
 }
 
-static int		pf_printchar(char c, t_flags flags)
-{
-	int			n;
-
-	n = 1;
-	if (flags.left == 0)
-	{
-		if (flags.fwidth > 1)
-		{
-			while (n < flags.fwidth)
-			{
-				write(1, " ", 1);
-				n++;
-			}
-		}
-		write(1, &c, 1);
-	}
-	if (flags.left == 1)
-	{
-		write(1, &c, 1);
-		if (flags.fwidth > 1)
-		{
-			while (n < flags.fwidth)
-			{
-				write(1, " ", 1);
-				n++;
-			}
-		}
-	}
-	return (n);
-}
-
 int				pf_setreturn(t_pfdata *pfdata)
 {
 	int			type;
@@ -85,9 +53,9 @@ int				pf_setreturn(t_pfdata *pfdata)
 	n = 0;
 	type = pf_ret_type(pfdata->format);
 	if (type == 0)
-		n += pf_printchar(pfdata->arg.ch, pfdata->flags);
+		n = pf_printchar(pfdata->arg.ch, pfdata->flags, pfdata->format);
 	if (type == 1)
-		n = pf_printchar(pfdata->arg.ch, pfdata->flags);
+		n = pf_printchar(pfdata->arg.ch, pfdata->flags, pfdata->format);
 	if (type == 2)
 		n = pf_printstr(pfdata->arg.str, pfdata->flags);
 	if (type == 3)

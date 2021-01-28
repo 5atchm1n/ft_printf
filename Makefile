@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/01/28 22:16:36 by sshakya          ###   ########.fr        #
+#    Updated: 2021/01/28 23:06:40 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,11 @@ SRCS1 =	ft_printf.c \
 		srcs/pf_setargs.c \
 		srcs/pf_convert.c \
 		srcs/pf_printstr.c \
+		srcs/pf_printchar.c \
 		srcs/pf_printstr_utils.c \
 		srcs/pf_print.c \
-		srcs/pf_printint_utils.c
+		srcs/pf_printint_utils.c \
+		srcs/pf_printint_utils_2.c
 
 SRCS2 = srcs/pf_setreturn.c \
 		srcs/pf_printuint.c \
@@ -79,6 +81,6 @@ norm :
 	~/.norminette/norminette.rb ${SRCS1} ${SRCS2} ${INCLUDE}
 
 norm-bonus :
-	~/.norminette/norminette.rb ${SRCS1} ${BONUS} ${INCLUDE}
+	~/.norminette/norminette.rb ${BONUS} ${INCLUDE}
 
 .PHONY : all norm  clean re fclean bonus

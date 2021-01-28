@@ -6,43 +6,11 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 21:55:17 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/29 00:48:41 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-static void		pf_setendg(char *str)
-{
-	int			i;
-	int			j;
-	int			k;
-	int			len;
-
-	i = 0;
-	len = pf_strlen(str);
-	while (str[i] != '\0')
-	{
-		if (str[i] == '0')
-		{
-			j = i;
-			k = i;
-			while (str[j] != '\0')
-			{
-				if (str[j] == '0')
-					j++;
-				if (str[j] != '0')
-				{
-					i = j;
-					break ;
-				}
-			}
-		}
-		i++;
-	}
-	if (j == len)
-		str[k] = '\0';
-}
 
 static char		*pf_convertexpg(double number, int pwidth)
 {
@@ -59,10 +27,16 @@ static char		*pf_convertexpg(double number, int pwidth)
 	dig = pf_convertbase(digit, "0123456789");
 	deci = deci * pf_pow_g(10, pwidth, exp);
 	flt = pf_convertbase((uintmax_t)deci, "0123456789");
-	pf_setendg(flt);
 	flt = pf_joinfloat(dig, flt);
 	flt = pf_addexp(flt, exp);
 	return (flt);
+}
+
+static void		pf_set_zero_e(char **flt, char **dig, int *exp, int pwidth)
+{
+	*flt = pf_doublezero(pwidth);
+	*dig = pf_convertbase(0, "0123456789");
+	*exp = 0;
 }
 
 char			*pf_convertexp(double number, int pwidth)
@@ -75,11 +49,7 @@ char			*pf_convertexp(double number, int pwidth)
 
 	n = 0;
 	if (number > 0 && number < DBL_EPSILON)
-	{
-		flt = pf_doublezero(pwidth);
-		dig = pf_convertbase(0, "0123456789");
-		exp = 0;
-	}
+		pf_set_zero_e(&flt, &dig, &exp, pwidth);
 	else
 	{
 		exp = pf_expi(number);

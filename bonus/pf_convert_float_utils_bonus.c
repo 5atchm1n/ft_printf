@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 21:57:17 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/28 23:21:08 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,26 +54,25 @@ double			pf_roundfloat(double decimal, int *i)
 char			*pf_convertdecimal_e(double number, int pwidth, int *n)
 {
 	char		*ret;
-	double		deci[2];
+	double		d[2];
 	intmax_t	digit;
-	int			exp[2];
+	int			e[2];
 	int			i;
 
 	i = 0;
-	exp[0] = pf_expi(number);
+	e[0] = pf_expi(number);
 	number = pf_exp(number);
 	digit = (uintmax_t)number;
-	deci[0] = number - (double)digit;
-	exp[1] = pf_expi(deci[0]);
-	deci[0] = deci[0] * pf_pow_e(10, pwidth, exp[0]);
-	deci[1] = pf_roundfloat(deci[0], &i);
-	ret = pf_convertbase((uintmax_t)deci[1], "0123456789");
-	if (exp[1] != -1)
-		ret = pf_addpow(ret, exp[1] + i, pwidth);
-	if ((uintmax_t)deci[1] == 0 && (uintmax_t)deci[0] == 0)
+	d[0] = number - (double)digit;
+	e[1] = pf_expi(d[0]);
+	d[0] = d[0] * pf_pow_e(10, pwidth, e[0]);
+	d[1] = pf_roundfloat(d[0], &i);
+	ret = pf_convertbase((uintmax_t)d[1], "0123456789");
+	if (e[1] != -1)
+		ret = pf_addpow(ret, e[1] + i, pwidth);
+	if ((uintmax_t)d[1] == 0 && (uintmax_t)d[0] == 0)
 		return (pf_doublezero(pwidth));
-	else if ((uintmax_t)deci[1] % (uintmax_t)deci[0] == 1 &&
-			exp[0] == 0 && exp[1] == -1)
+	if ((uintmax_t)d[1] % (uintmax_t)d[0] == 1 && e[0] == 0 && e[1] == -1)
 	{
 		ret = pf_doublezero(pwidth);
 		*n = 1;
