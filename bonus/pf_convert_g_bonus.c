@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 02:54:11 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/29 06:19:55 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/29 06:43:11 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char			*pf_convertfloatg(double number, int pwidth, int precision)
 
 	width = pwidth;
 	exp = pf_expi(number);
-	if (number > 0 && number < DBL_EPSILON)
+	if ((number > 0 && number < DBL_EPSILON) || number == 0)
 	{
 		ret = pf_convertbase(0, "0123456798");
 		return (ret);
