@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/28 23:21:08 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/29 00:59:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char			*pf_convertdecimal(double number, int pwidth, int *n)
 {
 	char		*ret;
 	double		deci[2];
-	intmax_t	digit;
+	uintmax_t	digit;
 	int			exp;
 	int			i;
 
@@ -55,7 +55,7 @@ char			*pf_convertdecimal_e(double number, int pwidth, int *n)
 {
 	char		*ret;
 	double		d[2];
-	intmax_t	digit;
+	uintmax_t	digit;
 	int			e[2];
 	int			i;
 

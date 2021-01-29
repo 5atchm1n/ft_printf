@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_printfloat.c                                    :+:      :+:    :+:   */
+/*   pf_printfloat_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/18 21:07:33 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/29 01:08:28 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static char		*pf_convertf(double number, signed char format, int pwidth)
+static char		*pf_convertf(double number, signed char format, t_flags flags)
 {
 	char		*ret;
 
 	ret = NULL;
 	if (format == 'f')
-		ret = pf_convertfloat(number, pwidth);
+		ret = pf_convertfloat(number, flags.pwidth, flags.precision);
 	if (format == 'e')
-		ret = pf_convertexp(number, pwidth);
+		ret = pf_convertexp(number, flags.pwidth);
 	if (format == 'g')
-		ret = pf_convertfloatg(number, pwidth);
+		ret = pf_convertfloatg(number, flags.pwidth, flags.precision);
 	return (ret);
 }
 
@@ -62,7 +62,7 @@ int				pf_printfloat(double number, t_flags flags, signed char format)
 	double		num;
 
 	num = pf_isnegdouble(number, &neg);
-	pfstring = pf_convertf(num, format, flags.pwidth);
+	pfstring = pf_convertf(num, format, flags);
 	len = pf_strlen(pfstring);
 	if (flags.zero == 1 && flags.fwidth > len && flags.left == 0)
 		pfstring = pf_putzero(pfstring, flags.fwidth);
