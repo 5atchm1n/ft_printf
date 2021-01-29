@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/29 01:08:28 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/29 03:51:08 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char		*pf_convertf(double number, signed char format, t_flags flags)
 	if (format == 'f')
 		ret = pf_convertfloat(number, flags.pwidth, flags.precision);
 	if (format == 'e')
-		ret = pf_convertexp(number, flags.pwidth);
+		ret = pf_convertexp(number, flags.pwidth, flags.precision);
 	if (format == 'g')
 		ret = pf_convertfloatg(number, flags.pwidth, flags.precision);
 	return (ret);

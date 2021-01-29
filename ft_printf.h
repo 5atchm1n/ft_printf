@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/29 01:07:32 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/29 03:50:04 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,10 @@ int						pf_printfloat(double number, t_flags flags,
 		signed char format);
 char					*pf_convertfloat(double number, int pwidth, int p);
 char					*pf_convertfloatg(double number, int pwidth, int p);
-char					*pf_convertexp(double number, int pwidth);
+char					*pf_convertexp(double number, int pwidth, int p);
 char					*pf_joinstr(char *s1, char *s2);
 char					*pf_joinfloat(char *s1, char *s2);
+char					*pf_convertdecimal_e(double number, int pwidth, int *n);
 double					pf_isnegdouble(double num, int *neg);
 double					pf_exp(double pow);
 int						pf_expi(double num);
@@ -127,8 +128,6 @@ char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
 char					*pf_doublezero(int pwidth);
 double					pf_roundfloat(double decimal, int *i);
-char					*pf_convertdecimal(double number, int pwidth, int *n);
-char					*pf_convertdecimal_e(double number, int pwidth, int *n);
 /*
 ** PARSE FORMAT STRING - FLAG UTILS
 */

@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_convert_float_utils_bonus.c                     :+:      :+:    :+:   */
+/*   pf_convert_float_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/29 00:59:05 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/29 03:03:42 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char			*pf_convertdecimal(double number, int pwidth, int *n)
+static char		*pf_whole_f(uintmax_t digit, int pwidth)
+{
+	char		*dig;
+	char		*flt;
+
+	dig = pf_convertbase(digit, "012345679");
+	if (pwidth == 0)
+		return (dig);
+	flt = pf_doublezero(pwidth);
+	flt = pf_joinfloat(dig, flt);
+	return (flt);
+}
+
+static char		*pf_convertdecimal(double number, int pwidth, int *n)
 {
 	char		*ret;
 	double		deci[2];
@@ -38,44 +51,25 @@ char			*pf_convertdecimal(double number, int pwidth, int *n)
 	return (ret);
 }
 
-double			pf_roundfloat(double decimal, int *i)
+char			*pf_convertfloat(double number, int pwidth, int precision)
 {
-	int			exp;
-	int			round;
-	double		temp;
-
-	exp = pf_expi(decimal);
-	temp = decimal + 0.5;
-	round = pf_expi(temp);
-	*i = round - exp;
-	return (temp);
-}
-
-char			*pf_convertdecimal_e(double number, int pwidth, int *n)
-{
-	char		*ret;
-	double		d[2];
+	char		*dig;
+	char		*flt;
 	uintmax_t	digit;
-	int			e[2];
-	int			i;
+	double		deci;
+	int			n;
 
-	i = 0;
-	e[0] = pf_expi(number);
-	number = pf_exp(number);
+	n = 0;
 	digit = (uintmax_t)number;
-	d[0] = number - (double)digit;
-	e[1] = pf_expi(d[0]);
-	d[0] = d[0] * pf_pow_e(10, pwidth, e[0]);
-	d[1] = pf_roundfloat(d[0], &i);
-	ret = pf_convertbase((uintmax_t)d[1], "0123456789");
-	if (e[1] != -1)
-		ret = pf_addpow(ret, e[1] + i, pwidth);
-	if ((uintmax_t)d[1] == 0 && (uintmax_t)d[0] == 0)
-		return (pf_doublezero(pwidth));
-	if ((uintmax_t)d[1] % (uintmax_t)d[0] == 1 && e[0] == 0 && e[1] == -1)
-	{
-		ret = pf_doublezero(pwidth);
-		*n = 1;
-	}
-	return (ret);
+	deci = number - (double)digit;
+	if ((number > 0 && number < DBL_EPSILON) || deci < DBL_EPSILON)
+		return (pf_whole_f(digit, pwidth));
+	if (precision == 1 && pwidth == -1)
+		return (pf_whole_f(digit, 0));
+	flt = pf_convertdecimal(number, pwidth, &n);
+	if (n == 1)
+		digit = digit + 1;
+	dig = pf_convertbase(digit, "0123456789");
+	flt = pf_joinfloat(dig, flt);
+	return (flt);
 }
