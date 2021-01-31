@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 22:25:27 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/31 15:28:31 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/31 15:31:08 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int		pf_charspace(t_flags flags, signed char format)
 
 	c = ' ';
 	n = 1;
-	if ((flags.zero == 1 || flags.precision == 1) && format == '%')
+	if ((flags.zero == 1 || flags.precision == 1) && format == '%'
+			&& flags.left == 0)
 		c = '0';
 	while (flags.fwidth > n)
 	{
