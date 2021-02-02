@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/02 19:19:18 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/02 20:10:16 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char		*pf_whole_f(uintmax_t digit, int pwidth)
 	char		*flt;
 
 	dig = pf_convertbase(digit, "0123456789");
-	if (pwidth == 0)
+	if (pwidth == 0 || (pwidth == -1 && digit == 0))
 		return (dig);
 	flt = pf_doublezero(pwidth);
 	flt = pf_joinfloat(dig, flt);
