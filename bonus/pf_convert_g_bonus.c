@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 02:54:11 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/29 16:54:41 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/02 05:15:23 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ char			*pf_convertfloatg(double number, int pwidth, int precision)
 
 	width = pwidth;
 	exp = pf_expi(number);
-//	printf("\nexp-start = %d\n", exp);
 	if ((number > 0 && number < DBL_EPSILON) || number == 0)
 	{
 		ret = pf_convertbase(0, "0123456798");
@@ -120,7 +119,6 @@ char			*pf_convertfloatg(double number, int pwidth, int precision)
 		else if (pwidth == -1 && exp >= 0)
 		{
 			ret = pf_convertfloat(number, (6 - (exp + 1)), precision);
-			printf("exp2 = %d\n", (6 - (exp + 1)));
 		}
 		else
 			ret = pf_convertfloat(number, pwidth - 1, precision);
