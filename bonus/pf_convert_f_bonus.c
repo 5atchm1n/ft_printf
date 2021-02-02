@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/02 05:16:52 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/02 19:19:18 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,27 @@ static char		*pf_convertdecimal(double number, int pwidth, int *n)
 	char		*ret;
 	double		deci[2];
 	uintmax_t	digit;
-	int			exp;
+	int			exp[3];
 	int			i;
 
 	i = 0;
 	digit = (uintmax_t)number;
 	deci[0] = number - (double)digit;
-	exp = pf_expi(deci[0]);
+	exp[0] = pf_expi(deci[0]);
+//	printf("exp = %d\n", exp[0]);
 	deci[0] = pf_exp(deci[0]);
-	deci[0] = deci[0] * pf_pow_f(10, pwidth, exp);
+	deci[0] = deci[0] * pf_pow_f(10, pwidth, exp[0]);
 	deci[1] = pf_roundfloat(deci[0], &i);
+//	printf("d0 = %.10f | d1 = %.10f \n", deci[0], deci[1]);
+//	printf("%% = %lu\n", (uintmax_t)deci[1] / (uintmax_t)deci[0]);
+	exp[1] = pf_expi(deci[0]);
+	exp[2] = pf_expi(deci[1]);
+//	printf("exp1 = %d\n", exp[1]);
+//	printf("exp2 = %d\n", exp[2]);
 	ret = pf_convertbase((uintmax_t)deci[1], "0123456789");
-	if (exp != -1)
-		ret = pf_addpow(ret, exp + i, pwidth);
-	if ((uintmax_t)deci[1] % (uintmax_t)deci[0] == 1 && exp == -1)
+	if (exp[0] != -1)
+		ret = pf_addpow(ret, exp[0] + i, pwidth);
+	if ((uintmax_t)deci[1] % (uintmax_t)deci[0] == 1 && exp[0] == -1 && exp[1] != exp[2])
 	{
 		ret = pf_doublezero(pwidth);
 		*n = 1;
