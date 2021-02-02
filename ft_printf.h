@@ -6,13 +6,13 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/02 05:09:59 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/02 05:29:11 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define FLAGS "# +-0.*"
+# define FLAGS "# +-0.*hl"
 # define FORMAT "%cspiduxXfge"
 
 # include <stdarg.h>
