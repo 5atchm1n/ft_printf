@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 23:35:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/28 23:07:57 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/02 05:04:01 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,6 @@ char		*pf_putflag(char *str, char flag)
 		j++;
 	}
 	ret[i++] = '\0';
-	free(str);
-	return (ret);
-}
-
-char		*pf_putzero(char *str, int width)
-{
-	int		len;
-	int		i;
-	int		j;
-	char	*ret;
-
-	len = pf_strlen(str);
-	i = 0;
-	j = 0;
-	if (width == -1 || width < len)
-		width = len;
-	ret = malloc(sizeof(char) * (width + 1));
-	i = pf_prepend(ret, width, len, '0');
-	while (i < width)
-	{
-		ret[i] = str[j];
-		i++;
-		j++;
-	}
-	ret[width] = '\0';
 	free(str);
 	return (ret);
 }
