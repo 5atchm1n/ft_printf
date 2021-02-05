@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/29 03:51:22 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/05 14:43:17 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ static void		pf_set_zero_e(char **flt, char **dig, int *exp, int pwidth)
 
 static void		pf_set_digit_e(double number, char **flt, int *exp)
 {
-	*flt = pf_convertbase((uintmax_t)number, "0123456789");
 	*exp = pf_expi(number);
+	number = pf_exp(number);
+	*flt = pf_convertbase((uintmax_t)number, "0123456789");
 }
 
 char			*pf_convertexp(double number, int pwidth, int precision)
