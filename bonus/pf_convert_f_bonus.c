@@ -6,17 +6,19 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/05 16:09:26 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/05 16:17:00 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static char		*pf_whole_f(uintmax_t digit, int pwidth)
+static char		*pf_whole_f(uintmax_t digit, int pwidth, double number)
 {
 	char		*dig;
 	char		*flt;
 
+	number = number + 0.5;
+	digit = (uintmax_t)number;
 	dig = pf_convertbase(digit, "0123456789");
 	if (pwidth == 0 || (pwidth == -1 && digit == 0))
 //	if (pwidth == 0)
@@ -66,9 +68,9 @@ char			*pf_convertfloat(double number, int pwidth, int precision)
 	digit = (uintmax_t)number;
 	deci = number - (double)digit;
 	if ((number > 0 && number < DBL_EPSILON) || deci < DBL_EPSILON)
-		return (pf_whole_f(digit, pwidth));
+		return (pf_whole_f(digit, pwidth, number));
 	if (precision == 1 && (pwidth == -1 || pwidth == 0))
-		return (pf_whole_f(digit, 0));
+		return (pf_whole_f(digit, 0, number));
 	flt = pf_convertdecimal(number, pwidth, &n);
 	if (n == 1)
 		digit = digit + 1;
