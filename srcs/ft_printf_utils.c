@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 06:02:19 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/14 17:46:09 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/05 20:19:55 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				pf_flagtrue(char *str, int n)
 	int			i;
 
 	i = 0;
-	while (*str != '\0' && i >= 0)
+	while (*str != '\0' && i >= 0 && i != 5)
 	{
 		i = pf_isflag(*str);
 		if (i == n)
