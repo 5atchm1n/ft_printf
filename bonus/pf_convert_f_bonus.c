@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/05 16:08:20 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/05 16:09:26 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char			*pf_convertfloat(double number, int pwidth, int precision)
 	deci = number - (double)digit;
 	if ((number > 0 && number < DBL_EPSILON) || deci < DBL_EPSILON)
 		return (pf_whole_f(digit, pwidth));
-	if (precision == 1 && (pwidth == -1 || pwidth == 0)
+	if (precision == 1 && (pwidth == -1 || pwidth == 0))
 		return (pf_whole_f(digit, 0));
 	flt = pf_convertdecimal(number, pwidth, &n);
 	if (n == 1)
