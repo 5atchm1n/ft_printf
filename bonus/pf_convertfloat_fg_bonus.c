@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_convert_f_bonus.c                               :+:      :+:    :+:   */
+/*   pf_convertfloat_fg_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/06 15:50:54 by sshakya          ###   ########.fr       */
+/*   Created: 2021/02/06 15:45:49 by sshakya           #+#    #+#             */
+/*   Updated: 2021/02/06 15:59:59 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+static char		*pf_whole_f(uintmax_t digit, int pwidth, double number)
+{
+	char		*dig;
+	char		*flt;
+
+	number = number + 0.5;
+	digit = (uintmax_t)number;
+	dig = pf_convertbase(digit, "0123456789");
+	if (pwidth == 0 || (pwidth == -1 && digit == 0))
+		return (dig);
+	flt = pf_doublezero(pwidth);
+	flt = pf_joinfloat(dig, flt);
+	return (flt);
+}
 
 static char		*pf_convertdecimal(double number, int pwidth, int *n)
 {
@@ -40,28 +55,7 @@ static char		*pf_convertdecimal(double number, int pwidth, int *n)
 	return (ret);
 }
 
-static char		*pf_whole_f(double number, t_flags f)
-{
-	char		*dig;
-	char		*flt;
-	double		deci;
-	uintmax_t	digit;
-
-	flt = NULL;
-	digit = (uintmax_t)number;
-	deci = number - (double)digit;
-	if (deci > 0.5)
-		digit = digit + 1;
-	dig = pf_convertbase(digit, "0123456789");
-	if ((f.pwidth == 0 || (f.pwidth == -1 && f.precision == 1)) && f.hash != 1)
-		return (dig);
-	if (f.hash != 1)
-		flt = pf_doublezero(f.pwidth);
-	flt = pf_joinfloat(dig, flt);
-	return (flt);
-}
-
-char			*pf_convertfloat(double number, t_flags f)
+char			*pf_convertfloat_fg(double number, int pwidth, int precision)
 {
 	char		*dig;
 	char		*flt;
@@ -73,10 +67,10 @@ char			*pf_convertfloat(double number, t_flags f)
 	digit = (uintmax_t)number;
 	deci = number - (double)digit;
 	if ((number > 0 && number < DBL_EPSILON) || deci < DBL_EPSILON)
-		return (pf_whole_f(number, f));
-	if (f.precision == 1 && (f.pwidth == -1 || f.pwidth == 0))
-		return (pf_whole_f(number, f));
-	flt = pf_convertdecimal(number, f.pwidth, &n);
+		return (pf_whole_f(digit, pwidth, number));
+	if (precision == 1 && (pwidth == -1 || pwidth == 0))
+		return (pf_whole_f(digit, 0, number));
+	flt = pf_convertdecimal(number, pwidth, &n);
 	if (n == 1)
 		digit = digit + 1;
 	dig = pf_convertbase(digit, "0123456789");

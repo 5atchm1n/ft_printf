@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 02:54:11 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/05 15:00:45 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/06 16:28:57 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,21 +100,19 @@ char			*pf_convertfloatg(double number, int pwidth, int precision)
 	exp = pf_expi(number);
 	if ((number > 0 && number < DBL_EPSILON) || number == 0)
 		return (pf_convertbase(0, "0123456789"));
-	if (number == 1)
-		return (pf_convertbase(1, "0123456789"));
 	else if (exp < -4 || (exp >= pwidth && pwidth != -1) ||
 			(exp >= 5 && pwidth == -1))
 		ret = pf_convertexpg(number, pwidth, precision);
 	else if (exp < 0 && !(exp < -4) && pwidth != -1)
-		ret = pf_convertfloat(number, width - (exp + 1), precision);
+		ret = pf_convertfloat_fg(number, width - (exp + 1), precision);
 	else
 	{
 		if (pwidth == -1 && exp < 0)
-			ret = pf_convertfloat(number, 5 - exp, precision);
+			ret = pf_convertfloat_fg(number, 5 - exp, precision);
 		else if (pwidth == -1 && exp >= 0)
-			ret = pf_convertfloat(number, (6 - (exp + 1)), precision);
+			ret = pf_convertfloat_fg(number, (6 - (exp + 1)), precision);
 		else
-			ret = pf_convertfloat(number, pwidth - 1, precision);
+			ret = pf_convertfloat_fg(number, pwidth - 1, precision);
 	}
 	pf_setend_g(ret);
 	return (ret);

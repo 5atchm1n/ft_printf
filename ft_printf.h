@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/02 05:29:11 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/06 15:46:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,9 @@ char					*pf_convertbase(uintmax_t num, char *base);
 
 int						pf_printfloat(double number, t_flags flags,
 		signed char format);
-char					*pf_convertfloat(double number, int pwidth, int p);
+char					*pf_convertfloat(double number, t_flags flags);
+char					*pf_convertfloat_fg(double number, int pwidth,
+		int precision);
 char					*pf_convertfloatg(double number, int pwidth, int p);
 char					*pf_convertexp(double number, int pwidth, int p);
 char					*pf_joinstr(char *s1, char *s2);
