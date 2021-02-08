@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:08:14 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 02:47:09 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 03:20:03 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,26 @@ int			pf_putchar(char c)
 int			pf_putstr(char *str)
 {
 	int		l;
+	int		err;
+
+	if (str == NULL)
+		return (-1);
+	l = pf_strlen(str);
+	err = write(1, str, l);
+	if (err == -1)
+		return (-1);
+	return (l);
+}
+
+int			pf_putstr_2(char *str)
+{
+	int		l;
+	int		err;
 
 	l = pf_strlen(str);
-	write(1, str, l);
+	err = write(1, str, l);
+	if (err == -1)
+		return (-1);
 	return (l);
 }
 

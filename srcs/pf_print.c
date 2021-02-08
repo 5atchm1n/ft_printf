@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 22:10:58 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 03:01:11 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 03:20:22 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int				pf_print(t_pfdata *arglist, char **strlist, char *str)
 		if (n < err)
 			return (pf_error(strlist, arglist));
 		err = n;
-		n += pf_putstr(arglist->str);
+		n += pf_putstr_2(arglist->str);
 		if (n < err)
 			return (pf_error(strlist, arglist));
 		arglist = arglist->next;

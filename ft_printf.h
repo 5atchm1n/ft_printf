@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 02:22:02 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 03:21:04 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int						pf_isneg(int *exp);
 ** WRITE TO STDOUT
 */
 int						pf_putstr(char *str);
+int						pf_putstr_2(char *str);
 int						pf_putchar(char c);
 
 #endif
