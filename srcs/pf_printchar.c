@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 22:25:27 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 02:57:00 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 15:13:01 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		pf_char_right(char c, t_flags flags, signed char format)
 	int			n;
 	int			err;
 
-	n = 0;
+	n = 1;
 	if (flags.fwidth > 1)
 	{
 		n = pf_charspace(flags, format);
@@ -56,7 +56,7 @@ static int		pf_char_left(char c, t_flags flags, signed char format)
 	int			n;
 	int			err;
 
-	n = 0;
+	n = 1;
 	err = write(1, &c, 1);
 	if (err == -1)
 		return (-1);
