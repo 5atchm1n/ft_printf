@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_setreturn.c                                     :+:      :+:    :+:   */
+/*   pf_setreturn_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 02:27:43 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/28 22:38:04 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/01/28 22:35:56 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ int				pf_setreturn(t_pfdata *pfdata)
 		n = pf_printint(pfdata->arg.nbr, pfdata->flags, pfdata->format);
 	if (type == 5)
 		n = pf_printuint(pfdata->arg.unbr, pfdata->flags, pfdata->format);
+	if (type == 6)
+		n = pf_printfloat(pfdata->arg.dbl, pfdata->flags, pfdata->format);
 	return (n);
 }

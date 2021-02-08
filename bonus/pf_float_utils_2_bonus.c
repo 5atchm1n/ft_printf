@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 22:01:09 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 02:08:25 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ double		pf_isnegdouble(double num, int *neg)
 	double	n;
 
 	*neg = 0;
+	n = num;
 	if (num < 0)
 	{
 		n = num * -1;

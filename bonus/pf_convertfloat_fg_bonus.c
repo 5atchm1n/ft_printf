@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:45:49 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/06 15:59:59 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 02:24:12 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ static char		*pf_whole_f(uintmax_t digit, int pwidth, double number)
 	char		*dig;
 	char		*flt;
 
+	flt = NULL;
 	number = number + 0.5;
 	digit = (uintmax_t)number;
 	dig = pf_convertbase(digit, "0123456789");
 	if (pwidth == 0 || (pwidth == -1 && digit == 0))
 		return (dig);
-	flt = pf_doublezero(pwidth);
+	flt = pf_doublezero(pwidth, flt);
 	flt = pf_joinfloat(dig, flt);
 	return (flt);
 }
@@ -49,7 +50,7 @@ static char		*pf_convertdecimal(double number, int pwidth, int *n)
 		ret = pf_addpow(ret, exp[0] + i, pwidth);
 	if (exp[1] != exp[2] && exp[0] == -1)
 	{
-		ret = pf_doublezero(pwidth);
+		ret = pf_doublezero(pwidth, ret);
 		*n = 1;
 	}
 	return (ret);

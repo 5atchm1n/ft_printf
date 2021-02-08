@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_printint.c                                      :+:      :+:    :+:   */
+/*   pf_printint_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 22:11:26 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/31 14:26:30 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 01:22:39 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,20 @@ static uintmax_t	pf_isnegative(intmax_t num, int *neg)
 	return (n);
 }
 
-static char			*pf_addflags_p(char *str, int neg)
+static char			*pf_addflags_p(char *str, t_flags flags, int neg)
 {
 	char			*ret;
 
 	ret = str;
 	if (neg == 1)
 		ret = pf_putflag(str, '-');
+	if (neg == 0)
+	{
+		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+			ret = pf_putflag(str, '+');
+		else if (flags.space == 1)
+			ret = pf_putflag(str, ' ');
+	}
 	return (ret);
 }
 
@@ -55,6 +62,13 @@ static char			*pf_addflags(char *str, t_flags flags, int neg, int l)
 		ret = pf_putflag(str, '-');
 	if (neg == 1 && flags.zero == 1 && flags.fwidth <= len)
 		str[0] = '-';
+	if (neg == 0 && (flags.zero == 0 || flags.fwidth == l))
+	{
+		if ((flags.space == 1 && flags.plus == 1) || flags.plus == 1)
+			ret = pf_putflag(str, '+');
+		else if (flags.space == 1)
+			ret = pf_putflag(str, ' ');
+	}
 	return (ret);
 }
 
@@ -68,12 +82,13 @@ static char			*pf_set_p(t_flags flags, char *pfstring, int neg,
 				flags.pwidth == -1))
 	{
 		free(pfstring);
-		pfstring = NULL;
+		pfstring = malloc(sizeof(char));
+		pfstring[0] = '\0';
 	}
 	if (flags.precision == 1)
 	{
 		pfstring = pf_putzero(pfstring, flags.pwidth);
-		pfstring = pf_addflags_p(pfstring, neg);
+		pfstring = pf_addflags_p(pfstring, flags, neg);
 	}
 	if (flags.precision == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:08:14 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 00:59:21 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 02:47:09 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,9 @@ int			pf_strlen(char *s)
 	int		i;
 
 	i = 0;
-	if (!s)
+	if (s == NULL)
 		return (0);
-	if (s[i] == '\0')
-		return (0);
-	while (s[i] != '\0')
+	while (s && s[i] != '\0')
 	{
 		i++;
 	}

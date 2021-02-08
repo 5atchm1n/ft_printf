@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/06 15:46:39 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 02:22:02 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ double					pf_pow_f(double pow, int pwidth, int exp);
 double					pf_pow_g(double pow, int pwidth, int exp);
 char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
-char					*pf_doublezero(int pwidth);
+char					*pf_doublezero(int pwidth, char *str);
 double					pf_roundfloat(double decimal, int *i);
 /*
 ** PARSE FORMAT STRING - FLAG UTILS

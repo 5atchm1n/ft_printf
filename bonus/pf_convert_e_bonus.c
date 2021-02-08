@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/05 14:43:17 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/08 02:24:38 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ char			*pf_convertdecimal_e(double number, int pwidth, int *n)
 	if (e[1] != -1)
 		ret = pf_addpow(ret, e[1] + i, pwidth);
 	if ((uintmax_t)d[1] == 0 && (uintmax_t)d[0] == 0)
-		return (pf_doublezero(pwidth));
+		return (pf_doublezero(pwidth, ret));
 	if ((uintmax_t)d[1] % (uintmax_t)d[0] == 1 && e[0] == 0 && e[1] == -1)
 	{
-		ret = pf_doublezero(pwidth);
+		ret = pf_doublezero(pwidth, ret);
 		*n = 1;
 	}
 	return (ret);
@@ -56,7 +56,7 @@ char			*pf_convertdecimal_e(double number, int pwidth, int *n)
 
 static void		pf_set_zero_e(char **flt, char **dig, int *exp, int pwidth)
 {
-	*flt = pf_doublezero(pwidth);
+	*flt = pf_doublezero(pwidth, *flt);
 	*dig = pf_convertbase(0, "0123456789");
 	*exp = 0;
 }
