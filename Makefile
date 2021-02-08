@@ -6,7 +6,7 @@
 #    By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 06:45:17 by sshakya           #+#    #+#              #
-#    Updated: 2021/02/08 03:10:42 by sshakya          ###   ########.fr        #
+#    Updated: 2021/02/08 03:25:27 by sshakya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ fclean : clean
 bonus : all
 
 norm :
-	~/.norminette/norminette.rb ${SRCS1} ${SRCS2} ${INCLUDE}
+	~/.norminette/norminette.rb ${SRCS} ${INCLUDE}
 
 norm-bonus :
 	~/.norminette/norminette.rb ${BONUS} ${INCLUDE}
