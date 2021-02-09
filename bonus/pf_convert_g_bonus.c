@@ -6,24 +6,13 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 02:54:11 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/06 16:28:57 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 03:14:57 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static char		*pf_set_digit_g(double number)
-{
-	int			exp;
-	char		*ret;
-
-	ret = pf_convertbase((uintmax_t)number, "0123456789");
-	exp = pf_expi(number);
-	ret = pf_addexp(ret, exp);
-	return (ret);
-}
-
-static void		pf_setend_g(char *str)
+void			pf_setend_g(char *str)
 {
 	int			len;
 	int			n;
@@ -51,69 +40,41 @@ static void		pf_setend_g(char *str)
 	}
 }
 
-static char		*pf_convertexp_g(double number, int pwidth)
-{
-	char		*dig;
-	char		*flt;
-	uintmax_t	digit;
-	int			exp;
-	int			n;
-
-	n = 0;
-	exp = pf_expi(number);
-	flt = pf_convertdecimal_e(number, pwidth, &n);
-	number = pf_exp(number);
-	digit = (uintmax_t)number;
-	if (n == 1)
-		digit = digit + 1;
-	dig = pf_convertbase(digit, "0123456789");
-	flt = pf_joinfloat(dig, flt);
-	pf_setend_g(flt);
-	flt = pf_addexp(flt, exp);
-	return (flt);
-}
-
-static char		*pf_convertexpg(double number, int pwidth, int precision)
+static char		*pf_convert_g(double number, int exp, t_flags flags)
 {
 	char		*ret;
-	int			exp;
 
-	if (precision == 1 && pwidth == -1)
-	{
-		ret = pf_set_digit_g(number);
-		return (ret);
-	}
-	if (pwidth == -1)
-		pwidth = 5;
-	exp = pf_expi(number);
-	ret = pf_convertexp_g(number, pwidth);
+	ret = NULL;
+	if (flags.pwidth == -1 && exp < -1)
+		ret = pf_convertfloat_fg(number, 5 - exp, flags.precision);
+	else if (flags.pwidth == -1 && exp > 0)
+		ret = pf_convertfloat_fg(number, (6 - (exp + 1)), flags.precision);
+	else if (flags.pwidth == -1 && exp == 0 && flags.precision == 1)
+		ret = pf_convertfloat_fg(number, 0, flags.precision);
+	else if (flags.pwidth <= 0 && exp == -1 && flags.precision == 1)
+		ret = pf_convertfloat_fg(number, 1, flags.precision);
+	else
+		ret = pf_convertfloat_fg(number, flags.pwidth - 1, flags.precision);
 	return (ret);
 }
 
-char			*pf_convertfloatg(double number, int pwidth, int precision)
+char			*pf_convertfloatg(double number, t_flags flags)
 {
 	char		*ret;
 	int			exp;
 	int			width;
 
-	width = pwidth;
+	width = flags.pwidth;
 	exp = pf_expi(number);
 	if ((number > 0 && number < DBL_EPSILON) || number == 0)
 		return (pf_convertbase(0, "0123456789"));
-	else if (exp < -4 || (exp >= pwidth && pwidth != -1) ||
-			(exp >= 5 && pwidth == -1))
-		ret = pf_convertexpg(number, pwidth, precision);
-	else if (exp < 0 && !(exp < -4) && pwidth != -1)
-		ret = pf_convertfloat_fg(number, width - (exp + 1), precision);
+	else if (exp < -4 || (exp >= flags.pwidth && flags.pwidth > 0) ||
+			(exp > 5 && flags.pwidth == -1))
+		ret = pf_convertexpg(number, flags.pwidth, flags.precision);
+	else if (exp < 0 && !(exp < -4) && flags.pwidth > 0)
+		ret = pf_convertfloat_fg(number, width - (exp + 1), flags.precision);
 	else
-	{
-		if (pwidth == -1 && exp < 0)
-			ret = pf_convertfloat_fg(number, 5 - exp, precision);
-		else if (pwidth == -1 && exp >= 0)
-			ret = pf_convertfloat_fg(number, (6 - (exp + 1)), precision);
-		else
-			ret = pf_convertfloat_fg(number, pwidth - 1, precision);
-	}
+		ret = pf_convert_g(number, exp, flags);
 	pf_setend_g(ret);
 	return (ret);
 }

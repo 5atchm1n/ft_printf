@@ -6,22 +6,26 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:45:49 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 02:24:12 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 02:56:38 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static char		*pf_whole_f(uintmax_t digit, int pwidth, double number)
+static char		*pf_whole_f(double number, int pwidth)
 {
 	char		*dig;
 	char		*flt;
+	double		deci;
+	uintmax_t	digit;
 
 	flt = NULL;
-	number = number + 0.5;
 	digit = (uintmax_t)number;
+	deci = number - (double)digit;
+	if (deci > 0.5)
+		digit = digit + 1;
 	dig = pf_convertbase(digit, "0123456789");
-	if (pwidth == 0 || (pwidth == -1 && digit == 0))
+	if (pwidth == 0 || pwidth == -1)
 		return (dig);
 	flt = pf_doublezero(pwidth, flt);
 	flt = pf_joinfloat(dig, flt);
@@ -68,9 +72,9 @@ char			*pf_convertfloat_fg(double number, int pwidth, int precision)
 	digit = (uintmax_t)number;
 	deci = number - (double)digit;
 	if ((number > 0 && number < DBL_EPSILON) || deci < DBL_EPSILON)
-		return (pf_whole_f(digit, pwidth, number));
+		return (pf_whole_f(number, pwidth));
 	if (precision == 1 && (pwidth == -1 || pwidth == 0))
-		return (pf_whole_f(digit, 0, number));
+		return (pf_whole_f(number, 0));
 	flt = pf_convertdecimal(number, pwidth, &n);
 	if (n == 1)
 		digit = digit + 1;

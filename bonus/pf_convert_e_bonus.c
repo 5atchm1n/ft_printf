@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 02:24:38 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 01:43:02 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char			*pf_convertdecimal_e(double number, int pwidth, int *n)
 		ret = pf_addpow(ret, e[1] + i, pwidth);
 	if ((uintmax_t)d[1] == 0 && (uintmax_t)d[0] == 0)
 		return (pf_doublezero(pwidth, ret));
-	if ((uintmax_t)d[1] % (uintmax_t)d[0] == 1 && e[0] == 0 && e[1] == -1)
+	if (e[0] == 0 && e[1] == -1 && (uintmax_t)d[1] % (uintmax_t)d[0] == 1)
 	{
 		ret = pf_doublezero(pwidth, ret);
 		*n = 1;
@@ -61,14 +61,24 @@ static void		pf_set_zero_e(char **flt, char **dig, int *exp, int pwidth)
 	*exp = 0;
 }
 
-static void		pf_set_digit_e(double number, char **flt, int *exp)
+static void		pf_set_digit_e(double number, char **flt, int *exp,
+		t_flags flags)
 {
+	double		deci;
+	uintmax_t	digit;
+
 	*exp = pf_expi(number);
 	number = pf_exp(number);
-	*flt = pf_convertbase((uintmax_t)number, "0123456789");
+	digit = (uintmax_t)number;
+	deci = number - (double)digit;
+	if (deci > 0.5)
+		digit = digit + 1;
+	*flt = pf_convertbase(digit, "0123456789");
+	if (flags.hash == 1)
+		*flt = pf_joinfloat(*flt, NULL);
 }
 
-char			*pf_convertexp(double number, int pwidth, int precision)
+char			*pf_convertexp(double number, t_flags flags)
 {
 	char		*dig;
 	char		*flt;
@@ -78,13 +88,13 @@ char			*pf_convertexp(double number, int pwidth, int precision)
 
 	n = 0;
 	if (number > 0 && number < DBL_EPSILON)
-		pf_set_zero_e(&flt, &dig, &exp, pwidth);
-	else if (precision == 1 && pwidth == -1)
-		pf_set_digit_e(number, &flt, &exp);
+		pf_set_zero_e(&flt, &dig, &exp, flags.pwidth);
+	else if (flags.precision == 1 && (flags.pwidth == -1 || flags.pwidth == 0))
+		pf_set_digit_e(number, &flt, &exp, flags);
 	else
 	{
 		exp = pf_expi(number);
-		flt = pf_convertdecimal_e(number, pwidth, &n);
+		flt = pf_convertdecimal_e(number, flags.pwidth, &n);
 		number = pf_exp(number);
 		digit = (uintmax_t)number;
 		if (n == 1)

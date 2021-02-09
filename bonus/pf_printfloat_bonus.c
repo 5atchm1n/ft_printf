@@ -6,23 +6,23 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/06 16:04:53 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 02:15:36 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static char		*pf_convertf(double number, signed char format, t_flags f)
+static char		*pf_convertf(double number, signed char format, t_flags flags)
 {
 	char		*ret;
 
 	ret = NULL;
 	if (format == 'f')
-		ret = pf_convertfloat(number, f);
+		ret = pf_convertfloat(number, flags);
 	if (format == 'e')
-		ret = pf_convertexp(number, f.pwidth, f.precision);
+		ret = pf_convertexp(number, flags);
 	if (format == 'g')
-		ret = pf_convertfloatg(number, f.pwidth, f.precision);
+		ret = pf_convertfloatg(number, flags);
 	return (ret);
 }
 
@@ -35,7 +35,7 @@ static char		*pf_addflags(char *str, t_flags f, int neg, int l)
 		str = pf_putflag(str, '-');
 	if (neg == 1 && f.zero == 1 && f.fwidth > l)
 		str[0] = '-';
-	if (neg == 0 && (f.fwidth < l ||
+	if (neg == 0 && (f.fwidth <= l ||
 				(f.fwidth > l && f.pwidth == -1 && f.precision == 0)))
 	{
 		if ((f.space == 1 && f.plus == 1) || f.plus == 1)

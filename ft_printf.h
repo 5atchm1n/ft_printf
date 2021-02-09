@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:13:04 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 03:21:04 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 02:58:02 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ char					*pf_convertbase(uintmax_t num, char *base);
 int						pf_printfloat(double number, t_flags flags,
 		signed char format);
 char					*pf_convertfloat(double number, t_flags flags);
-char					*pf_convertfloat_fg(double number, int pwidth,
-		int precision);
-char					*pf_convertfloatg(double number, int pwidth, int p);
-char					*pf_convertexp(double number, int pwidth, int p);
+char					*pf_convertfloat_fg(double number, int pwidth, int p);
+char					*pf_convertfloatg(double number, t_flags flags);
+char					*pf_convertexp(double number, t_flags flags);
+char					*pf_convertexpg(double number, int pwidth, int p);
 char					*pf_joinstr(char *s1, char *s2);
 char					*pf_joinfloat(char *s1, char *s2);
 char					*pf_convertdecimal_e(double number, int pwidth, int *n);
@@ -132,6 +132,7 @@ char					*pf_addexp(char *str, int exp);
 char					*pf_addpow(char *str, int exp, int pwidth);
 char					*pf_doublezero(int pwidth, char *str);
 double					pf_roundfloat(double decimal, int *i);
+void					pf_setend_g(char *str);
 /*
 ** PARSE FORMAT STRING - FLAG UTILS
 */

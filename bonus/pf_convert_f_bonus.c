@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/08 02:22:31 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 01:19:09 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ static char		*pf_whole_f(double number, t_flags f)
 	dig = pf_convertbase(digit, "0123456789");
 	if ((f.pwidth == 0 || (f.pwidth == -1 && f.precision == 1)) && f.hash != 1)
 		return (dig);
-	if (f.hash != 1)
+	if (f.hash == 0)
+		flt = pf_doublezero(f.pwidth, flt);
+	if (f.hash == 1 && f.precision == 1 && f.pwidth != -1)
 		flt = pf_doublezero(f.pwidth, flt);
 	flt = pf_joinfloat(dig, flt);
 	return (flt);

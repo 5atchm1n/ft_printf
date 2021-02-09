@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/01/27 08:03:32 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 01:26:33 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ double			pf_exp(double num)
 		return (num);
 	if (num == 1)
 		return (num);
+	if (num == 10)
+		return (1);
 	if (num < 1)
 	{
 		while (num < 10)
@@ -93,7 +95,7 @@ int				pf_expi(double num)
 	}
 	if (num > 1)
 	{
-		while (num > 10 && num != 0)
+		while (num >= 10 && num != 0)
 		{
 			num = num / 10;
 			n++;
