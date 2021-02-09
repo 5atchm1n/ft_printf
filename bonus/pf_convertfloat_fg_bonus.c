@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:45:49 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/09 02:56:38 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 17:30:42 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char		*pf_convertdecimal(double number, int pwidth, int *n)
 	deci[0] = number - (double)digit;
 	exp[0] = pf_expi(deci[0]);
 	deci[0] = pf_exp(deci[0]);
-	deci[0] = deci[0] * pf_pow_f(10, pwidth, exp[0]);
+	deci[0] = deci[0] * pf_pow_g(10, pwidth, exp[0]);
 	deci[1] = pf_roundfloat(deci[0], &i);
 	exp[1] = pf_expi(deci[0]);
 	exp[2] = pf_expi(deci[1]);
