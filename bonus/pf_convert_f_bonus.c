@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/09 17:44:01 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 17:50:07 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static char		*pf_convertdecimal(double number, int pwidth, int *n)
 	deci[0] = deci[0] * pf_pow_f(10, pwidth, exp[0]);
 	if (pwidth < 16)
 		deci[1] = pf_roundfloat(deci[0], &i);
+	else 
+		deci[1] = deci[0];
 	exp[1] = pf_expi(deci[0]);
 	exp[2] = pf_expi(deci[1]);
 	ret = pf_convertbase((uintmax_t)deci[1], "0123456789");
