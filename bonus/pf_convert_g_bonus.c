@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 02:54:11 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/09 17:40:07 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/09 17:42:46 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static char		*pf_convert_g(double number, int exp, t_flags flags)
 		ret = pf_convertfloat_fg(number, 0, flags.precision);
 	else if (flags.pwidth <= 0 && exp == -1 && flags.precision == 1)
 		ret = pf_convertfloat_fg(number, 1, flags.precision);
+	else if (flags.pwidth == -1 && exp == 0 && flags.precision == 0)
+		ret = pf_convertfloat_fg(number, 5, flags.precision);
 	else
 		ret = pf_convertfloat_fg(number, flags.pwidth, flags.precision);
 	return (ret);
