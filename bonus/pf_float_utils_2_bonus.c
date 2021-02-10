@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 23:34:39 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/09 17:31:47 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/10 02:14:49 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ double		pf_pow_g(double pow, int pwidth, int exp)
 	ret = 1;
 	def = pwidth;
 	if (exp < 0 && pwidth > 0)
-		def = def + exp;
+		def = def + exp - 1;
 	if (pwidth == -1)
 		def = 5;
 	if (pwidth == -2)
