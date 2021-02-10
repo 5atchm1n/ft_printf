@@ -6,7 +6,7 @@
 /*   By: sshakya <sshakya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:53:08 by sshakya           #+#    #+#             */
-/*   Updated: 2021/02/10 03:08:05 by sshakya          ###   ########.fr       */
+/*   Updated: 2021/02/10 03:19:05 by sshakya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,15 @@ char			*pf_convertdecimal_e(double number, int pwidth, int *n)
 	number = pf_exp(number);
 	digit = (uintmax_t)number;
 	d[0] = number - (double)digit;
-	d[0] = d[0] * pf_pow_e(10, pwidth, e[0]);
 	e[1] = pf_expi(d[0]);
+	d[0] = d[0] * pf_pow_e(10, pwidth, e[0]);
 	d[1] = pf_roundfloat(d[0], &i);
-	e[0] = pf_expi(d[1]);
 	ret = pf_convertbase((uintmax_t)d[1], "0123456789");
 	if (e[1] != -1)
 		ret = pf_addpow(ret, e[1] + i, pwidth);
 	if ((uintmax_t)d[1] == 0 && (uintmax_t)d[0] == 0)
 		return (pf_doublezero(pwidth, ret));
-	if (e[0] != e[1] && (uintmax_t)d[1] % (uintmax_t)d[0] == 1)
+	if (pf_expi(d[0]) != pf_expi(d[1]))
 	{
 		ret = pf_doublezero(pwidth, ret);
 		*n = 1;
